@@ -13,6 +13,12 @@
 		DE6DB03A2A41A5EB0035C427 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE6DB0392A41A5EB0035C427 /* Preview Assets.xcassets */; };
 		DE6DB0422A41BAFB0035C427 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6DB0412A41BAFB0035C427 /* OnboardingView.swift */; };
 		DE9B72362A42374D00C3DEDD /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9B72352A42374D00C3DEDD /* Onboarding.swift */; };
+		DE9B72382A423E0C00C3DEDD /* OnboardingPersonalizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9B72372A423E0C00C3DEDD /* OnboardingPersonalizationView.swift */; };
+		DE9B723A2A4240FF00C3DEDD /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9B72392A4240FF00C3DEDD /* HomeView.swift */; };
+		DE9B72402A42425200C3DEDD /* PersonalizationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9B723F2A42425200C3DEDD /* PersonalizationType.swift */; };
+		DE9B72422A42457B00C3DEDD /* PersonalizationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9B72412A42457B00C3DEDD /* PersonalizationViewModel.swift */; };
+		DE9B72452A424DAC00C3DEDD /* CupertinoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9B72442A424DAC00C3DEDD /* CupertinoButton.swift */; };
+		DE9B72472A42565C00C3DEDD /* PersonalizationTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9B72462A42565C00C3DEDD /* PersonalizationTag.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +29,12 @@
 		DE6DB0392A41A5EB0035C427 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		DE6DB0412A41BAFB0035C427 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		DE9B72352A42374D00C3DEDD /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
+		DE9B72372A423E0C00C3DEDD /* OnboardingPersonalizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPersonalizationView.swift; sourceTree = "<group>"; };
+		DE9B72392A4240FF00C3DEDD /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		DE9B723F2A42425200C3DEDD /* PersonalizationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalizationType.swift; sourceTree = "<group>"; };
+		DE9B72412A42457B00C3DEDD /* PersonalizationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalizationViewModel.swift; sourceTree = "<group>"; };
+		DE9B72442A424DAC00C3DEDD /* CupertinoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CupertinoButton.swift; sourceTree = "<group>"; };
+		DE9B72462A42565C00C3DEDD /* PersonalizationTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalizationTag.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +67,9 @@
 		DE6DB0312A41A5E90035C427 /* Scan2Cook */ = {
 			isa = PBXGroup;
 			children = (
+				DE9B72432A424D9100C3DEDD /* components */,
+				DE9B723E2A42423B00C3DEDD /* Enums */,
+				DE9B723B2A42414F00C3DEDD /* ViewModels */,
 				DE9B72342A42373D00C3DEDD /* Models */,
 				DE6DB0402A41BAE50035C427 /* Views */,
 				DE6DB0322A41A5E90035C427 /* Scan2CookApp.swift */,
@@ -77,6 +92,8 @@
 			isa = PBXGroup;
 			children = (
 				DE6DB0412A41BAFB0035C427 /* OnboardingView.swift */,
+				DE9B72372A423E0C00C3DEDD /* OnboardingPersonalizationView.swift */,
+				DE9B72392A4240FF00C3DEDD /* HomeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -87,6 +104,31 @@
 				DE9B72352A42374D00C3DEDD /* Onboarding.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		DE9B723B2A42414F00C3DEDD /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				DE9B72412A42457B00C3DEDD /* PersonalizationViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		DE9B723E2A42423B00C3DEDD /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				DE9B723F2A42425200C3DEDD /* PersonalizationType.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
+		DE9B72432A424D9100C3DEDD /* components */ = {
+			isa = PBXGroup;
+			children = (
+				DE9B72442A424DAC00C3DEDD /* CupertinoButton.swift */,
+				DE9B72462A42565C00C3DEDD /* PersonalizationTag.swift */,
+			);
+			path = components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -159,10 +201,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE9B72422A42457B00C3DEDD /* PersonalizationViewModel.swift in Sources */,
+				DE9B72402A42425200C3DEDD /* PersonalizationType.swift in Sources */,
 				DE6DB0422A41BAFB0035C427 /* OnboardingView.swift in Sources */,
 				DE6DB0352A41A5E90035C427 /* ContentView.swift in Sources */,
 				DE9B72362A42374D00C3DEDD /* Onboarding.swift in Sources */,
+				DE9B723A2A4240FF00C3DEDD /* HomeView.swift in Sources */,
+				DE9B72452A424DAC00C3DEDD /* CupertinoButton.swift in Sources */,
+				DE9B72472A42565C00C3DEDD /* PersonalizationTag.swift in Sources */,
 				DE6DB0332A41A5E90035C427 /* Scan2CookApp.swift in Sources */,
+				DE9B72382A423E0C00C3DEDD /* OnboardingPersonalizationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
