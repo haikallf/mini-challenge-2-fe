@@ -10,6 +10,14 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         NavigationView {
+            //TODO: Uncomment on final version
+//            Group {
+//                if (UserDefaults.standard.object(forKey: "isNotFirstTimer") != nil) {
+//                    HomeView()
+//                } else {
+//                    OnboardingView()
+//                }
+//            }
             OnboardingView()
         }
     }
