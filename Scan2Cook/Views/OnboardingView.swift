@@ -9,36 +9,63 @@ import SwiftUI
 
 struct OnboardingView: View {
     @State private var pageIndex = 1
-    @State var arr: [String] = ["Halo1", "Halo2", "Halo3"]
+    private let onboardings: [Onboarding] = Onboarding.all
     
     var timer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
     private let dotAppearance = UIPageControl.appearance()
     
     var body: some View {
         VStack {
+            HStack {
+                Spacer()
+                Text("Lewati")
+            }
+            .padding(.horizontal)
+            .padding(.vertical, 11)
+            
             TabView(selection: $pageIndex) {
-                ForEach(arr, id: \.self) { elmt in
-                    VStack {
-                        Text(elmt)
+                ForEach(onboardings, id: \.id) { onboarding in
+                    VStack(alignment: .leading) {
+                        Rectangle().fill(.gray).frame(width: 393, height: 491)
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text(onboarding.title)
+                                .font(.title2)
+                                .fontWeight(.bold)
+                                .multilineTextAlignment(.leading)
+                            Text(onboarding.content)
+                                .multilineTextAlignment(.leading)
+                        }
+                        .padding(.horizontal)
+                        
+                        Spacer()
                     }
-                    .tag(elmt)
+                    .tag(onboarding.id)
                 }
             }
             .animation(.easeInOut, value: pageIndex)
             .tabViewStyle(.page)
             .indexViewStyle(.page(backgroundDisplayMode: .interactive))
             .onAppear {
-                dotAppearance.currentPageIndicatorTintColor = UIColor(.gray)
-                dotAppearance.pageIndicatorTintColor = UIColor(Color("grayBg"))
+                dotAppearance.currentPageIndicatorTintColor = UIColor(.black)
+                dotAppearance.pageIndicatorTintColor = UIColor(.gray)
             }
-            .frame(maxHeight: 480)
             .padding(.bottom, 10)
-            .onReceive(timer, perform: { _ in
-                withAnimation {
-                    pageIndex = pageIndex < arr.count ? pageIndex + 1 : 1
-                }
-
-            })
+//            .onReceive(timer, perform: { _ in
+//                withAnimation {
+//                    pageIndex = pageIndex < onboardings.count ? pageIndex + 1 : 1
+//                }
+//
+//            })
+            
+            Button(action: {}) {
+                Text("Selesai")
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(.black)
+                    .foregroundColor(.white)
+                    .cornerRadius(12)
+                    .padding()
+            }
         }
     }
     

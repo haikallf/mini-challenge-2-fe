@@ -12,6 +12,7 @@
 		DE6DB0372A41A5EB0035C427 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE6DB0362A41A5EB0035C427 /* Assets.xcassets */; };
 		DE6DB03A2A41A5EB0035C427 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE6DB0392A41A5EB0035C427 /* Preview Assets.xcassets */; };
 		DE6DB0422A41BAFB0035C427 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6DB0412A41BAFB0035C427 /* OnboardingView.swift */; };
+		DE9B72362A42374D00C3DEDD /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9B72352A42374D00C3DEDD /* Onboarding.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		DE6DB0362A41A5EB0035C427 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DE6DB0392A41A5EB0035C427 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		DE6DB0412A41BAFB0035C427 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		DE9B72352A42374D00C3DEDD /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,7 @@
 		DE6DB0312A41A5E90035C427 /* Scan2Cook */ = {
 			isa = PBXGroup;
 			children = (
+				DE9B72342A42373D00C3DEDD /* Models */,
 				DE6DB0402A41BAE50035C427 /* Views */,
 				DE6DB0322A41A5E90035C427 /* Scan2CookApp.swift */,
 				DE6DB0342A41A5E90035C427 /* ContentView.swift */,
@@ -76,6 +79,14 @@
 				DE6DB0412A41BAFB0035C427 /* OnboardingView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		DE9B72342A42373D00C3DEDD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DE9B72352A42374D00C3DEDD /* Onboarding.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -150,6 +161,7 @@
 			files = (
 				DE6DB0422A41BAFB0035C427 /* OnboardingView.swift in Sources */,
 				DE6DB0352A41A5E90035C427 /* ContentView.swift in Sources */,
+				DE9B72362A42374D00C3DEDD /* Onboarding.swift in Sources */,
 				DE6DB0332A41A5E90035C427 /* Scan2CookApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
