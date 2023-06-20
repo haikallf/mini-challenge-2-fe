@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct OnboardingView: View {
+    @State private var shouldNavigate: Bool = false
     @State private var pageIndex = 1
     private let onboardings: [Onboarding] = Onboarding.all
     
@@ -16,15 +17,21 @@ struct OnboardingView: View {
     
     var body: some View {
         VStack {
+            // MARK: Skip Button
             HStack {
                 Spacer()
-                Text("Lewati")
+                NavigationLink(destination: OnboardingPersonalizationView()) {
+                    Text("Lewati")
+                        .foregroundColor(.black)
+                }
             }
             .padding(.horizontal)
             .padding(.vertical, 11)
             
+            // MARK: TabView
             TabView(selection: $pageIndex) {
                 ForEach(onboardings, id: \.id) { onboarding in
+                    // MARK: TabView Adapter
                     VStack(alignment: .leading) {
                         Rectangle().fill(.gray).frame(width: 393, height: 491)
                         VStack(alignment: .leading, spacing: 8) {
@@ -32,8 +39,11 @@ struct OnboardingView: View {
                                 .font(.title2)
                                 .fontWeight(.bold)
                                 .multilineTextAlignment(.leading)
+                                .fixedSize(horizontal: false, vertical: true)
                             Text(onboarding.content)
+                                .font(.subheadline)
                                 .multilineTextAlignment(.leading)
+                                .fixedSize(horizontal: false, vertical: true)
                         }
                         .padding(.horizontal)
                         
@@ -45,10 +55,10 @@ struct OnboardingView: View {
             .animation(.easeInOut, value: pageIndex)
             .tabViewStyle(.page)
             .indexViewStyle(.page(backgroundDisplayMode: .interactive))
-            .onAppear {
-                dotAppearance.currentPageIndicatorTintColor = UIColor(.black)
-                dotAppearance.pageIndicatorTintColor = UIColor(.gray)
-            }
+//            .onAppear {
+//                dotAppearance.currentPageIndicatorTintColor = UIColor(.black)
+//                dotAppearance.pageIndicatorTintColor = UIColor(.gray)
+//            }
             .padding(.bottom, 10)
 //            .onReceive(timer, perform: { _ in
 //                withAnimation {
@@ -56,25 +66,24 @@ struct OnboardingView: View {
 //                }
 //
 //            })
+            CupertinoButton(isLastPage() ? "Selesai" : "Lanjut", action: isLastPage() ?  {shouldNavigate = true} : {incrementPage()})
+                .padding(.horizontal)
             
-            Button(action: {}) {
-                Text("Selesai")
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(.black)
-                    .foregroundColor(.white)
-                    .cornerRadius(12)
-                    .padding()
+            //MARK: Navigate to PersonalizationView triggered by shouldNavigate
+            NavigationLink(destination: OnboardingPersonalizationView(), isActive: $shouldNavigate) {
+                EmptyView()
             }
+            .opacity(0)
         }
+        .navigationBarBackButtonHidden(true)
     }
     
     func incrementPage() {
         pageIndex += 1
     }
     
-    func goToFirst() {
-        pageIndex = 1
+    func isLastPage() -> Bool {
+        return pageIndex == onboardings.count
     }
 }
 
