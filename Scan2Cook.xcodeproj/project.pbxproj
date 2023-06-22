@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D8F786402A442BD300CE974D /* Scan2CookMLModel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = D8F7863F2A442BD300CE974D /* Scan2CookMLModel.mlmodel */; };
+		D8F786422A442BDC00CE974D /* MLModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F786412A442BDC00CE974D /* MLModelManager.swift */; };
 		DE6DB0332A41A5E90035C427 /* Scan2CookApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6DB0322A41A5E90035C427 /* Scan2CookApp.swift */; };
 		DE6DB0352A41A5E90035C427 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6DB0342A41A5E90035C427 /* ContentView.swift */; };
 		DE6DB0372A41A5EB0035C427 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE6DB0362A41A5EB0035C427 /* Assets.xcassets */; };
@@ -22,6 +24,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D8F7863F2A442BD300CE974D /* Scan2CookMLModel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Scan2CookMLModel.mlmodel; sourceTree = "<group>"; };
+		D8F786412A442BDC00CE974D /* MLModelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLModelManager.swift; sourceTree = "<group>"; };
+		D8F786432A44354400CE974D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		DE6DB02F2A41A5E90035C427 /* Scan2Cook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scan2Cook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE6DB0322A41A5E90035C427 /* Scan2CookApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scan2CookApp.swift; sourceTree = "<group>"; };
 		DE6DB0342A41A5E90035C427 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -48,6 +53,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D8F7863D2A442BAA00CE974D /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				D8F7863E2A442BB300CE974D /* MLModel */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		D8F7863E2A442BB300CE974D /* MLModel */ = {
+			isa = PBXGroup;
+			children = (
+				D8F7863F2A442BD300CE974D /* Scan2CookMLModel.mlmodel */,
+				D8F786412A442BDC00CE974D /* MLModelManager.swift */,
+			);
+			path = MLModel;
+			sourceTree = "<group>";
+		};
 		DE6DB0262A41A5E90035C427 = {
 			isa = PBXGroup;
 			children = (
@@ -67,6 +89,8 @@
 		DE6DB0312A41A5E90035C427 /* Scan2Cook */ = {
 			isa = PBXGroup;
 			children = (
+				D8F786432A44354400CE974D /* Info.plist */,
+				D8F7863D2A442BAA00CE974D /* Core */,
 				DE9B72432A424D9100C3DEDD /* components */,
 				DE9B723E2A42423B00C3DEDD /* Enums */,
 				DE9B723B2A42414F00C3DEDD /* ViewModels */,
@@ -205,8 +229,10 @@
 				DE9B72402A42425200C3DEDD /* PersonalizationType.swift in Sources */,
 				DE6DB0422A41BAFB0035C427 /* OnboardingView.swift in Sources */,
 				DE6DB0352A41A5E90035C427 /* ContentView.swift in Sources */,
+				D8F786422A442BDC00CE974D /* MLModelManager.swift in Sources */,
 				DE9B72362A42374D00C3DEDD /* Onboarding.swift in Sources */,
 				DE9B723A2A4240FF00C3DEDD /* HomeView.swift in Sources */,
+				D8F786402A442BD300CE974D /* Scan2CookMLModel.mlmodel in Sources */,
 				DE9B72452A424DAC00C3DEDD /* CupertinoButton.swift in Sources */,
 				DE9B72472A42565C00C3DEDD /* PersonalizationTag.swift in Sources */,
 				DE6DB0332A41A5E90035C427 /* Scan2CookApp.swift in Sources */,
@@ -342,6 +368,8 @@
 				DEVELOPMENT_TEAM = KYR4X9M655;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Scan2Cook/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "$(PRODUCT_NAME) requires access to your phone camera.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -371,6 +399,8 @@
 				DEVELOPMENT_TEAM = KYR4X9M655;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Scan2Cook/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "$(PRODUCT_NAME) requires access to your phone camera.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
