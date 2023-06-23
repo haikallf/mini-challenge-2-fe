@@ -8,13 +8,29 @@
 import SwiftUI
 
 struct RecipeCard: View {
+    let recipe: Recipe
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack(alignment: .leading) {
+            Rectangle()
+                .fill(.gray)
+                .frame(width: 369, height: 123)
+                .cornerRadius(8)
+            
+            Text(recipe.name)
+                .fontWeight(.semibold)
+            
+            HStack(spacing: 8) {
+                ForEach(recipe.tags, id: \.self) { tag in
+                    RecipeTag(text: tag)
+                }
+            }
+        }
+        .padding(12)
     }
 }
 
-struct RecipeCard_Previews: PreviewProvider {
-    static var previews: some View {
-        RecipeCard()
-    }
-}
+//struct RecipeCard_Previews: PreviewProvider {
+//    static var previews: some View {
+//        RecipeCard()
+//    }
+//}

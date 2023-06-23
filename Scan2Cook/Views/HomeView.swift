@@ -84,9 +84,10 @@ struct HomeView: View {
                 
                 Spacer()
             }
-            .frame(maxWidth: .infinity)
-        .navigationBarBackButtonHidden(true)
+            .padding(.bottom, 52)
         }
+        .frame(maxWidth: .infinity)
+        .navigationBarBackButtonHidden(true)
     }
 }
 

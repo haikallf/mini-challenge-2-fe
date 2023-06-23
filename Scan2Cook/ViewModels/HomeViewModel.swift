@@ -13,7 +13,7 @@ class HomeViewModel: ObservableObject {
     @Published var newestRecipes: [Recipe]
     
     let userDefaults = UserDefaults.standard
-    let personalizationsKey = "personalizations"
+    let lastSeenRecipesKey = "lastSeenRecipes"
     
     init(){
         lastSeenRecipes = Recipe.all

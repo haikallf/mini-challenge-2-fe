@@ -11,12 +11,13 @@ struct Recipe: Equatable, Identifiable {
     let id: String
     let name: String
     let image: String
+    let tags: [String]
 }
 
 extension Recipe {
     static let all = [
-        Recipe(id: "1", name: "Telur Orak Arik", image: "1"),
-        Recipe(id: "2", name: "Mie Kocok Kesetanan", image: "2"),
-        Recipe(id: "3", name: "Mie Kuah Susus ala Anak Kos", image: "3"),
+        Recipe(id: "1", name: "Telur Orak Arik", image: "1", tags: []),
+        Recipe(id: "2", name: "Mie Kocok Kesetanan", image: "2", tags: []),
+        Recipe(id: "3", name: "Mie Kuah Susus ala Anak Kos", image: "3", tags: ["laktosa", "pedas"]),
     ]
 }

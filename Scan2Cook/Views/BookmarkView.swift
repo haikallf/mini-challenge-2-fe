@@ -8,9 +8,47 @@
 import SwiftUI
 
 struct BookmarkView: View {
+    @ObservedObject var viewModel: BookmarkViewModel = BookmarkViewModel()
+    @State var searchValue: String = ""
+    
     var body: some View {
         VStack {
-            Text("This is Bookmark")
+            //MARK: SearchBar
+            HStack(spacing: 8) {
+                Image(systemName: "magnifyingglass")
+                    .foregroundColor(Color("labelsSecondary"))
+                TextField("Cari Resep..", text: $viewModel.searchText)
+            }
+            .padding(8)
+            .background(Color("fillsPrimary"))
+            .cornerRadius(8)
+            .padding(.vertical, 12)
+            .padding(.horizontal)
+            
+            //MARK: Heading
+            VStack(alignment: .leading) {
+                HStack {
+                    Text("Resep Disimpan")
+                        .font(.title)
+                    .fontWeight(.bold)
+                    
+                    Spacer()
+                }
+                HStack {
+                    Text("\(viewModel.bookmarkedRecipes.count) resep disimpan")
+                    Spacer()
+                }
+            }
+            .padding(.horizontal)
+            
+            ScrollView {
+                ForEach(viewModel.filteredMeals, id:\.id) { recipe in
+                    RecipeCard(recipe: recipe)
+                }
+            }
+//            .searchable(text: $viewModel.searchText)
+            
+            Spacer()
         }
         .navigationBarBackButtonHidden(true)
     }

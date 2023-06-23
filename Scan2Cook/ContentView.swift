@@ -15,7 +15,7 @@ struct ContentView: View {
             //TODO: Uncomment on final version
 //            Group {
 //                if (UserDefaults.standard.object(forKey: "isNotFirstTimer") != nil) {
-//                    HomeView()
+//                    MainView()
 //                } else {
 //                    OnboardingView()
 //                }

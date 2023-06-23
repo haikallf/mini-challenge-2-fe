@@ -8,13 +8,20 @@
 import SwiftUI
 
 struct RecipeTag: View {
+    let text: String
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text(text.capitalized)
+            .font(.caption2)
+            .padding(.vertical, 4)
+            .padding(.horizontal, 8)
+            .background(Color("fillsTertiary"))
+            .cornerRadius(120)
     }
 }
 
 struct RecipeTag_Previews: PreviewProvider {
     static var previews: some View {
-        RecipeTag()
+        RecipeTag(text: "manis")
     }
 }
