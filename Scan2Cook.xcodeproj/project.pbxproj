@@ -19,6 +19,9 @@
 		DE9B72422A42457B00C3DEDD /* PersonalizationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9B72412A42457B00C3DEDD /* PersonalizationViewModel.swift */; };
 		DE9B72452A424DAC00C3DEDD /* CupertinoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9B72442A424DAC00C3DEDD /* CupertinoButton.swift */; };
 		DE9B72472A42565C00C3DEDD /* PersonalizationTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9B72462A42565C00C3DEDD /* PersonalizationTag.swift */; };
+		DEE450CF2A45A6B800D2EA4A /* HorizontalScrollViewMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE450CE2A45A6B800D2EA4A /* HorizontalScrollViewMenu.swift */; };
+		DEE450D32A45A9C100D2EA4A /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE450D22A45A9C100D2EA4A /* HomeViewModel.swift */; };
+		DEE450D52A45AA2800D2EA4A /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE450D42A45AA2800D2EA4A /* Recipe.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +38,9 @@
 		DE9B72412A42457B00C3DEDD /* PersonalizationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalizationViewModel.swift; sourceTree = "<group>"; };
 		DE9B72442A424DAC00C3DEDD /* CupertinoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CupertinoButton.swift; sourceTree = "<group>"; };
 		DE9B72462A42565C00C3DEDD /* PersonalizationTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalizationTag.swift; sourceTree = "<group>"; };
+		DEE450CE2A45A6B800D2EA4A /* HorizontalScrollViewMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalScrollViewMenu.swift; sourceTree = "<group>"; };
+		DEE450D22A45A9C100D2EA4A /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		DEE450D42A45AA2800D2EA4A /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				DE9B72352A42374D00C3DEDD /* Onboarding.swift */,
+				DEE450D42A45AA2800D2EA4A /* Recipe.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -110,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				DE9B72412A42457B00C3DEDD /* PersonalizationViewModel.swift */,
+				DEE450D22A45A9C100D2EA4A /* HomeViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -127,6 +135,7 @@
 			children = (
 				DE9B72442A424DAC00C3DEDD /* CupertinoButton.swift */,
 				DE9B72462A42565C00C3DEDD /* PersonalizationTag.swift */,
+				DEE450CE2A45A6B800D2EA4A /* HorizontalScrollViewMenu.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -206,9 +215,12 @@
 				DE6DB0422A41BAFB0035C427 /* OnboardingView.swift in Sources */,
 				DE6DB0352A41A5E90035C427 /* ContentView.swift in Sources */,
 				DE9B72362A42374D00C3DEDD /* Onboarding.swift in Sources */,
+				DEE450CF2A45A6B800D2EA4A /* HorizontalScrollViewMenu.swift in Sources */,
 				DE9B723A2A4240FF00C3DEDD /* HomeView.swift in Sources */,
+				DEE450D32A45A9C100D2EA4A /* HomeViewModel.swift in Sources */,
 				DE9B72452A424DAC00C3DEDD /* CupertinoButton.swift in Sources */,
 				DE9B72472A42565C00C3DEDD /* PersonalizationTag.swift in Sources */,
+				DEE450D52A45AA2800D2EA4A /* Recipe.swift in Sources */,
 				DE6DB0332A41A5E90035C427 /* Scan2CookApp.swift in Sources */,
 				DE9B72382A423E0C00C3DEDD /* OnboardingPersonalizationView.swift in Sources */,
 			);
