@@ -11,11 +11,9 @@ struct CustomTabBar: View {
     @EnvironmentObject var globalStates: GlobalStates
     
     var body: some View {
-        HStack(spacing: 32) {
+        HStack(spacing: 16) {
             VStack(spacing: 4) {
                 Image(systemName: "house.fill")
-                    .resizable()
-                    .frame(width: 25, height: 22)
                     .foregroundColor(globalStates.selectedPageIndex == 1 ? .black : Color("labelsSecondary"))
                 
                 if (globalStates.selectedPageIndex == 1) {
@@ -24,14 +22,13 @@ struct CustomTabBar: View {
                         .frame(width: 6)
                 }
             }
+            .frame(width: 49.67)
             .onTapGesture {
                 globalStates.setSelectedPageIndex(value: 1)
             }
             
             VStack(spacing: 4) {
                 Image(systemName: "camera.metering.multispot")
-                    .resizable()
-                    .frame(width: 25, height: 22)
                     .foregroundColor(globalStates.selectedPageIndex == 2 ? .black : Color("labelsSecondary"))
                 
                 if (globalStates.selectedPageIndex == 2) {
@@ -40,14 +37,13 @@ struct CustomTabBar: View {
                         .frame(width: 6)
                 }
             }
+            .frame(width: 49.67)
             .onTapGesture {
                 globalStates.setSelectedPageIndex(value: 2)
             }
             
             VStack(spacing: 4) {
                 Image(systemName: "books.vertical")
-                    .resizable()
-                    .frame(width: 25, height: 22)
                     .foregroundColor(globalStates.selectedPageIndex == 3 ? .black : Color("labelsSecondary"))
                 
                 if (globalStates.selectedPageIndex == 3) {
@@ -56,10 +52,12 @@ struct CustomTabBar: View {
                         .frame(width: 6)
                 }
             }
+            .frame(width: 49.67)
             .onTapGesture {
                 globalStates.setSelectedPageIndex(value: 3)
             }
         }
+        .frame(height: 32)
         .padding(.vertical, 8)
         .padding(.horizontal, 24)
         .background(Color("gray5"))
