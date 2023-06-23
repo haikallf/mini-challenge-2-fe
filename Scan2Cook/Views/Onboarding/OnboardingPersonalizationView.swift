@@ -9,6 +9,7 @@ import SwiftUI
 
 struct OnboardingPersonalizationView: View {
     @StateObject var viewModel = PersonalizationViewModel()
+    
     @State private var shouldNavigate: Bool = false
     
     var body: some View {

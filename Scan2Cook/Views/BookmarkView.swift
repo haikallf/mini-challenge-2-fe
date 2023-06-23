@@ -14,16 +14,8 @@ struct BookmarkView: View {
     var body: some View {
         VStack {
             //MARK: SearchBar
-            HStack(spacing: 8) {
-                Image(systemName: "magnifyingglass")
-                    .foregroundColor(Color("labelsSecondary"))
-                TextField("Cari Resep..", text: $viewModel.searchText)
-            }
-            .padding(8)
-            .background(Color("fillsPrimary"))
-            .cornerRadius(8)
-            .padding(.vertical, 12)
-            .padding(.horizontal)
+            CustomSearchBar(placeholder: "Cari Resep...", searchText: $viewModel.searchText)
+                .padding(.horizontal)
             
             //MARK: Heading
             VStack(alignment: .leading) {

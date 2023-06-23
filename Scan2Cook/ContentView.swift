@@ -22,7 +22,6 @@ struct ContentView: View {
 //            }
             
             OnboardingView()
-                .environmentObject(globalStates)
         }
     }
 }

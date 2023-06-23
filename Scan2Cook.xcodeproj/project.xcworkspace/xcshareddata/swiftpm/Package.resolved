@@ -1,0 +1,23 @@
+{
+  "pins" : [
+    {
+      "identity" : "placement",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/sampettersson/Placement",
+      "state" : {
+        "revision" : "4178880e4c67754b5b1b9720939f679382127604",
+        "version" : "1.5.0"
+      }
+    },
+    {
+      "identity" : "swiftui-wraplayout",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/FluidGroup/swiftui-WrapLayout",
+      "state" : {
+        "revision" : "5e889b243cb48eb9a22eb13f3a3458e278718c81",
+        "version" : "0.2.1"
+      }
+    }
+  ],
+  "version" : 2
+}

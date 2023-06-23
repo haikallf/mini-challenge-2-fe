@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MainView: View {
     @State private var selectedItem = 1
-    @EnvironmentObject var globalStates: GlobalStates
+    @StateObject var globalStates: GlobalStates = GlobalStates()
     
     var body: some View {
 //        TabView {
@@ -56,6 +56,5 @@ struct MainView: View {
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
-            .environmentObject(GlobalStates())
     }
 }
