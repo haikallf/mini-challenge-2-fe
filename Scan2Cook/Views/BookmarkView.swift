@@ -9,7 +9,10 @@ import SwiftUI
 
 struct BookmarkView: View {
     var body: some View {
-        Text("This is Bookmark")
+        VStack {
+            Text("This is Bookmark")
+        }
+        .navigationBarBackButtonHidden(true)
     }
 }
 

@@ -11,7 +11,10 @@ struct HorizontalScrollViewMenu: View {
     let recipes: [Recipe]
     let isSmall: Bool
     
-    init(recipes:[Recipe], isSmall: Bool = true) {
+    @State var shouldNavigate: Bool = false
+    @State var selectedId: String = ""
+    
+    init(recipes: [Recipe], isSmall: Bool = true) {
         self.recipes = recipes
         self.isSmall = isSmall
     }
@@ -32,8 +35,17 @@ struct HorizontalScrollViewMenu: View {
                             .padding(.vertical, 8)
                             .padding(.leading, 4)
                     }
+                    .onTapGesture {
+                        selectedId = recipe.id
+                        shouldNavigate = true
+                    }
                 }
             }
+            //MARK: Navigate to RecipeDetailsView triggered by shouldNavigate
+            NavigationLink(destination: RecipeDetailsView(recipeId: selectedId), isActive: $shouldNavigate) {
+                EmptyView()
+            }
+            .opacity(0)
         }
     }
 }

@@ -22,6 +22,12 @@
 		DEE450CF2A45A6B800D2EA4A /* HorizontalScrollViewMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE450CE2A45A6B800D2EA4A /* HorizontalScrollViewMenu.swift */; };
 		DEE450D32A45A9C100D2EA4A /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE450D22A45A9C100D2EA4A /* HomeViewModel.swift */; };
 		DEE450D52A45AA2800D2EA4A /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE450D42A45AA2800D2EA4A /* Recipe.swift */; };
+		DEE450DA2A45C2D000D2EA4A /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE450D92A45C2D000D2EA4A /* MainView.swift */; };
+		DEE450DC2A45C32D00D2EA4A /* BookmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE450DB2A45C32D00D2EA4A /* BookmarkView.swift */; };
+		DEE450DE2A45C34100D2EA4A /* ScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE450DD2A45C34100D2EA4A /* ScanView.swift */; };
+		DEE450E02A45C80500D2EA4A /* RecipeDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE450DF2A45C80500D2EA4A /* RecipeDetailsView.swift */; };
+		DEE450E62A45CB2C00D2EA4A /* GlobalStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE450E52A45CB2C00D2EA4A /* GlobalStates.swift */; };
+		DEE450E82A45CC1200D2EA4A /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE450E72A45CC1200D2EA4A /* CustomTabBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +47,12 @@
 		DEE450CE2A45A6B800D2EA4A /* HorizontalScrollViewMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalScrollViewMenu.swift; sourceTree = "<group>"; };
 		DEE450D22A45A9C100D2EA4A /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		DEE450D42A45AA2800D2EA4A /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
+		DEE450D92A45C2D000D2EA4A /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		DEE450DB2A45C32D00D2EA4A /* BookmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkView.swift; sourceTree = "<group>"; };
+		DEE450DD2A45C34100D2EA4A /* ScanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanView.swift; sourceTree = "<group>"; };
+		DEE450DF2A45C80500D2EA4A /* RecipeDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailsView.swift; sourceTree = "<group>"; };
+		DEE450E52A45CB2C00D2EA4A /* GlobalStates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalStates.swift; sourceTree = "<group>"; };
+		DEE450E72A45CC1200D2EA4A /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +85,7 @@
 		DE6DB0312A41A5E90035C427 /* Scan2Cook */ = {
 			isa = PBXGroup;
 			children = (
+				DEE450E42A45CB1F00D2EA4A /* utils */,
 				DE9B72432A424D9100C3DEDD /* components */,
 				DE9B723E2A42423B00C3DEDD /* Enums */,
 				DE9B723B2A42414F00C3DEDD /* ViewModels */,
@@ -97,9 +110,12 @@
 		DE6DB0402A41BAE50035C427 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				DE6DB0412A41BAFB0035C427 /* OnboardingView.swift */,
-				DE9B72372A423E0C00C3DEDD /* OnboardingPersonalizationView.swift */,
+				DEE450D82A45BF7B00D2EA4A /* Scan */,
+				DEE450D62A45BF5C00D2EA4A /* Onboarding */,
 				DE9B72392A4240FF00C3DEDD /* HomeView.swift */,
+				DEE450D92A45C2D000D2EA4A /* MainView.swift */,
+				DEE450DB2A45C32D00D2EA4A /* BookmarkView.swift */,
+				DEE450DF2A45C80500D2EA4A /* RecipeDetailsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -136,8 +152,34 @@
 				DE9B72442A424DAC00C3DEDD /* CupertinoButton.swift */,
 				DE9B72462A42565C00C3DEDD /* PersonalizationTag.swift */,
 				DEE450CE2A45A6B800D2EA4A /* HorizontalScrollViewMenu.swift */,
+				DEE450E72A45CC1200D2EA4A /* CustomTabBar.swift */,
 			);
 			path = components;
+			sourceTree = "<group>";
+		};
+		DEE450D62A45BF5C00D2EA4A /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				DE6DB0412A41BAFB0035C427 /* OnboardingView.swift */,
+				DE9B72372A423E0C00C3DEDD /* OnboardingPersonalizationView.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		DEE450D82A45BF7B00D2EA4A /* Scan */ = {
+			isa = PBXGroup;
+			children = (
+				DEE450DD2A45C34100D2EA4A /* ScanView.swift */,
+			);
+			path = Scan;
+			sourceTree = "<group>";
+		};
+		DEE450E42A45CB1F00D2EA4A /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				DEE450E52A45CB2C00D2EA4A /* GlobalStates.swift */,
+			);
+			path = utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -211,12 +253,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE9B72422A42457B00C3DEDD /* PersonalizationViewModel.swift in Sources */,
+				DEE450DA2A45C2D000D2EA4A /* MainView.swift in Sources */,
+				DEE450E82A45CC1200D2EA4A /* CustomTabBar.swift in Sources */,
 				DE9B72402A42425200C3DEDD /* PersonalizationType.swift in Sources */,
 				DE6DB0422A41BAFB0035C427 /* OnboardingView.swift in Sources */,
+				DEE450E02A45C80500D2EA4A /* RecipeDetailsView.swift in Sources */,
 				DE6DB0352A41A5E90035C427 /* ContentView.swift in Sources */,
+				DEE450E62A45CB2C00D2EA4A /* GlobalStates.swift in Sources */,
 				DE9B72362A42374D00C3DEDD /* Onboarding.swift in Sources */,
+				DEE450DC2A45C32D00D2EA4A /* BookmarkView.swift in Sources */,
 				DEE450CF2A45A6B800D2EA4A /* HorizontalScrollViewMenu.swift in Sources */,
 				DE9B723A2A4240FF00C3DEDD /* HomeView.swift in Sources */,
+				DEE450DE2A45C34100D2EA4A /* ScanView.swift in Sources */,
 				DEE450D32A45A9C100D2EA4A /* HomeViewModel.swift in Sources */,
 				DE9B72452A424DAC00C3DEDD /* CupertinoButton.swift in Sources */,
 				DE9B72472A42565C00C3DEDD /* PersonalizationTag.swift in Sources */,

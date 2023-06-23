@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var globalStates: GlobalStates = GlobalStates()
+    
     var body: some View {
         NavigationView {
             //TODO: Uncomment on final version
@@ -18,7 +20,9 @@ struct ContentView: View {
 //                    OnboardingView()
 //                }
 //            }
+            
             OnboardingView()
+                .environmentObject(globalStates)
         }
     }
 }
@@ -26,5 +30,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .environmentObject(GlobalStates())
     }
 }

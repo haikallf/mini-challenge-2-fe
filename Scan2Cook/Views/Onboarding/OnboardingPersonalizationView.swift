@@ -16,7 +16,7 @@ struct OnboardingPersonalizationView: View {
             // MARK: Skip Button
             HStack {
                 Spacer()
-                NavigationLink(destination: HomeView()) {
+                NavigationLink(destination: MainView()) {
                     Text("Lewati")
                         .foregroundColor(.black)
                 }
@@ -90,8 +90,8 @@ struct OnboardingPersonalizationView: View {
                 shouldNavigate=true
             }, isDisabled: viewModel.personalizations.isEmpty)
             
-            //MARK: Navigate to PersonalizationView triggered by shouldNavigate
-            NavigationLink(destination: HomeView(), isActive: $shouldNavigate) {
+            //MARK: Navigate to MainView triggered by shouldNavigate
+            NavigationLink(destination: MainView(), isActive: $shouldNavigate) {
                 EmptyView()
             }
             .opacity(0)

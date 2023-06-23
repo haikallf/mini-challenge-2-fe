@@ -8,13 +8,54 @@
 import SwiftUI
 
 struct MainView: View {
+    @State private var selectedItem = 1
+    @EnvironmentObject var globalStates: GlobalStates
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+//        TabView {
+//            HomeView()
+//                .tabItem() {
+//                    Image(systemName: "house")
+//                    Image(systemName: "circle.fill")
+//                }
+//                .tag(1)
+//
+//            ScanView()
+//                .tabItem() {
+//                    Image(systemName: "house")
+//                }
+//                .tag(2)
+//
+//            BookmarkView()
+//                .tabItem() {
+//                    Image(systemName: "house")
+//                }
+//                .tag(3)
+//        }
+//        .accentColor(.black)
+//        .navigationBarBackButtonHidden(true)
+        
+        ZStack {
+            if globalStates.selectedPageIndex == 1 {
+                HomeView()
+            } else if globalStates.selectedPageIndex == 2 {
+                ScanView()
+            } else if globalStates.selectedPageIndex == 3 {
+                BookmarkView()
+            }
+            
+            VStack {
+                Spacer()
+                CustomTabBar()
+                    .environmentObject(globalStates)
+            }
+        }
     }
 }
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
+            .environmentObject(GlobalStates())
     }
 }
