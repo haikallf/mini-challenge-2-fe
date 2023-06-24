@@ -21,7 +21,7 @@ struct ContentView: View {
 //                }
 //            }
             
-            OnboardingView()
+            RecipeDetailsView(recipeId: "1")
         }
     }
 }

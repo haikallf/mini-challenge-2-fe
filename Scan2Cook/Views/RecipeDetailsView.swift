@@ -12,19 +12,14 @@ struct RecipeDetailsView: View {
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
-    var body: some View {
-        Home()
-    }
-}
-
-struct Home: View {
-    
     @State var searchText = ""
     
     // Gesture Properties...
     @State var offset: CGFloat = 0
     @State var lastOffset: CGFloat = 0
     @GestureState var gestureOffset: CGFloat = 0
+    
+    @State var sheetHeight: CGFloat = 0
     
     var body: some View {
         ZStack {
@@ -59,7 +54,7 @@ struct Home: View {
                                 .padding(.top)
                             
                             // MARK: - CUSTOM CONTENT
-                            RecipeDetailsSheet(recipeId: "1")
+                            RecipeDetailsSheet(recipeId: recipeId)
                             
                             Spacer()
                         }
@@ -85,6 +80,7 @@ struct Home: View {
                                     offset = 0
                                 }
                             }
+                            print("offset: \(offset)")
                             
                             // Storing Last Offset...
                             // So that the gesture can contine from the last position....
@@ -107,6 +103,9 @@ struct Home: View {
             }
             .padding(.top, 12)
             .padding(.leading)
+            .onTapGesture {
+                controlSheetOnDrag()
+            }
         }
         
         
@@ -116,6 +115,10 @@ struct Home: View {
         DispatchQueue.main.async {
             self.offset = gestureOffset + lastOffset
         }
+    }
+    
+    func controlSheetOnDrag() {
+        self.offset = 0
     }
     
     // Blur Radius for BG...
