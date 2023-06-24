@@ -1,8 +1,8 @@
 //
-//  RecipeDetailsView.swift
+//  CustomView.swift
 //  Scan2Cook
 //
-//  Created by Haikal Lazuardi Fadil on 23/06/23.
+//  Created by Haikal Lazuardi on 25/06/23.
 //
 
 import SwiftUI
@@ -10,243 +10,149 @@ import SwiftUI
 struct RecipeDetailsView: View {
     let recipeId: String
     
-    @State var portionCount: Int = 1
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     var body: some View {
-        ScrollView {
-            ZStack(alignment: .top) {
-                //MARK: Image
-                Rectangle()
-                    .fill(.gray)
-                    .frame(width: 393, height: 492)
-                
-                //MARK: Back Button
-                HStack {
-                    Image(systemName: "arrow.left")
-                    Spacer()
-                }
-                .padding(.top, 12)
-                .padding(.leading)
-            }
-            
-            //MARK: Recipe Title
-            Text("Indomie Goreng Crispy & Spicy")
-                .font(.title2)
-                .fontWeight(.bold)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .multilineTextAlignment(.leading)
-                .padding()
-            
-            //MARK: General Menu Info
-            VStack(spacing: 12) {
-                HStack(spacing: 8) {
-                    Image(systemName: "timer")
-                        .fontWeight(.medium)
-                    Text("Estimasi Pembuatan")
-                    Spacer()
-                    Text("5 Menit")
-                }
-                HStack(spacing: 8) {
-                    Image(systemName: "flame.fill")
-                        .fontWeight(.medium)
-                    Text("Saran Penyajian")
-                    Spacer()
-                    Text("1 Porsi")
-                }
-                HStack(spacing: 8) {
-                    Image(systemName: "fork.knife")
-                        .fontWeight(.medium)
-                    Text("Alat Masak")
-                    Spacer()
-                    Text("2 Alat Masak")
-                }
-            }
-            .font(.caption)
-            .padding()
-            .background(Color("fillsQuarternary"))
-            
-            //MARK: Ingredients
-            VStack(spacing: 12) {
-                Text("Bahan-bahan")
-                    .fontWeight(.semibold)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .multilineTextAlignment(.leading)
-                
-                //MARK: Portion Counter
-                HStack(alignment: .bottom, spacing: 4) {
-                    Text(String(portionCount))
-                        .font(.title2)
-                        .fontWeight(.bold)
-                    
-                    Text("Jumlah porsi")
-                        .font(.footnote)
-                        .padding(.bottom, 2)
-                    
-                    Spacer()
-                    
-                    HStack(spacing: 14.5) {
-                        Button(action: {
-                            if (portionCount > 1) { portionCount = portionCount - 1 }
-                        }, label: {
-                            Image(systemName: "minus")
-                        })
-                        
-                        Divider()
-                        
-                        Button(action: {
-                            portionCount = portionCount + 1
-                        }, label: {
-                            Image(systemName: "plus")
-                        })
-                    }
-                    .padding(.horizontal, 15)
-                    .padding(.vertical, 5)
-                    .background(Color("fillsTertiary"))
-                    .cornerRadius(8)
-                }
-                
-                //MARK: Main Ingredients
-                VStack(spacing: 12) {
-                    Text("Bahan Utama")
-                        .font(.subheadline)
-                        .fontWeight(.semibold)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .multilineTextAlignment(.leading)
-                    
-                    Group {
-                        HStack {
-                            Text("2 bungkus")
-                            
-                            Spacer()
-                            
-                            Text("Indomie")
-                        }
-                        HStack {
-                            Text("2 butir")
-                            
-                            Spacer()
-                            
-                            Text("Telur")
-                        }
-                    }
-                    .font(.subheadline)
-                }
-                .padding(12)
-                .background(Color("fillsTertiary"))
-                .cornerRadius(8)
-                
-                //MARK: Additional Ingredients
-                VStack(spacing: 12) {
-                    Text("Bahan Tambahan")
-                        .font(.subheadline)
-                        .fontWeight(.semibold)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .multilineTextAlignment(.leading)
-                    
-                    Group {
-                        HStack {
-                            Text("250 gram")
-                            
-                            Spacer()
-                            
-                            Text("Tepung Terigu")
-                        }
-                        HStack {
-                            Text("150 gram")
-                            
-                            Spacer()
-                            
-                            Text("Maizena")
-                        }
-                        HStack {
-                            Text("1 bungkus")
-                            
-                            Spacer()
-                            
-                            Text("Cabai Bubuk")
-                        }
-                        HStack {
-                            Text("2 sdt")
-                            
-                            Spacer()
-                            
-                            Text("Kaldu Bubuk")
-                        }
-                    }
-                    .font(.subheadline)
-                }
-                .padding(12)
-                .background(Color("fillsTertiary"))
-                .cornerRadius(8)
-            }
-            .padding()
-            
-            //MARK: Tools
-            VStack(alignment: .leading, spacing: 12) {
-                Text("Alat Masak")
-                    .fontWeight(.bold)
-                Text("Panci, Gelas, Piring, & Penggorengan")
-                    .font(.subheadline)
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding()
-            
-            //MARK: Cooking Steps
-            VStack(alignment: .leading, spacing: 16) {
-                Text("Langkah Masak")
-                    .fontWeight(.semibold)
-                
-                //MARK: STEPS
-                VStack(alignment: .leading, spacing: 12) {
-                    Text("Step 1")
-                        .fontWeight(.semibold)
-                    Text("Rebus Indomie ke dalam panci sampai setengah matang. Sambil menunggu indomie setengah matang, Tuangkan bumbu Indomie dan cabai bubuk secukupnya ke dalam piring.")
-                        .font(.subheadline)
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                
-                VStack(alignment: .leading, spacing: 12) {
-                    Text("Step 2")
-                        .fontWeight(.semibold)
-                    Text("Tuangkan mie ke dalam piring yang sudah diberi bumbu, lalu aduk rata. Kocok telur dan tambahkan penyedap rasa.")
-                        .font(.subheadline)
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                
-                VStack(alignment: .leading, spacing: 12) {
-                    Text("Step 3")
-                        .fontWeight(.semibold)
-                    Text("Campurkan tepung terigu dan maizena ke dalam wadah yang agak besar. Campurkan penyedap rasa dan cabai bubuk secukupnya ke dalam wadah yang berisi tepung terigu dan maizena. Lalu aduk hingga tercampur")
-                        .font(.subheadline)
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding()
-            
-            HStack(spacing: 10) {
-                CupertinoButton("Mulai Masak", action: {})
-                
-                Button(action: {}, label: {
-                    Image(systemName: "bookmark")
-                })
-                .frame(width: 50, height: 50)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 50)
-                        .stroke(Color.gray, lineWidth: 1)
-                )
-                .cornerRadius(50)
-            }
-            .padding(.vertical, 14)
-            .padding(.horizontal)
-            
-            Spacer()
-        }
+        Home()
     }
 }
 
-struct RecipeDetailsView_Previews: PreviewProvider {
+struct Home: View {
+    
+    @State var searchText = ""
+    
+    // Gesture Properties...
+    @State var offset: CGFloat = 0
+    @State var lastOffset: CGFloat = 0
+    @GestureState var gestureOffset: CGFloat = 0
+    
+    var body: some View {
+        ZStack {
+            // MARK: Background
+            VStack {
+                Rectangle()
+                    .fill(.gray)
+                    .frame(width: 393, height: 492)
+                    .blur(radius: getBlurRadius())
+                    .ignoresSafeArea()
+                
+                Spacer()
+            }
+            
+            // MARK: Bottom Sheet
+            // For Getting Height For Drag Gesture
+            GeometryReader { proxy -> AnyView in
+                let height = proxy.frame(in: .global).height
+                print("geometry height: \(height)")
+                print("screen height: \(UIScreen.main.bounds.height)")
+                return AnyView(
+                    ZStack {
+                        // MARK: - BOTTOM SHEET BACKGROUND
+                        Color.white
+                            .ignoresSafeArea()
+                        
+                        VStack {
+                            // MARK: - TOP DRAG INDICATOR
+                            Capsule()
+                                .fill(.white)
+                                .frame(width: 60, height: 4)
+                                .padding(.top)
+                            
+                            // MARK: - CUSTOM CONTENT
+                            RecipeDetailsSheet(recipeId: "1")
+                            
+                            Spacer()
+                        }
+                    } //: ZSTACK
+                        .offset(y: height - 360)
+                        .offset(y: -offset > 0 ? -offset <= (height - 360) ? offset : -(height - 360) : 0)
+                        .gesture(DragGesture().updating($gestureOffset, body: { value, out, _ in
+                            out = value.translation.height
+                            onChange()
+                        }).onEnded({ value in
+                            let maxHeight = height - 360
+                            withAnimation {
+                                // offset = 0
+                                
+                                // Logic Conditions For Moving States....
+                                // Up down or mid...
+                                if -offset > 360 && -offset < maxHeight / 2 {
+                                    // Mid...
+                                    offset = -(maxHeight / 3)
+                                } else if -offset > maxHeight / 2 {
+                                    offset = -maxHeight
+                                } else {
+                                    offset = 0
+                                }
+                            }
+                            
+                            // Storing Last Offset...
+                            // So that the gesture can contine from the last position....
+                            lastOffset = offset
+                            
+                        }))
+                    
+                    
+                )
+            }
+            .ignoresSafeArea(.all, edges: .bottom)
+            
+            VStack {
+                HStack(alignment: .top) {
+                    Image(systemName: "arrow.left")
+                    Spacer()
+                }
+                
+                Spacer()
+            }
+            .padding(.top, 12)
+            .padding(.leading)
+        }
+        
+        
+    }
+    
+    func onChange() {
+        DispatchQueue.main.async {
+            self.offset = gestureOffset + lastOffset
+        }
+    }
+    
+    // Blur Radius for BG...
+    func getBlurRadius() -> CGFloat {
+        let progress = -offset / (UIScreen.main.bounds.height - 360)
+        return progress * 30
+    }
+}
+
+struct BlurView: UIViewRepresentable {
+    
+    var style: UIBlurEffect.Style
+    
+    func makeUIView(context: Context) -> some UIVisualEffectView {
+        let view = UIVisualEffectView(effect: UIBlurEffect(style: style))
+        return view
+    }
+    
+    func updateUIView(_ uiView: UIViewType, context: Context) {
+        
+    }
+    
+}
+
+struct CustomCorner: Shape {
+    
+    var corners: UIRectCorner
+    var radius: CGFloat
+    
+    func path(in rect: CGRect) -> Path {
+        let path = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+        return Path(path.cgPath)
+    }
+    
+}
+
+struct CustomView_Previews: PreviewProvider {
     static var previews: some View {
         RecipeDetailsView(recipeId: "1")
     }
