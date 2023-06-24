@@ -21,7 +21,8 @@ struct ContentView: View {
 //                }
 //            }
             
-            RecipeDetailsView(recipeId: "1")
+//            RecipeDetailsView(recipeId: "1")
+            OnboardingView()
         }
     }
 }

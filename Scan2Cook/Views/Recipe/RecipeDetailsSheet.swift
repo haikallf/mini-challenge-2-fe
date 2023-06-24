@@ -13,6 +13,8 @@ struct RecipeDetailsSheet: View {
     @State private var scrollPosition: CGPoint = .zero
     @State private var scrolledDown = false
     
+    @State private var shouldNavigate: Bool = false
+    
     @State var portionCount: Int = 1
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
@@ -215,7 +217,7 @@ struct RecipeDetailsSheet: View {
                 .padding()
                 
                 HStack(spacing: 10) {
-                    CupertinoButton("Mulai Masak", action: {})
+                    CupertinoButton("Mulai Masak", action: {shouldNavigate = true})
                     
                     Button(action: {}, label: {
                         Image(systemName: "bookmark")
@@ -229,6 +231,12 @@ struct RecipeDetailsSheet: View {
                 }
                 .padding(.vertical, 14)
                 .padding(.horizontal)
+                
+                //MARK: Navigate to PersonalizationView triggered by shouldNavigate
+                NavigationLink(destination: RecipeStepsView(), isActive: $shouldNavigate) {
+                    EmptyView()
+                }
+                .opacity(0)
                 
                 Spacer()
             }
