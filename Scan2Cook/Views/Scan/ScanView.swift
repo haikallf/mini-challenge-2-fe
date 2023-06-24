@@ -11,7 +11,7 @@ struct ScanView: View {
     @EnvironmentObject var globalStates: GlobalStates
     @StateObject var scanViewModel = ScanViewModel()
     @State private var settingsDetent = PresentationDetent.height(140)
-    @State private var showSheet = true
+    @State private var showSheet = false
     
     var body: some View {
         VStack {
@@ -48,65 +48,62 @@ struct ScanView: View {
             .frame(width: 393, height: 619)
             .background(Color("fillsPrimary"))
             
+            //MARK: Last Seen Section
+            VStack {
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text("Terakhir Di-scan")
+                            .font(.headline)
+                            .fontWeight(.semibold)
+                        
+                        Text("13 Resep")
+                            .font(.caption)
+                    }
+                    
+                    Spacer()
+                    
+                    Button(action: {
+                        showSheet = true
+                        settingsDetent = PresentationDetent.large
+                    }, label: {
+                        HStack {
+                            Text("Lihat")
+                                .font(.subheadline)
+                            
+                            Image(systemName: "arrow.up")
+                                .font(.subheadline)
+                        }
+                        .padding(.vertical, 7)
+                        .padding(.horizontal, 14)
+                        .background(.black)
+                        .foregroundColor(.white)
+                        .cornerRadius(40)
+                    })
+                }
+                
+                Spacer()
+            }
+            .padding(.top, 28)
+            .padding(.horizontal)
             Spacer()
         }
-        .onAppear {
-            showSheet = true
-        }
+        .navigationBarBackButtonHidden(true)
         .sheet(isPresented: $showSheet) {
             Group {
-                if (settingsDetent == PresentationDetent.large) {
-                    Text("halo")
-                        .onTapGesture {
-                            settingsDetent = PresentationDetent.height(140)
-                        }
-                } else {
-                    VStack {
-                        HStack {
-                            VStack(alignment: .leading) {
-                                Text("Terakhir Di-scan")
-                                    .font(.headline)
-                                    .fontWeight(.semibold)
-                                
-                                Text("13 Resep")
-                                    .font(.caption)
-                            }
-                            
-                            Spacer()
-                            
-                            Button(action: {
-                                settingsDetent = PresentationDetent.large
-                            }, label: {
-                                HStack {
-                                    Text("Lihat")
-                                        .font(.subheadline)
-                                    
-                                    Image(systemName: "arrow.up")
-                                        .font(.subheadline)
-                                }
-                                .padding(.vertical, 7)
-                                .padding(.horizontal, 14)
-                                .background(.black)
-                                .foregroundColor(.white)
-                                .cornerRadius(40)
-                            })
-                        }
-                        
-                        Spacer()
-                    }
-                    .padding(.top, 28)
-                }
+                Text("halo")
+                    
+               
             }
             .presentationDragIndicator(.visible)
             .padding(.horizontal)
-            .presentationDetents(
-                [.height(140), .large],
-                selection: $settingsDetent
-             )
-            .presentationBackgroundInteraction(
-                .enabled(upThrough: .large)
-            )
-            .interactiveDismissDisabled(true)
+//            .presentationDetents(
+//                [.height(140), .large],
+//                selection: $settingsDetent
+//             )
+//            .presentationBackgroundInteraction(
+//                .enabled(upThrough: .large)
+//            )
+//            .interactiveDismissDisabled(true)
         }
     }
 }
