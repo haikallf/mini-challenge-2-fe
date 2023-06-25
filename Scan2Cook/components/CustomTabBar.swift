@@ -62,7 +62,6 @@ struct CustomTabBar: View {
         .padding(.horizontal, 24)
         .background(Color("gray5"))
         .cornerRadius(120)
-        .padding(.bottom)
     }
 }
 

@@ -12,29 +12,6 @@ struct MainView: View {
     @StateObject var globalStates: GlobalStates = GlobalStates()
     
     var body: some View {
-//        TabView {
-//            HomeView()
-//                .tabItem() {
-//                    Image(systemName: "house")
-//                    Image(systemName: "circle.fill")
-//                }
-//                .tag(1)
-//
-//            ScanView()
-//                .tabItem() {
-//                    Image(systemName: "house")
-//                }
-//                .tag(2)
-//
-//            BookmarkView()
-//                .tabItem() {
-//                    Image(systemName: "house")
-//                }
-//                .tag(3)
-//        }
-//        .accentColor(.black)
-//        .navigationBarBackButtonHidden(true)
-        
         ZStack {
             if globalStates.selectedPageIndex == 1 {
                 HomeView()
@@ -51,6 +28,7 @@ struct MainView: View {
                     .environmentObject(globalStates)
             }
         }
+        .navigationBarBackButtonHidden(true)
     }
 }
 

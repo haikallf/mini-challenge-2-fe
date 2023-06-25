@@ -72,7 +72,7 @@ struct HomeView: View {
                 
                 Spacer()
             }
-            .padding(.bottom, 52)
+            .padding(.bottom, 32)
         }
         .frame(maxWidth: .infinity)
         .navigationBarBackButtonHidden(true)
