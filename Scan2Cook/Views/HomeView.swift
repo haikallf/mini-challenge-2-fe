@@ -30,18 +30,6 @@ struct HomeView: View {
                 .padding(.vertical, 12)
                 .padding(.leading, 16)
                 
-                //MARK: Last Seen Section
-                VStack(alignment: .leading, spacing: 14) {
-                    Text("Terakhir Kamu Lihat")
-                        .font(.title3)
-                        .fontWeight(.bold)
-                        .padding(.leading, 16)
-                    
-                    HorizontalScrollViewMenu(recipes: viewModel.lastSeenRecipes)
-                    .padding(.leading, 16)
-                }
-                .padding(.vertical, 14)
-                
                 //MARK: Today's Recipe Section
                 VStack(alignment: .leading, spacing: 14) {
                     HStack {

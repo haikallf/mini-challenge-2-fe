@@ -21,7 +21,6 @@ struct PillIndicator: View {
                         .onTapGesture {
                             currentIndex = idx
                         }
-                        
                 } else {
                     Circle()
                         .fill(.gray)
@@ -33,7 +32,6 @@ struct PillIndicator: View {
                 }
             }
         }
-        
     }
 }
 

@@ -34,7 +34,11 @@ struct HorizontalScrollViewMenu: View {
                             .fontWeight(.semibold)
                             .padding(.vertical, 8)
                             .padding(.leading, 4)
+                            .multilineTextAlignment(.leading)
+                        
+                        Spacer()
                     }
+                    .frame(width: isSmall ? 180 : 240)
                     .onTapGesture {
                         selectedId = recipe.id
                         shouldNavigate = true
