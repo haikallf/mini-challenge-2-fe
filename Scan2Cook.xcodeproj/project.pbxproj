@@ -10,6 +10,7 @@
 		D8506F562A45A669004D86E5 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8506F552A45A669004D86E5 /* CameraView.swift */; };
 		D8506F5A2A45B192004D86E5 /* CameraModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8506F592A45B192004D86E5 /* CameraModel.swift */; };
 		D8506F5C2A4676A3004D86E5 /* CameraPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8506F5B2A4676A3004D86E5 /* CameraPreview.swift */; };
+		D87943CB2A4857C4002DCA87 /* MLManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87943CA2A4857C4002DCA87 /* MLManager.swift */; };
 		D8F786402A442BD300CE974D /* Scan2CookMLModel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = D8F7863F2A442BD300CE974D /* Scan2CookMLModel.mlmodel */; };
 		DE6DB0332A41A5E90035C427 /* Scan2CookApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6DB0322A41A5E90035C427 /* Scan2CookApp.swift */; };
 		DE6DB0352A41A5E90035C427 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6DB0342A41A5E90035C427 /* ContentView.swift */; };
@@ -29,6 +30,7 @@
 		D8506F552A45A669004D86E5 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		D8506F592A45B192004D86E5 /* CameraModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraModel.swift; sourceTree = "<group>"; };
 		D8506F5B2A4676A3004D86E5 /* CameraPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreview.swift; sourceTree = "<group>"; };
+		D87943CA2A4857C4002DCA87 /* MLManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLManager.swift; sourceTree = "<group>"; };
 		D8F7863F2A442BD300CE974D /* Scan2CookMLModel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Scan2CookMLModel.mlmodel; sourceTree = "<group>"; };
 		D8F786432A44354400CE974D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		DE6DB02F2A41A5E90035C427 /* Scan2Cook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scan2Cook.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -61,6 +63,7 @@
 			isa = PBXGroup;
 			children = (
 				D8506F592A45B192004D86E5 /* CameraModel.swift */,
+				D87943CA2A4857C4002DCA87 /* MLManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -68,6 +71,7 @@
 		D8506F582A45B187004D86E5 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D8506F552A45A669004D86E5 /* CameraView.swift */,
 				D8506F5B2A4676A3004D86E5 /* CameraPreview.swift */,
 			);
 			path = View;
@@ -94,7 +98,6 @@
 			children = (
 				D8506F582A45B187004D86E5 /* View */,
 				D8506F572A45B17C004D86E5 /* Model */,
-				D8506F552A45A669004D86E5 /* CameraView.swift */,
 			);
 			path = Camera;
 			sourceTree = "<group>";
@@ -255,6 +258,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D87943CB2A4857C4002DCA87 /* MLManager.swift in Sources */,
 				D8506F5A2A45B192004D86E5 /* CameraModel.swift in Sources */,
 				DE9B72422A42457B00C3DEDD /* PersonalizationViewModel.swift in Sources */,
 				DE9B72402A42425200C3DEDD /* PersonalizationType.swift in Sources */,

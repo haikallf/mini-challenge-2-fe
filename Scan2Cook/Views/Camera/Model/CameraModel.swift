@@ -15,6 +15,7 @@ class CameraModel : NSObject, ObservableObject, AVCapturePhotoCaptureDelegate {
     private var showAlert = false
     @Published var output = AVCapturePhotoOutput()
     @Published var previewLayer : AVCaptureVideoPreviewLayer?
+    private var mlManager = MLManager()
     
     func checkPermission(){
         switch AVCaptureDevice.authorizationStatus(for: .video){
@@ -106,9 +107,10 @@ class CameraModel : NSObject, ObservableObject, AVCapturePhotoCaptureDelegate {
             print("Unable to convert UIImage")
             return
         }
+        print("Photo taken")
         
         // Process the captured photo data as needed
         // For example, you can save it to a file or display it on the screen
-        
+        mlManager.detectObjects(in: image)
     }
 }
