@@ -9,7 +9,9 @@ import SwiftUI
 
 struct BookmarkView: View {
     @ObservedObject var viewModel: BookmarkViewModel = BookmarkViewModel()
-    @State var searchValue: String = ""
+    
+    @State var selectedViewMode = "list"
+    let viewOptions: [String] = ["list", "icons"]
     
     var body: some View {
         VStack {
@@ -33,12 +35,62 @@ struct BookmarkView: View {
             }
             .padding(.horizontal)
             
+            //MARK: Filter Section
+            HStack(spacing: 14) {
+                Button(action: {}, label: {
+                    HStack(spacing: 4) {
+                        Image(systemName: "line.3.horizontal.decrease")
+                        
+                        Text("Filter")
+                    }
+                    .font(.footnote)
+                    .fontWeight(.semibold)
+                    .padding(.vertical, 8)
+                    .padding(.horizontal, 12)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 120)
+                            .stroke(Color.gray, lineWidth: 1)
+                    )
+                })
+                
+                Spacer()
+                
+                Button(action: {
+                    selectedViewMode = "list"
+                }, label: {
+                    Image(systemName: "list.bullet")
+                        .font(.callout)
+                        .fontWeight(.semibold)
+                        .padding(6)
+                        .background(selectedViewMode == "list" ? Color("fillsPrimary") : .white)
+                        .clipShape(Circle())
+                })
+                
+                Button(action: {
+                    selectedViewMode = "icons"
+                }, label: {
+                    Image(systemName: "square.grid.2x2")
+                        .font(.callout)
+                        .fontWeight(.semibold)
+                        .padding(6)
+                        .background(selectedViewMode == "icons" ? Color("fillsPrimary") : .white)
+                        .clipShape(Circle())
+                })
+                
+            }
+            .padding(.vertical, 12)
+            .padding(.horizontal)
+            
+            //MARK: Recipe Card Section
             ScrollView {
                 ForEach(viewModel.filteredMeals, id:\.id) { recipe in
-                    RecipeCard(recipe: recipe)
+                    if (selectedViewMode == "list") {
+                        RecipeCardList(recipe: recipe)
+                    } else if (selectedViewMode == "icons") {
+                        RecipeCard(recipe: recipe)
+                    }
                 }
             }
-//            .searchable(text: $viewModel.searchText)
             
             Spacer()
         }
