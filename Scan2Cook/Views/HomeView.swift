@@ -164,7 +164,7 @@ struct HomeView: View {
                     CupertinoButton("Simpan", action: {
                         personalizationViewModel.setPersonalizations()
                         isPersonalizationSheetShown = false
-                    }, isDisabled: personalizationViewModel.personalizations.isEmpty)
+                    })
                 }
                 .padding(.horizontal)
                 .navigationBarBackButtonHidden(true)

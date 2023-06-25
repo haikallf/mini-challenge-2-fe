@@ -9,6 +9,7 @@ import SwiftUI
 
 class BookmarkViewModel: ObservableObject {
     @Published var bookmarkedRecipes: [Recipe]
+    @Published var filteredRecipes: [Recipe]
     @Published var searchText: String = ""
     
     let userDefaults = UserDefaults.standard
@@ -16,10 +17,19 @@ class BookmarkViewModel: ObservableObject {
     
     init(){
         bookmarkedRecipes = Recipe.all
+        filteredRecipes = Recipe.all
     }
     
     func getBookmarkedRecipes() -> [Recipe] {
         return Recipe.all
+    }
+    
+    func filterRecipe() {
+        if (searchText != "") {
+            filteredRecipes = bookmarkedRecipes.filter { recipe in
+                recipe.name.lowercased().contains(searchText.lowercased())
+            }
+        }
     }
     
     var filteredMeals: [Recipe] {
