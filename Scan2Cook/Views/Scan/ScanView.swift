@@ -37,12 +37,15 @@ struct ScanView: View {
                 
                 VStack {
                     Spacer()
-                    HStack(spacing: 4) {
-                        Image(systemName: "questionmark.circle")
-                        Text("Bagaimana caranya ini bekerja?")
-                    }
-                    .font(.caption2)
-                    .padding(.vertical, 24)
+                    NavigationLink(destination: EducationView(), label: {
+                        HStack(spacing: 4) {
+                            Image(systemName: "questionmark.circle")
+                            Text("Bagaimana caranya ini bekerja?")
+                        }
+                        .font(.caption2)
+                        .foregroundColor(.black)
+                        .padding(.vertical, 24)
+                    })
                 }
             }
             .frame(width: 393, height: 619)

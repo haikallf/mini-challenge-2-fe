@@ -107,8 +107,7 @@ struct RecipeDetailsView: View {
                 controlSheetOnDrag()
             }
         }
-        
-        
+        navigationBarBackButtonHidden(true)
     }
     
     func onChange() {
