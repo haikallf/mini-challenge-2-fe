@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D8506F562A45A669004D86E5 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8506F552A45A669004D86E5 /* CameraView.swift */; };
+		D8506F5A2A45B192004D86E5 /* CameraModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8506F592A45B192004D86E5 /* CameraModel.swift */; };
+		D8506F5C2A4676A3004D86E5 /* CameraPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8506F5B2A4676A3004D86E5 /* CameraPreview.swift */; };
 		D8F786402A442BD300CE974D /* Scan2CookMLModel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = D8F7863F2A442BD300CE974D /* Scan2CookMLModel.mlmodel */; };
-		D8F786422A442BDC00CE974D /* MLModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F786412A442BDC00CE974D /* MLModelManager.swift */; };
 		DE6DB0332A41A5E90035C427 /* Scan2CookApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6DB0322A41A5E90035C427 /* Scan2CookApp.swift */; };
 		DE6DB0352A41A5E90035C427 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6DB0342A41A5E90035C427 /* ContentView.swift */; };
 		DE6DB0372A41A5EB0035C427 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE6DB0362A41A5EB0035C427 /* Assets.xcassets */; };
@@ -24,8 +26,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D8506F552A45A669004D86E5 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
+		D8506F592A45B192004D86E5 /* CameraModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraModel.swift; sourceTree = "<group>"; };
+		D8506F5B2A4676A3004D86E5 /* CameraPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreview.swift; sourceTree = "<group>"; };
 		D8F7863F2A442BD300CE974D /* Scan2CookMLModel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Scan2CookMLModel.mlmodel; sourceTree = "<group>"; };
-		D8F786412A442BDC00CE974D /* MLModelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLModelManager.swift; sourceTree = "<group>"; };
 		D8F786432A44354400CE974D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		DE6DB02F2A41A5E90035C427 /* Scan2Cook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scan2Cook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE6DB0322A41A5E90035C427 /* Scan2CookApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scan2CookApp.swift; sourceTree = "<group>"; };
@@ -53,6 +57,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D8506F572A45B17C004D86E5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D8506F592A45B192004D86E5 /* CameraModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D8506F582A45B187004D86E5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D8506F5B2A4676A3004D86E5 /* CameraPreview.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		D8F7863D2A442BAA00CE974D /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -65,9 +85,18 @@
 			isa = PBXGroup;
 			children = (
 				D8F7863F2A442BD300CE974D /* Scan2CookMLModel.mlmodel */,
-				D8F786412A442BDC00CE974D /* MLModelManager.swift */,
 			);
 			path = MLModel;
+			sourceTree = "<group>";
+		};
+		D8F786482A4440A600CE974D /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				D8506F582A45B187004D86E5 /* View */,
+				D8506F572A45B17C004D86E5 /* Model */,
+				D8506F552A45A669004D86E5 /* CameraView.swift */,
+			);
+			path = Camera;
 			sourceTree = "<group>";
 		};
 		DE6DB0262A41A5E90035C427 = {
@@ -115,6 +144,7 @@
 		DE6DB0402A41BAE50035C427 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D8F786482A4440A600CE974D /* Camera */,
 				DE6DB0412A41BAFB0035C427 /* OnboardingView.swift */,
 				DE9B72372A423E0C00C3DEDD /* OnboardingPersonalizationView.swift */,
 				DE9B72392A4240FF00C3DEDD /* HomeView.swift */,
@@ -225,11 +255,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8506F5A2A45B192004D86E5 /* CameraModel.swift in Sources */,
 				DE9B72422A42457B00C3DEDD /* PersonalizationViewModel.swift in Sources */,
 				DE9B72402A42425200C3DEDD /* PersonalizationType.swift in Sources */,
+				D8506F5C2A4676A3004D86E5 /* CameraPreview.swift in Sources */,
 				DE6DB0422A41BAFB0035C427 /* OnboardingView.swift in Sources */,
+				D8506F562A45A669004D86E5 /* CameraView.swift in Sources */,
 				DE6DB0352A41A5E90035C427 /* ContentView.swift in Sources */,
-				D8F786422A442BDC00CE974D /* MLModelManager.swift in Sources */,
 				DE9B72362A42374D00C3DEDD /* Onboarding.swift in Sources */,
 				DE9B723A2A4240FF00C3DEDD /* HomeView.swift in Sources */,
 				D8F786402A442BD300CE974D /* Scan2CookMLModel.mlmodel in Sources */,
@@ -365,11 +397,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Scan2Cook/Preview Content\"";
-				DEVELOPMENT_TEAM = KYR4X9M655;
+				DEVELOPMENT_TEAM = MH2BSYHQQX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Scan2Cook/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "$(PRODUCT_NAME) requires access to your phone camera.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Fitur ini memungkinkan kamu untuk melakukan pemindaian bahan makanan untuk membantu mencari menu.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -396,11 +428,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Scan2Cook/Preview Content\"";
-				DEVELOPMENT_TEAM = KYR4X9M655;
+				DEVELOPMENT_TEAM = MH2BSYHQQX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Scan2Cook/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "$(PRODUCT_NAME) requires access to your phone camera.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Fitur ini memungkinkan kamu untuk melakukan pemindaian bahan makanan untuk membantu mencari menu.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

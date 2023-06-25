@@ -18,7 +18,10 @@ struct ContentView: View {
 //                    OnboardingView()
 //                }
 //            }
-            OnboardingView()
+//            OnboardingView()
+            
+            //Camera View
+            CameraView()
         }
     }
 }
