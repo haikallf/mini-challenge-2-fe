@@ -77,6 +77,9 @@ struct RecipeStepsView: View {
                             .background(.black)
                             .cornerRadius(12)
                     })
+                    Spacer()
+                    
+                    DotIndicator(currentIndex: $pageIndex, maxIndex: steps.count)
                     
                     Spacer()
                     

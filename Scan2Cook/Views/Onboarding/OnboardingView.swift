@@ -13,7 +13,6 @@ struct OnboardingView: View {
     private let onboardings: [Onboarding] = Onboarding.all
     
     var timer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
-    private let dotAppearance = UIPageControl.appearance()
     
     var body: some View {
         VStack {
@@ -53,19 +52,22 @@ struct OnboardingView: View {
                 }
             }
             .animation(.easeInOut, value: pageIndex)
-            .tabViewStyle(.page)
-            .indexViewStyle(.page(backgroundDisplayMode: .interactive))
-//            .onAppear {
-//                dotAppearance.currentPageIndicatorTintColor = UIColor(.black)
-//                dotAppearance.pageIndicatorTintColor = UIColor(.gray)
-//            }
-            .padding(.bottom, 10)
+            .tabViewStyle(.page(indexDisplayMode: .never))
+//            .padding(.bottom, 10)
 //            .onReceive(timer, perform: { _ in
 //                withAnimation {
 //                    pageIndex = pageIndex < onboardings.count ? pageIndex + 1 : 1
 //                }
 //
 //            })
+            
+            HStack() {
+                PillIndicator(currentIndex: $pageIndex, maxIndex: onboardings.count)
+                Spacer()
+            }
+            .padding()
+            
+            
             CupertinoButton(isLastPage() ? "Selesai" : "Lanjut", action: isLastPage() ?  {shouldNavigate = true} : {incrementPage()})
                 .padding(.horizontal)
             

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		C53E81082A47716E000CB351 /* RecipeDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53E81072A47716E000CB351 /* RecipeDetailsView.swift */; };
 		C5AFAEDA2A478561003D3DF0 /* RecipeStepsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AFAED92A478561003D3DF0 /* RecipeStepsView.swift */; };
+		C5E04B7B2A481B8D00FA2185 /* DotIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E04B7A2A481B8D00FA2185 /* DotIndicator.swift */; };
+		C5E04B7D2A4820DD00FA2185 /* PillIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E04B7C2A4820DD00FA2185 /* PillIndicator.swift */; };
 		DE6DB0332A41A5E90035C427 /* Scan2CookApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6DB0322A41A5E90035C427 /* Scan2CookApp.swift */; };
 		DE6DB0352A41A5E90035C427 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6DB0342A41A5E90035C427 /* ContentView.swift */; };
 		DE6DB0372A41A5EB0035C427 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE6DB0362A41A5EB0035C427 /* Assets.xcassets */; };
@@ -45,6 +47,8 @@
 /* Begin PBXFileReference section */
 		C53E81072A47716E000CB351 /* RecipeDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailsView.swift; sourceTree = "<group>"; };
 		C5AFAED92A478561003D3DF0 /* RecipeStepsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeStepsView.swift; sourceTree = "<group>"; };
+		C5E04B7A2A481B8D00FA2185 /* DotIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotIndicator.swift; sourceTree = "<group>"; };
+		C5E04B7C2A4820DD00FA2185 /* PillIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillIndicator.swift; sourceTree = "<group>"; };
 		DE6DB02F2A41A5E90035C427 /* Scan2Cook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scan2Cook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE6DB0322A41A5E90035C427 /* Scan2CookApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scan2CookApp.swift; sourceTree = "<group>"; };
 		DE6DB0342A41A5E90035C427 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -194,6 +198,8 @@
 				DEE450ED2A45E95200D2EA4A /* RecipeTag.swift */,
 				DEE450FA2A45FE8800D2EA4A /* IngredientTag.swift */,
 				DEE450FC2A4613B100D2EA4A /* CustomSearchBar.swift */,
+				C5E04B7A2A481B8D00FA2185 /* DotIndicator.swift */,
+				C5E04B7C2A4820DD00FA2185 /* PillIndicator.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -329,8 +335,10 @@
 				DEE450D52A45AA2800D2EA4A /* Recipe.swift in Sources */,
 				DE6DB0332A41A5E90035C427 /* Scan2CookApp.swift in Sources */,
 				DE9B72382A423E0C00C3DEDD /* OnboardingPersonalizationView.swift in Sources */,
+				C5E04B7D2A4820DD00FA2185 /* PillIndicator.swift in Sources */,
 				DEE450F22A45F65B00D2EA4A /* ScanResultView.swift in Sources */,
 				DEE450EC2A45DF7E00D2EA4A /* RecipeCard.swift in Sources */,
+				C5E04B7B2A481B8D00FA2185 /* DotIndicator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
