@@ -12,6 +12,8 @@ struct ScanResultView: View {
     @EnvironmentObject var scanViewModel: ScanViewModel
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
+    @State var shouldNavigate: Bool = false
+    
     var body: some View {
         VStack {
             //MARK: Image Preview
@@ -76,6 +78,18 @@ struct ScanResultView: View {
                     }
                     .padding(.horizontal)
                 }
+                
+                //MARK: Search Button
+                CupertinoButton("Lanjut", action: {
+                    shouldNavigate = true
+                })
+                    .padding(.horizontal)
+                
+                //MARK: Navigate to SearchResult triggered by shouldNavigate
+                NavigationLink(destination: SearchResultView(), isActive: $shouldNavigate) {
+                    EmptyView()
+                }
+                .opacity(0)
             }
             
             Spacer()

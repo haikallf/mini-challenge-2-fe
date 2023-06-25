@@ -12,6 +12,7 @@
 		C56F4E952A483AEA004FD059 /* EducationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56F4E942A483AEA004FD059 /* EducationView.swift */; };
 		C56F4E972A488C93004FD059 /* RecipeCardList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56F4E962A488C93004FD059 /* RecipeCardList.swift */; };
 		C56F4E992A48A37A004FD059 /* RecipeLists.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56F4E982A48A37A004FD059 /* RecipeLists.swift */; };
+		C56F4E9B2A48B903004FD059 /* SearchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56F4E9A2A48B903004FD059 /* SearchResultView.swift */; };
 		C5AFAEDA2A478561003D3DF0 /* RecipeStepsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AFAED92A478561003D3DF0 /* RecipeStepsView.swift */; };
 		C5E04B7B2A481B8D00FA2185 /* DotIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E04B7A2A481B8D00FA2185 /* DotIndicator.swift */; };
 		C5E04B7D2A4820DD00FA2185 /* PillIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E04B7C2A4820DD00FA2185 /* PillIndicator.swift */; };
@@ -54,6 +55,7 @@
 		C56F4E942A483AEA004FD059 /* EducationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationView.swift; sourceTree = "<group>"; };
 		C56F4E962A488C93004FD059 /* RecipeCardList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCardList.swift; sourceTree = "<group>"; };
 		C56F4E982A48A37A004FD059 /* RecipeLists.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeLists.swift; sourceTree = "<group>"; };
+		C56F4E9A2A48B903004FD059 /* SearchResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultView.swift; sourceTree = "<group>"; };
 		C5AFAED92A478561003D3DF0 /* RecipeStepsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeStepsView.swift; sourceTree = "<group>"; };
 		C5E04B7A2A481B8D00FA2185 /* DotIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotIndicator.swift; sourceTree = "<group>"; };
 		C5E04B7C2A4820DD00FA2185 /* PillIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillIndicator.swift; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 				DEE450EF2A45F45000D2EA4A /* CameraView.swift */,
 				DEE450F12A45F65B00D2EA4A /* ScanResultView.swift */,
 				C56F4E942A483AEA004FD059 /* EducationView.swift */,
+				C56F4E9A2A48B903004FD059 /* SearchResultView.swift */,
 			);
 			path = Scan;
 			sourceTree = "<group>";
@@ -325,6 +328,7 @@
 				DEE450EE2A45E95200D2EA4A /* RecipeTag.swift in Sources */,
 				DEE450E82A45CC1200D2EA4A /* CustomTabBar.swift in Sources */,
 				C56F4E952A483AEA004FD059 /* EducationView.swift in Sources */,
+				C56F4E9B2A48B903004FD059 /* SearchResultView.swift in Sources */,
 				DE9B72402A42425200C3DEDD /* PersonalizationType.swift in Sources */,
 				DE6DB0422A41BAFB0035C427 /* OnboardingView.swift in Sources */,
 				DEE450E02A45C80500D2EA4A /* RecipeDetailsSheet.swift in Sources */,

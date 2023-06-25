@@ -29,8 +29,6 @@ struct RecipeCardList: View {
                 .fill(.gray)
                 .frame(width: 123, height: 123)
                 .cornerRadius(8)
-            
-            
         }
         .padding(12)
     }
