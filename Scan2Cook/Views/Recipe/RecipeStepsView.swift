@@ -20,19 +20,6 @@ struct RecipeStepsView: View {
     var body: some View {
         ZStack {
             VStack {
-                HStack(alignment: .top) {
-                    Image(systemName: "arrow.left")
-                    Spacer()
-                }
-                
-                Spacer()
-            }
-            .padding(.top, 12)
-            .padding(.leading)
-            .onTapGesture {
-                presentationMode.wrappedValue.dismiss()
-            }
-            VStack {
                 // MARK: TabView
                 TabView(selection: $pageIndex) {
                     ForEach(steps.indices) { idx in
@@ -97,8 +84,14 @@ struct RecipeStepsView: View {
                 }
                 .padding(.horizontal)
             }
-            .navigationBarBackButtonHidden(true)
+            
+            VStack {
+                BackButton()
+                
+                Spacer()
+            }
         }
+        .navigationBarBackButtonHidden(true)
     }
     
     func incrementPage() {

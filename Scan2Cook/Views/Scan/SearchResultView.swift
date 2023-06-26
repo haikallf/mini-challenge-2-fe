@@ -13,15 +13,7 @@ struct SearchResultView: View {
     
     var body: some View {
         VStack {
-            HStack {
-                Image(systemName: "arrow.left")
-                    .onTapGesture {
-                        presentationMode.wrappedValue.dismiss()
-                    }
-                Spacer()
-            }
-            .padding(.vertical, 12)
-            .padding(.horizontal)
+            BackButton()
             
             VStack(alignment: .leading, spacing: 4) {
                 Text("5 Resep Ditemuin")

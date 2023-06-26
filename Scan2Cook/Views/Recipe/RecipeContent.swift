@@ -33,8 +33,6 @@ struct RecipeContentView: View {
         .coordinateSpace(name: "SCROLL")
     }
     
-    
-    
     // MARK: Header View
     @ViewBuilder
     func HeaderView() -> some View {
@@ -44,24 +42,13 @@ struct RecipeContentView: View {
             let progress = minY / (height * (minY > 0 ? 0.5 : 0.8))
             let titleProgress =  minY / height
             
-            HStack(spacing: 15) {
-                Button {
-                    presentationMode.wrappedValue.dismiss()
-                } label: {
-                    Image(systemName: "arrow.left")
-                        .font(.title3)
-                        .foregroundColor(.black)
-                }
-                Spacer(minLength: 0)
-                
-            }
-            .padding(.top, safeArea.top + 10)
-            .padding([.horizontal,.bottom], 15)
-            .background(
-                Color.white
-                    .opacity(-progress > 1 ? 1 : 0)
-            )
-            .offset(y: -minY)
+            BackButton()
+                .padding(.top, safeArea.top + 10)
+                .background(
+                    Color.white
+                        .opacity(-progress > 1 ? 1 : 0)
+                )
+                .offset(y: -minY)
         }
         .frame(height: 35)
     }

@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct EducationView: View {
-    @State private var shouldNavigate: Bool = false
     @State private var pageIndex = 1
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -19,15 +18,7 @@ struct EducationView: View {
     var body: some View {
         VStack {
             // MARK: Skip Button
-            HStack {
-                Image(systemName: "arrow.left")
-                    .onTapGesture {
-                        presentationMode.wrappedValue.dismiss()
-                    }
-                Spacer()
-            }
-            .padding(.horizontal)
-            .padding(.vertical, 11)
+            BackButton()
             
             // MARK: TabView
             TabView(selection: $pageIndex) {
@@ -81,12 +72,6 @@ struct EducationView: View {
                 })
             }
             .padding()
-            
-            //MARK: Navigate to PersonalizationView triggered by shouldNavigate
-            NavigationLink(destination: OnboardingPersonalizationView(), isActive: $shouldNavigate) {
-                EmptyView()
-            }
-            .opacity(0)
         }
         .navigationBarBackButtonHidden(true)
     }

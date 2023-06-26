@@ -228,7 +228,7 @@ struct RecipeDetailsSheet: View {
             .padding(.vertical, 14)
             .padding(.horizontal)
             
-            //MARK: Navigate to PersonalizationView triggered by shouldNavigate
+            //MARK: Navigate to RecipeStepsView triggered by shouldNavigate
             NavigationLink(destination: RecipeStepsView(), isActive: $shouldNavigate) {
                 EmptyView()
             }

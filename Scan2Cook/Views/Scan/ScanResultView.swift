@@ -24,15 +24,7 @@ struct ScanResultView: View {
             //MARK: Ingredients Detail Section
             VStack {
                 //MARK: Back Button
-                HStack {
-                    Image(systemName: "arrow.left")
-                    Spacer()
-                }
-                .padding(.vertical, 12)
-                .padding(.horizontal)
-                .onTapGesture {
-                    presentationMode.wrappedValue.dismiss()
-                }
+                BackButton()
                 
                 //MARK: Heading
                 VStack(alignment: .leading, spacing: 4) {
