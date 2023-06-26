@@ -42,7 +42,10 @@ struct ScanResultView: View {
                 //MARK: Selected Ingredients
                 WrapLayout(horizontalSpacing: 10, verticalSpacing: 14) {
                     ForEach(scanViewModel.selectedIngredients, id: \.self) { ingredient in
-                        IngredientTag(text: ingredient, isSelected: true, onTap: {scanViewModel.updateSelectedIngredients(ingredients: ingredient)})
+                        IngredientTag(text: ingredient.name, isSelected: true, onTap: {
+                            scanViewModel.updateSelectedIngredients(ingredient: ingredient)
+                            
+                        })
                     }
                     if (scanViewModel.selectedIngredients.count != 0) {
                         HStack {
@@ -64,7 +67,9 @@ struct ScanResultView: View {
                 ScrollView {
                     WrapLayout(horizontalSpacing: 10, verticalSpacing: 14) {
                         ForEach(scanViewModel.filteredIngredients, id: \.self) { ingredient in
-                            IngredientTag(text: ingredient, isSelected: false, onTap: {scanViewModel.updateSelectedIngredients(ingredients: ingredient)})
+                            IngredientTag(text: ingredient.name, isSelected: false, onTap: {
+                                scanViewModel.updateSelectedIngredients(ingredient: ingredient)
+                            })
                         }
                         HStack {
                             Spacer()

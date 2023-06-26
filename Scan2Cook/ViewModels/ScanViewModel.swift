@@ -8,8 +8,8 @@
 import SwiftUI
 
 class ScanViewModel: ObservableObject {
-    @Published var ingredients: [String]
-    @Published var selectedIngredients: [String]
+    @Published var ingredients: [Ingredient]
+    @Published var selectedIngredients: [Ingredient]
     @Published var searchText: String = ""
     @Published var lastSeenRecipesId: [String]
     @Published var lastSeenRecipes: [Recipe]
@@ -24,23 +24,23 @@ class ScanViewModel: ObservableObject {
         self.lastSeenRecipes = Recipe.all
     }
     
-    var filteredIngredients: [String] {
+    var filteredIngredients: [Ingredient] {
         let subtractedIngredients = ingredients.filter { !self.selectedIngredients.contains($0) }
         
         guard !self.searchText.isEmpty else { return subtractedIngredients }
         
-        let ingredientsTemp = subtractedIngredients.filter { recipe in
-            recipe.lowercased().contains(self.searchText.lowercased())
+        let ingredientsTemp = subtractedIngredients.filter { ingredient in
+            ingredient.name.lowercased().contains(self.searchText.lowercased())
         }
         
         return Array(ingredientsTemp)
     }
     
-    func updateSelectedIngredients(ingredients: String) {
-        if (self.selectedIngredients.contains(ingredients)) {
-            self.selectedIngredients = self.selectedIngredients.filter { $0 != ingredients }
+    func updateSelectedIngredients(ingredient: Ingredient) {
+        if (self.selectedIngredients.contains(ingredient)) {
+            self.selectedIngredients = self.selectedIngredients.filter { $0 != ingredient }
         } else {
-            self.selectedIngredients.append(ingredients)
+            self.selectedIngredients.append(ingredient)
         }
     }
     

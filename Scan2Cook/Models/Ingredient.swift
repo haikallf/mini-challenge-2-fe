@@ -7,20 +7,19 @@
 
 import SwiftUI
 
-struct Ingredient: Equatable, Identifiable {
+struct Ingredient: Equatable, Identifiable, Hashable {
     let id: String
+    let name: String
 }
 
 extension Ingredient {
     static let all = [
-        "bawang merah",
-        "telur",
-        "tomat",
-        "daun bawang",
-        "indomie",
-        "jagung",
-        "pakcoy",
-        "roti",
-        "bawang putih",
+        Ingredient(id: "BAWANG_MERAH", name: "Bawang Merah"),
+        Ingredient(id: "TELUR", name: "Telur"),
+        Ingredient(id: "INDOMIE", name: "Indomie"),
+        Ingredient(id: "JAGUNG", name: "Jagung"),
+        Ingredient(id: "PAKCOY", name: "Pakcoy"),
+        Ingredient(id: "ROTI", name: "Roti"),
+        Ingredient(id: "BAWANG_PUTIH", name: "Bawang Putih"),
     ]
 }
