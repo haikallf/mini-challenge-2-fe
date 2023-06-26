@@ -43,10 +43,12 @@ struct ScanResultView: View {
                     Text("Cek dulu barang yang kamu scan udah bener atau belum~")
                         .font(.footnote)
                 }
+                .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.vertical, 12)
+                .padding(.horizontal)
                 
                 //MARK: Selected Ingredients
-                WrapLayout(horizontalSpacing: 10) {
+                WrapLayout(horizontalSpacing: 10, verticalSpacing: 14) {
                     ForEach(scanViewModel.selectedIngredients, id: \.self) { ingredient in
                         IngredientTag(text: ingredient, isSelected: true, onTap: {scanViewModel.updateSelectedIngredients(ingredients: ingredient)})
                     }
@@ -56,7 +58,7 @@ struct ScanResultView: View {
                         }
                     }
                 }
-                .padding(.horizontal)
+                .padding(.horizontal, 20)
                 
                 Divider()
                     .ignoresSafeArea()
@@ -76,7 +78,7 @@ struct ScanResultView: View {
                             Spacer()
                         }
                     }
-                    .padding(.horizontal)
+                    .padding(.horizontal, 20)
                 }
                 
                 //MARK: Search Button

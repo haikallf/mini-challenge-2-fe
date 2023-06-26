@@ -52,45 +52,27 @@ struct HomeView: View {
                 .padding(.vertical, 12)
                 .padding(.horizontal)
                 
-                //MARK: Today's Recipe Section
-                VStack(alignment: .leading, spacing: 14) {
-                    HStack {
-                        Text("Resep Hari Ini")
-                            .font(.title3)
-                            .fontWeight(.bold)
+                //MARK: Recipe Sections
+                ForEach(viewModel.sectionedRecipes, id: \.id) { section in
+                    VStack(alignment: .leading, spacing: 14) {
+                        HStack {
+                            Text(section.name)
+                                .font(.title3)
+                                .fontWeight(.bold)
+                            
+                            Spacer()
+                            
+                            Text("Lihat Semua →")
+                                .font(.footnote)
+                                .fontWeight(.semibold)
+                        }
+                        .padding(.horizontal, 16)
                         
-                        Spacer()
-                        
-                        Text("Lihat Semua →")
-                            .font(.footnote)
-                            .fontWeight(.semibold)
+                        HorizontalScrollViewMenu(recipes: section.recipes, isSmall: false)
+                        .padding(.leading, 16)
                     }
-                    .padding(.horizontal, 16)
-                    
-                    HorizontalScrollViewMenu(recipes: viewModel.todaysRecipes, isSmall: false)
-                    .padding(.leading, 16)
+                    .padding(.vertical, 14)
                 }
-                .padding(.vertical, 14)
-                
-                //MARK: Newly Added Recipe Section
-                VStack(alignment: .leading, spacing: 14) {
-                    HStack {
-                        Text("Resep Terbaru")
-                            .font(.title3)
-                            .fontWeight(.bold)
-                        
-                        Spacer()
-                        
-                        Text("Lihat Semua →")
-                            .font(.footnote)
-                            .fontWeight(.semibold)
-                    }
-                    .padding(.horizontal, 16)
-                    
-                    HorizontalScrollViewMenu(recipes: viewModel.newestRecipes, isSmall: false)
-                    .padding(.leading, 16)
-                }
-                .padding(.vertical, 14)
                 
                 Spacer()
             }
