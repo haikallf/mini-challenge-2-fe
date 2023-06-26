@@ -59,7 +59,7 @@ struct ScanView: View {
                             .font(.headline)
                             .fontWeight(.semibold)
                         
-                        Text("13 Resep")
+                        Text("\(scanViewModel.lastSeenRecipes.count) Resep")
                             .font(.caption)
                     }
                     
@@ -88,15 +88,27 @@ struct ScanView: View {
             }
             .padding(.top, 28)
             .padding(.horizontal)
+            
             Spacer()
         }
         .navigationBarBackButtonHidden(true)
         .sheet(isPresented: $showSheet) {
-            Group {
-                Text("halo")
+            NavigationView {
+                VStack() {
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("Terakhir Dilihat")
+                            .font(.title3)
+                            .fontWeight(.semibold)
+                            .padding(.top)
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.vertical, 12)
+                    .padding(.horizontal)
                     
-               
+                    RecipeLists(recipes: scanViewModel.lastSeenRecipes)
+                }
             }
+        }
             .presentationDragIndicator(.visible)
             .padding(.horizontal)
 //            .presentationDetents(
@@ -107,9 +119,9 @@ struct ScanView: View {
 //                .enabled(upThrough: .large)
 //            )
 //            .interactiveDismissDisabled(true)
-        }
     }
 }
+
 
 struct ScanView_Previews: PreviewProvider {
     static var previews: some View {

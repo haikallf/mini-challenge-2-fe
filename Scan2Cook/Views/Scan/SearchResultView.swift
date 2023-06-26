@@ -35,7 +35,7 @@ struct SearchResultView: View {
             .padding(.vertical, 12)
             .padding(.horizontal)
             
-            RecipeLists(recipes: $recipes)
+            RecipeLists(recipes: recipes)
             
             Spacer()
         }

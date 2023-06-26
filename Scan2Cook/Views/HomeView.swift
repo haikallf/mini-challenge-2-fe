@@ -62,9 +62,11 @@ struct HomeView: View {
                             
                             Spacer()
                             
-                            Text("Lihat Semua →")
-                                .font(.footnote)
-                                .fontWeight(.semibold)
+                            NavigationLink(destination: RecipeListView(title: section.name, description: section.description, recipes: section.recipes), label: {
+                                Text("Lihat Semua →")
+                                    .font(.footnote)
+                                    .fontWeight(.semibold)
+                            })
                         }
                         .padding(.horizontal, 16)
                         

@@ -10,6 +10,8 @@
 		C51A3F5F2A49C45F00307CFD /* RecipeDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51A3F5E2A49C45F00307CFD /* RecipeDetailsView.swift */; };
 		C51A3F612A49C8B500307CFD /* RecipeContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51A3F602A49C8B500307CFD /* RecipeContent.swift */; };
 		C51A3F632A49EADE00307CFD /* SectionedRecipes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51A3F622A49EADE00307CFD /* SectionedRecipes.swift */; };
+		C51A3F652A49F2E000307CFD /* RecipeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51A3F642A49F2E000307CFD /* RecipeListView.swift */; };
+		C51A3F672A49F56700307CFD /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51A3F662A49F56700307CFD /* BackButton.swift */; };
 		C53E81082A47716E000CB351 /* RecipeDetailsView1.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53E81072A47716E000CB351 /* RecipeDetailsView1.swift */; };
 		C56F4E932A4838D3004FD059 /* Education.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56F4E922A4838D3004FD059 /* Education.swift */; };
 		C56F4E952A483AEA004FD059 /* EducationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56F4E942A483AEA004FD059 /* EducationView.swift */; };
@@ -56,6 +58,8 @@
 		C51A3F5E2A49C45F00307CFD /* RecipeDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailsView.swift; sourceTree = "<group>"; };
 		C51A3F602A49C8B500307CFD /* RecipeContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeContent.swift; sourceTree = "<group>"; };
 		C51A3F622A49EADE00307CFD /* SectionedRecipes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionedRecipes.swift; sourceTree = "<group>"; };
+		C51A3F642A49F2E000307CFD /* RecipeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListView.swift; sourceTree = "<group>"; };
+		C51A3F662A49F56700307CFD /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 		C53E81072A47716E000CB351 /* RecipeDetailsView1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailsView1.swift; sourceTree = "<group>"; };
 		C56F4E922A4838D3004FD059 /* Education.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Education.swift; sourceTree = "<group>"; };
 		C56F4E942A483AEA004FD059 /* EducationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationView.swift; sourceTree = "<group>"; };
@@ -118,6 +122,7 @@
 				C5AFAED92A478561003D3DF0 /* RecipeStepsView.swift */,
 				C51A3F5E2A49C45F00307CFD /* RecipeDetailsView.swift */,
 				C51A3F602A49C8B500307CFD /* RecipeContent.swift */,
+				C51A3F642A49F2E000307CFD /* RecipeListView.swift */,
 			);
 			path = Recipe;
 			sourceTree = "<group>";
@@ -222,6 +227,7 @@
 				C5E04B7C2A4820DD00FA2185 /* PillIndicator.swift */,
 				C56F4E962A488C93004FD059 /* RecipeCardList.swift */,
 				C56F4E982A48A37A004FD059 /* RecipeLists.swift */,
+				C51A3F662A49F56700307CFD /* BackButton.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -332,6 +338,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE9B72422A42457B00C3DEDD /* PersonalizationViewModel.swift in Sources */,
+				C51A3F652A49F2E000307CFD /* RecipeListView.swift in Sources */,
 				DEE450DA2A45C2D000D2EA4A /* MainView.swift in Sources */,
 				C51A3F632A49EADE00307CFD /* SectionedRecipes.swift in Sources */,
 				C56F4E932A4838D3004FD059 /* Education.swift in Sources */,
@@ -356,6 +363,7 @@
 				DE9B723A2A4240FF00C3DEDD /* HomeView.swift in Sources */,
 				DEE450FD2A4613B100D2EA4A /* CustomSearchBar.swift in Sources */,
 				DEE450DE2A45C34100D2EA4A /* ScanView.swift in Sources */,
+				C51A3F672A49F56700307CFD /* BackButton.swift in Sources */,
 				DEE450F62A45F70700D2EA4A /* Ingredient.swift in Sources */,
 				DEE450D32A45A9C100D2EA4A /* HomeViewModel.swift in Sources */,
 				DE9B72452A424DAC00C3DEDD /* CupertinoButton.swift in Sources */,

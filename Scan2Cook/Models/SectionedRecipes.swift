@@ -10,12 +10,13 @@ import SwiftUI
 struct SectionedRecipes: Equatable, Identifiable {
     let id: String
     let name: String
+    let description: String?
     let recipes: [Recipe]
 }
 
 extension SectionedRecipes {
     static let all = [
-        SectionedRecipes(id: "1", name: "Resep Hari Ini", recipes: Recipe.all),
-        SectionedRecipes(id: "2", name: "Resep Terbaru", recipes: Recipe.all),
+        SectionedRecipes(id: "1", name: "Resep Hari Ini", description: nil, recipes: Recipe.all),
+        SectionedRecipes(id: "2", name: "Resep Terbaru", description: nil, recipes: Recipe.all),
     ]
 }

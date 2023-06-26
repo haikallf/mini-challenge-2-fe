@@ -9,7 +9,7 @@ import SwiftUI
 import WrapLayout
 
 struct RecipeLists: View {
-    @Binding var recipes: [Recipe]
+    var recipes: [Recipe]
     @StateObject var personalizationViewModel = PersonalizationViewModel()
     @State var selectedViewMode = "list"
     @State var isFilterSheetShown = false
@@ -65,14 +65,17 @@ struct RecipeLists: View {
             .padding(.vertical, 12)
             .padding(.horizontal)
             
+            
             //MARK: Recipe Card Section
             ScrollView {
                 ForEach(recipes, id:\.id) { recipe in
-                    if (selectedViewMode == "list") {
-                        RecipeCardList(recipe: recipe)
-                    } else if (selectedViewMode == "icons") {
-                        RecipeCard(recipe: recipe)
-                    }
+                    NavigationLink(destination: RecipeDetailsView(recipeId: recipe.id), label: {
+                        if (selectedViewMode == "list") {
+                            RecipeCardList(recipe: recipe)
+                        } else if (selectedViewMode == "icons") {
+                            RecipeCard(recipe: recipe)
+                        }
+                    })
                 }
             }
             .sheet(isPresented: $isFilterSheetShown, content: {

@@ -33,7 +33,7 @@ struct BookmarkView: View {
             .padding(.horizontal)
             
             //MARK: Recipes List
-            RecipeLists(recipes: $viewModel.filteredRecipes)
+            RecipeLists(recipes: viewModel.filteredRecipes)
         }
         .onReceive(viewModel.$searchText) { _ in
             viewModel.filterRecipe()

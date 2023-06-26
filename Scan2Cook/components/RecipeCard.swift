@@ -18,6 +18,7 @@ struct RecipeCard: View {
             
             Text(recipe.name)
                 .fontWeight(.semibold)
+                .multilineTextAlignment(.leading)
             
             HStack(spacing: 8) {
                 ForEach(recipe.tags, id: \.self) { tag in

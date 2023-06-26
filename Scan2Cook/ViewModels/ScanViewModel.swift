@@ -11,10 +11,17 @@ class ScanViewModel: ObservableObject {
     @Published var ingredients: [String]
     @Published var selectedIngredients: [String]
     @Published var searchText: String = ""
+    @Published var lastSeenRecipesId: [String]
+    @Published var lastSeenRecipes: [Recipe]
+    
+    let userDefaults = UserDefaults.standard
+    let lastSeenRecipesIdKey = "lastSeenRecipesId"
     
     init(){
         self.ingredients = Ingredient.all
         self.selectedIngredients = []
+        self.lastSeenRecipesId = userDefaults.stringArray(forKey: lastSeenRecipesIdKey) ?? []
+        self.lastSeenRecipes = Recipe.all
     }
     
     var filteredIngredients: [String] {
