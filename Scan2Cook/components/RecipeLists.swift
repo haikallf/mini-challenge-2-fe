@@ -11,6 +11,7 @@ import WrapLayout
 struct RecipeLists: View {
     var recipes: [Recipe]
     @StateObject var personalizationViewModel = PersonalizationViewModel()
+    @StateObject var filterViewModel = FilterViewModel()
     @State var selectedViewMode = "list"
     @State var isFilterSheetShown = false
     
@@ -110,6 +111,81 @@ struct RecipeLists: View {
                     .padding(.horizontal)
                     .padding(.bottom, 14.5)
                     
+                    //MARK: Cooking Ware Section
+                    VStack(alignment: .leading) {
+                        Text("Alat Masak")
+                            .font(.subheadline)
+                            .fontWeight(.semibold)
+                        
+                        HStack {
+                            FilterTag(text: "<2 alat", isSelected: filterViewModel.cookingWare.contains("1"), onTap: {
+                                filterViewModel.updateCookingWare(value: "1")
+                            })
+                            
+                            FilterTag(text: "3-5 alat", isSelected: filterViewModel.cookingWare.contains("2"), onTap: {
+                                filterViewModel.updateCookingWare(value: "2")
+                            })
+                            
+                            FilterTag(text: "<5 alat", isSelected: filterViewModel.cookingWare.contains("3"), onTap: {
+                                filterViewModel.updateCookingWare(value: "3")
+                            })
+                            
+                            Spacer()
+                        }
+                    }
+                    .padding(.vertical, 12)
+                    .padding(.horizontal)
+                    
+                    //MARK: Cooking Time Section
+                    VStack(alignment: .leading) {
+                        Text("Waktu Pembuatan")
+                            .font(.subheadline)
+                            .fontWeight(.semibold)
+                        
+                        HStack {
+                            FilterTag(text: "<10 menit", isSelected: filterViewModel.cookingTime.contains("1"), onTap: {
+                                filterViewModel.updateCookingTime(value: "1")
+                            })
+                            
+                            FilterTag(text: "10-20 menit", isSelected: filterViewModel.cookingTime.contains("2"), onTap: {
+                                filterViewModel.updateCookingTime(value: "2")
+                            })
+                            
+                            FilterTag(text: ">20 menit", isSelected: filterViewModel.cookingTime.contains("3"), onTap: {
+                                filterViewModel.updateCookingTime(value: "3")
+                            })
+                            
+                            Spacer()
+                        }
+                    }
+                    .padding(.vertical, 12)
+                    .padding(.horizontal)
+                    
+                    //MARK: Ingredients Count Section
+                    VStack(alignment: .leading) {
+                        Text("Jumlah Bahan")
+                            .font(.subheadline)
+                            .fontWeight(.semibold)
+                        
+                        HStack {
+                            FilterTag(text: "<2 bahan", isSelected: filterViewModel.ingredientsCount.contains("1"), onTap: {
+                                filterViewModel.updateIngredientsCount(value: "1")
+                            })
+                            
+                            FilterTag(text: "2-5 bahan", isSelected: filterViewModel.ingredientsCount.contains("2"), onTap: {
+                                filterViewModel.updateIngredientsCount(value: "2")
+                            })
+                            
+                            FilterTag(text: ">5 bahan", isSelected: filterViewModel.ingredientsCount.contains("3"), onTap: {
+                                filterViewModel.updateIngredientsCount(value: "3")
+                            })
+                            
+                            Spacer()
+                        }
+                    }
+                    .padding(.vertical, 12)
+                    .padding(.horizontal)
+                    
                     //MARK: Personalization Section
                     VStack(alignment: .leading, spacing: 14) {
                         Text("Aku ga bisa makan...")
@@ -154,6 +230,9 @@ struct RecipeLists: View {
                     .padding(.horizontal)
                     
                     Spacer()
+                    
+                    CupertinoButton("Simpan", action: {}, isDisabled: false)
+                        .padding(.horizontal)
                 }
             })
             
@@ -162,8 +241,8 @@ struct RecipeLists: View {
     }
 }
 
-//struct RecipeLists_Previews: PreviewProvider {
-//    static var previews: some View {
-//        RecipeLists()
-//    }
-//}
+struct RecipeLists_Previews: PreviewProvider {
+    static var previews: some View {
+        RecipeLists(recipes: Recipe.all)
+    }
+}

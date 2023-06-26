@@ -21,6 +21,8 @@
 		C5AFAEDA2A478561003D3DF0 /* RecipeStepsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AFAED92A478561003D3DF0 /* RecipeStepsView.swift */; };
 		C5E04B7B2A481B8D00FA2185 /* DotIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E04B7A2A481B8D00FA2185 /* DotIndicator.swift */; };
 		C5E04B7D2A4820DD00FA2185 /* PillIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E04B7C2A4820DD00FA2185 /* PillIndicator.swift */; };
+		C5E7F0D92A4A302900CAB1E8 /* FilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E7F0D82A4A302900CAB1E8 /* FilterViewModel.swift */; };
+		C5E7F0DB2A4A321C00CAB1E8 /* FilterTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E7F0DA2A4A321C00CAB1E8 /* FilterTag.swift */; };
 		DE6DB0332A41A5E90035C427 /* Scan2CookApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6DB0322A41A5E90035C427 /* Scan2CookApp.swift */; };
 		DE6DB0352A41A5E90035C427 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6DB0342A41A5E90035C427 /* ContentView.swift */; };
 		DE6DB0372A41A5EB0035C427 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE6DB0362A41A5EB0035C427 /* Assets.xcassets */; };
@@ -69,6 +71,8 @@
 		C5AFAED92A478561003D3DF0 /* RecipeStepsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeStepsView.swift; sourceTree = "<group>"; };
 		C5E04B7A2A481B8D00FA2185 /* DotIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotIndicator.swift; sourceTree = "<group>"; };
 		C5E04B7C2A4820DD00FA2185 /* PillIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillIndicator.swift; sourceTree = "<group>"; };
+		C5E7F0D82A4A302900CAB1E8 /* FilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewModel.swift; sourceTree = "<group>"; };
+		C5E7F0DA2A4A321C00CAB1E8 /* FilterTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTag.swift; sourceTree = "<group>"; };
 		DE6DB02F2A41A5E90035C427 /* Scan2Cook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scan2Cook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE6DB0322A41A5E90035C427 /* Scan2CookApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scan2CookApp.swift; sourceTree = "<group>"; };
 		DE6DB0342A41A5E90035C427 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -200,6 +204,7 @@
 				DEE450D22A45A9C100D2EA4A /* HomeViewModel.swift */,
 				DEE450E92A45D8BD00D2EA4A /* BookmarkViewModel.swift */,
 				DEE450F32A45F68A00D2EA4A /* ScanViewModel.swift */,
+				C5E7F0D82A4A302900CAB1E8 /* FilterViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -228,6 +233,7 @@
 				C56F4E962A488C93004FD059 /* RecipeCardList.swift */,
 				C56F4E982A48A37A004FD059 /* RecipeLists.swift */,
 				C51A3F662A49F56700307CFD /* BackButton.swift */,
+				C5E7F0DA2A4A321C00CAB1E8 /* FilterTag.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -345,6 +351,7 @@
 				DEE450EE2A45E95200D2EA4A /* RecipeTag.swift in Sources */,
 				DEE450E82A45CC1200D2EA4A /* CustomTabBar.swift in Sources */,
 				C56F4E952A483AEA004FD059 /* EducationView.swift in Sources */,
+				C5E7F0DB2A4A321C00CAB1E8 /* FilterTag.swift in Sources */,
 				C56F4E9B2A48B903004FD059 /* SearchResultView.swift in Sources */,
 				DE9B72402A42425200C3DEDD /* PersonalizationType.swift in Sources */,
 				DE6DB0422A41BAFB0035C427 /* OnboardingView.swift in Sources */,
@@ -379,6 +386,7 @@
 				DEE450F22A45F65B00D2EA4A /* ScanResultView.swift in Sources */,
 				DEE450EC2A45DF7E00D2EA4A /* RecipeCard.swift in Sources */,
 				C5E04B7B2A481B8D00FA2185 /* DotIndicator.swift in Sources */,
+				C5E7F0D92A4A302900CAB1E8 /* FilterViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
