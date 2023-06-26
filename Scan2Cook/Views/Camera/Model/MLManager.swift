@@ -13,6 +13,7 @@ class MLManager {
     
     init(){
         self.model = loadModel()!
+        print("load model success")
     }
     
     func loadModel() -> VNCoreMLModel? {
@@ -45,19 +46,23 @@ class MLManager {
                 print("Failed to process the results")
                 return
             }
-            
-            for result in results {
-                let boundingBox = result.boundingBox
-                let confidence = result.confidence
-                for className in result.labels{
-                    print("Detected \(className.identifier), with confidence \(className.confidence)")
+            if results.isEmpty {
+                print("Result empty")
+            }else {
+                for result in results {
+//                    let boundingBox = result.boundingBox
+//                    let confidence = result.confidence
+                    let resultsFiltered = result.labels.filter { label in
+                        label.confidence >= 0.8
+                    }
+                    for className in resultsFiltered{
+                        print("Detected \(className.identifier), with confidence \(className.confidence)")
+                    }
                 }
-                
-                
             }
-        }
-        let handler = VNImageRequestHandler(cgImage: image.cgImage!)
             
+        }
+        let handler = VNImageRequestHandler(ciImage: ciImage)
         do {
             try handler.perform([request])
         } catch {

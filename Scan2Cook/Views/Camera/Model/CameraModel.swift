@@ -27,8 +27,10 @@ class CameraModel : NSObject, ObservableObject, AVCapturePhotoCaptureDelegate {
                     self.cameraSetup()
                 }
             }
+        // show alert on view (update later)
         case .restricted:
             self.showAlert = true
+        // show alert on view (update later)
         case .denied:
             self.showAlert = true
         @unknown default:
@@ -66,7 +68,7 @@ class CameraModel : NSObject, ObservableObject, AVCapturePhotoCaptureDelegate {
             
             //Wait for capturePhoto to finish
             DispatchQueue.main.async {
-                Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false) { (timer) in
+                Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { (timer) in
                     self.session.stopRunning()
                 }
             }
@@ -107,10 +109,26 @@ class CameraModel : NSObject, ObservableObject, AVCapturePhotoCaptureDelegate {
             print("Unable to convert UIImage")
             return
         }
-        print("Photo taken")
         
-        // Process the captured photo data as needed
-        // For example, you can save it to a file or display it on the screen
-        mlManager.detectObjects(in: image)
+        let resizedImage = resizeImage(image, targetSize: CGSize(width: 1000, height: 1000))!
+        mlManager.detectObjects(in: resizedImage)
     }
+    
+    func resizeImage(_ image: UIImage, targetSize: CGSize) -> UIImage? {
+        let size = image.size
+        
+        let widthRatio  = targetSize.width  / size.width
+        let heightRatio = targetSize.height / size.height
+
+        let scaleFactor = min(widthRatio, heightRatio)
+        let newSize = CGSize(width: size.width * scaleFactor, height: size.height * scaleFactor)
+
+        let renderer = UIGraphicsImageRenderer(size: newSize)
+        let resizedImage = renderer.image { _ in
+            image.draw(in: CGRect(origin: .zero, size: newSize))
+        }
+        
+        return resizedImage
+    }
+    
 }
