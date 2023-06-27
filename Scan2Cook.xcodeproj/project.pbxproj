@@ -28,6 +28,9 @@
 		D87DC5BB2A4AD5E00002503E /* CameraModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DC5BA2A4AD5E00002503E /* CameraModel.swift */; };
 		D87DC5C02A4AD6500002503E /* CameraPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DC5BF2A4AD6500002503E /* CameraPreview.swift */; };
 		D87DC5C22A4AD66B0002503E /* CameraPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DC5C12A4AD66B0002503E /* CameraPreviewView.swift */; };
+		DE5109A82A4B044200410806 /* OnboardingContent2.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5109A52A4B044200410806 /* OnboardingContent2.swift */; };
+		DE5109A92A4B044200410806 /* OnboardingContent3.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5109A62A4B044200410806 /* OnboardingContent3.swift */; };
+		DE5109AA2A4B044200410806 /* OnboardingContent1.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5109A72A4B044200410806 /* OnboardingContent1.swift */; };
 		DE6DB0332A41A5E90035C427 /* Scan2CookApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6DB0322A41A5E90035C427 /* Scan2CookApp.swift */; };
 		DE6DB0352A41A5E90035C427 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6DB0342A41A5E90035C427 /* ContentView.swift */; };
 		DE6DB0372A41A5EB0035C427 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE6DB0362A41A5EB0035C427 /* Assets.xcassets */; };
@@ -83,6 +86,9 @@
 		D87DC5BA2A4AD5E00002503E /* CameraModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraModel.swift; sourceTree = "<group>"; };
 		D87DC5BF2A4AD6500002503E /* CameraPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreview.swift; sourceTree = "<group>"; };
 		D87DC5C12A4AD66B0002503E /* CameraPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewView.swift; sourceTree = "<group>"; };
+		DE5109A52A4B044200410806 /* OnboardingContent2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContent2.swift; sourceTree = "<group>"; };
+		DE5109A62A4B044200410806 /* OnboardingContent3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContent3.swift; sourceTree = "<group>"; };
+		DE5109A72A4B044200410806 /* OnboardingContent1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContent1.swift; sourceTree = "<group>"; };
 		DE6DB02F2A41A5E90035C427 /* Scan2Cook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scan2Cook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE6DB0322A41A5E90035C427 /* Scan2CookApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scan2CookApp.swift; sourceTree = "<group>"; };
 		DE6DB0342A41A5E90035C427 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -280,6 +286,9 @@
 		DEE450D62A45BF5C00D2EA4A /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				DE5109A72A4B044200410806 /* OnboardingContent1.swift */,
+				DE5109A52A4B044200410806 /* OnboardingContent2.swift */,
+				DE5109A62A4B044200410806 /* OnboardingContent3.swift */,
 				DE6DB0412A41BAFB0035C427 /* OnboardingView.swift */,
 				DE9B72372A423E0C00C3DEDD /* OnboardingPersonalizationView.swift */,
 			);
@@ -382,6 +391,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE5109A82A4B044200410806 /* OnboardingContent2.swift in Sources */,
+				DE5109A92A4B044200410806 /* OnboardingContent3.swift in Sources */,
+				DE5109AA2A4B044200410806 /* OnboardingContent1.swift in Sources */,
 				DE9B72422A42457B00C3DEDD /* PersonalizationViewModel.swift in Sources */,
 				C51A3F652A49F2E000307CFD /* RecipeListView.swift in Sources */,
 				DEE450DA2A45C2D000D2EA4A /* MainView.swift in Sources */,
