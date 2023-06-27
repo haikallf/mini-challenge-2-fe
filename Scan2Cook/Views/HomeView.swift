@@ -25,7 +25,7 @@ struct HomeView: View {
                         .font(.callout)
                     
                     HStack {
-                        Text("Adang Susanyo Nama Saya")
+                        Text("\(viewModel.username) Nama Saya Panjang Bet Bet Bet Parah Parah")
                             .font(.title2)
                             .multilineTextAlignment(.leading)
                             .lineLimit(2)

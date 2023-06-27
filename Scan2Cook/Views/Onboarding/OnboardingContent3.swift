@@ -51,6 +51,8 @@ struct OnboardingContent3: View {
                             .animation(animation.delay(1)),
                        alignment: .bottom
                     )
+                    .opacity(runAnimation ? 1 : 0)
+                    .animation(animation.delay(1))
                 
 //                Divider()
 //                    .opacity(runAnimation ? 1 : 0)

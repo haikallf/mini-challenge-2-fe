@@ -24,20 +24,12 @@ struct OnboardingContent2: View {
                 .offset(x: runAnimation ? UIScreen.main.bounds.width - 300 : UIScreen.main.bounds.width + 63,  y: -140)
                 .animation(animation)
             
-//            RoundedRectangle(cornerRadius: 30)
-//                .frame(width: 400, height: 400)
-//                .transition(.move(edge: .bottom))
-//                .offset(x: runAnimation ? UIScreen.main.bounds.width - 570 : -650,  y: -40)
-////                .rotationEffect(.degrees(180))
-//                .rotationEffect(Angle(degrees: runAnimation ? 360 : 0))
-//                .animation(animation.delay(2))
-            
-            RoundedRectangle(cornerRadius: 30)
+            Image("bowl-of-noodles")
                 .frame(width: 400, height: 400)
                 .transition(.move(edge: .bottom))
                 .rotationEffect(.degrees(runAnimation ? 360 : 180), anchor: .center)
                 .offset(x: runAnimation ? UIScreen.main.bounds.width - 570 : -650,  y: -40)
-                .animation(animation.delay(0.1))
+                .animation(animation.delay(0.2))
             
             
             VStack {

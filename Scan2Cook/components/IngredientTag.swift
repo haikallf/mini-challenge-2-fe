@@ -34,3 +34,4 @@ struct IngredientTag_Previews: PreviewProvider {
         IngredientTag(text: "roti", isSelected: false, onTap: {})
     }
 }
+
