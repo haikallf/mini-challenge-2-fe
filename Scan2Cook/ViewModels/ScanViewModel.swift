@@ -44,6 +44,11 @@ class ScanViewModel: ObservableObject {
         }
     }
     
+    func setSelectedIngredients(arr: [Ingredient]) {
+        self.selectedIngredients = arr
+        print("\(selectedIngredients)")
+    }
+    
     func resetIngredientsSelection() {
         self.ingredients = Ingredient.all
         self.selectedIngredients = []

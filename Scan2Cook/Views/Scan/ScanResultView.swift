@@ -11,15 +11,17 @@ import WrapLayout
 struct ScanResultView: View {
     @EnvironmentObject var scanViewModel: ScanViewModel
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    var image : UIImage
     
     @State var shouldNavigate: Bool = false
     
     var body: some View {
         VStack {
             //MARK: Image Preview
-            Rectangle()
-                .fill(.gray)
-                .frame(width: 393, height: 278)
+            Image(uiImage: image)
+                .resizable()
+                .frame(height: 416)
+                .aspectRatio(contentMode: .fill)
             
             //MARK: Ingredients Detail Section
             VStack {
@@ -28,7 +30,7 @@ struct ScanResultView: View {
                 
                 //MARK: Heading
                 VStack(alignment: .leading, spacing: 4) {
-                    Text("5 Bahan ditemukan")
+                    Text("\(scanViewModel.selectedIngredients.count) Bahan ditemukan")
                         .font(.title3)
                         .fontWeight(.bold)
                     
@@ -99,6 +101,7 @@ struct ScanResultView: View {
 
 struct ScanResultView_Previews: PreviewProvider {
     static var previews: some View {
-        ScanResultView().environmentObject(ScanViewModel())
+        ScanResultView(image: UIImage(imageLiteralResourceName: "dummy-img"))
+            .environmentObject(ScanViewModel())
     }
 }

@@ -10,6 +10,7 @@ import SwiftUI
 import Vision
 class MLManager {
     private var model : VNCoreMLModel? = nil
+    var boundingBoxes : CGRect = CGRect()
     
     init(){
         self.model = loadModel()!
@@ -35,8 +36,8 @@ class MLManager {
         return visionModel
     }
     
-    func detectObjects(in image: UIImage) -> [VNRecognizedObjectObservation]?{
-        var finalResults : [VNRecognizedObjectObservation] = [VNRecognizedObjectObservation]()
+    func detectObjects(in image: UIImage) -> [VNClassificationObservation]?{
+        var finalResults : [VNClassificationObservation] = [VNClassificationObservation]()
         guard let ciImage = CIImage(image: image) else {
             print("Failed to create CIImage from UIImage")
             return nil
@@ -51,17 +52,19 @@ class MLManager {
                 print("Result empty")
             }else {
                 for result in results {
-//                    let boundingBox = result.boundingBox
-//                    let confidence = result.confidence
+                    
+                    let boundingBox = result.boundingBox
+                    self.boundingBoxes = boundingBox
                     let resultsFiltered = result.labels.filter { label in
                         label.confidence >= 0.8
                     }
                     for className in resultsFiltered{
                         print("Detected \(className.identifier), with confidence \(className.confidence)")
+                        finalResults.append(className)
                     }
+                    
                 }
             }
-            finalResults = results
         }
         
         let handler = VNImageRequestHandler(ciImage: ciImage)
@@ -70,6 +73,7 @@ class MLManager {
         } catch {
             print("Error performing object detection: \(error.localizedDescription)")
         }
+//        print("\(finalResults)")
         return finalResults
     }
 }

@@ -8,6 +8,7 @@
 import AVFoundation
 import Foundation
 import SwiftUI
+import Vision
 
 enum CameraState{
     case cameraInitialized
@@ -21,8 +22,9 @@ class CameraModel : NSObject, ObservableObject, AVCapturePhotoCaptureDelegate {
     private var showAlert = false
     @Published var output = AVCapturePhotoOutput()
     @Published var previewLayer : AVCaptureVideoPreviewLayer?
-    @Published var objectsDetected : Int = 0
-    private var mlManager = MLManager()
+    @Published var objectsDetected : [Ingredient] = []
+    @Published var processedImage : UIImage?
+    var mlManager = MLManager()
     
     init(isTaken : CameraState = .cameraInitialized){
         self.cameraState = isTaken
@@ -121,12 +123,20 @@ class CameraModel : NSObject, ObservableObject, AVCapturePhotoCaptureDelegate {
             return
         }
         
-        let resizedImage = resizeImage(image, targetSize: CGSize(width: 1000, height: 1000))!
-    
-        let objectsDetectedInModel = mlManager.detectObjects(in: resizedImage)
+        let resizedImage = resizeImage(image, targetSize: CGSize(width: 800, height: 800))!
+        processedImage = resizedImage
+        let objectsDetectedInModel = mlManager.detectObjects(in: resizedImage)!
         
         self.cameraState = .objectDetected
-        objectsDetected = objectsDetectedInModel!.count
+        let ingredients = Ingredient.all
+        for obj in objectsDetectedInModel {
+            if let ingredientFound = ingredients.first(where: { ingredient in
+                ingredient.attribute == obj.identifier
+            }) {
+                objectsDetected.append(ingredientFound)
+                print("\(ingredientFound.name) is appended")
+            }
+        }
     }
     
     func resizeImage(_ image: UIImage, targetSize: CGSize) -> UIImage? {
@@ -145,5 +155,4 @@ class CameraModel : NSObject, ObservableObject, AVCapturePhotoCaptureDelegate {
         
         return resizedImage
     }
-    
 }

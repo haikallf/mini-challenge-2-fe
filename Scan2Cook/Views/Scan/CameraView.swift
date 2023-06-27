@@ -11,9 +11,7 @@ struct CameraView: View {
     @EnvironmentObject var scanViewModel: ScanViewModel
     
     var body: some View {
-        NavigationLink(destination: ScanResultView().environmentObject(scanViewModel)) {
-            Text("Check Result")
-        }
+        Text("Hello")
         .onAppear {
             scanViewModel.resetIngredientsSelection()
         }
