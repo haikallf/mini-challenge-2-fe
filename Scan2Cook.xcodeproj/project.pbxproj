@@ -23,6 +23,11 @@
 		C5E04B7D2A4820DD00FA2185 /* PillIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E04B7C2A4820DD00FA2185 /* PillIndicator.swift */; };
 		C5E7F0D92A4A302900CAB1E8 /* FilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E7F0D82A4A302900CAB1E8 /* FilterViewModel.swift */; };
 		C5E7F0DB2A4A321C00CAB1E8 /* FilterTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E7F0DA2A4A321C00CAB1E8 /* FilterTag.swift */; };
+		D87DC5B72A4AD5B00002503E /* Scan2CookMLModel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = D87DC5B62A4AD5B00002503E /* Scan2CookMLModel.mlmodel */; };
+		D87DC5B92A4AD5BA0002503E /* MLManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DC5B82A4AD5BA0002503E /* MLManager.swift */; };
+		D87DC5BB2A4AD5E00002503E /* CameraModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DC5BA2A4AD5E00002503E /* CameraModel.swift */; };
+		D87DC5C02A4AD6500002503E /* CameraPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DC5BF2A4AD6500002503E /* CameraPreview.swift */; };
+		D87DC5C22A4AD66B0002503E /* CameraPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DC5C12A4AD66B0002503E /* CameraPreviewView.swift */; };
 		DE6DB0332A41A5E90035C427 /* Scan2CookApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6DB0322A41A5E90035C427 /* Scan2CookApp.swift */; };
 		DE6DB0352A41A5E90035C427 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6DB0342A41A5E90035C427 /* ContentView.swift */; };
 		DE6DB0372A41A5EB0035C427 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE6DB0362A41A5EB0035C427 /* Assets.xcassets */; };
@@ -73,6 +78,11 @@
 		C5E04B7C2A4820DD00FA2185 /* PillIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillIndicator.swift; sourceTree = "<group>"; };
 		C5E7F0D82A4A302900CAB1E8 /* FilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewModel.swift; sourceTree = "<group>"; };
 		C5E7F0DA2A4A321C00CAB1E8 /* FilterTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTag.swift; sourceTree = "<group>"; };
+		D87DC5B62A4AD5B00002503E /* Scan2CookMLModel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Scan2CookMLModel.mlmodel; sourceTree = "<group>"; };
+		D87DC5B82A4AD5BA0002503E /* MLManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLManager.swift; sourceTree = "<group>"; };
+		D87DC5BA2A4AD5E00002503E /* CameraModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraModel.swift; sourceTree = "<group>"; };
+		D87DC5BF2A4AD6500002503E /* CameraPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreview.swift; sourceTree = "<group>"; };
+		D87DC5C12A4AD66B0002503E /* CameraPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewView.swift; sourceTree = "<group>"; };
 		DE6DB02F2A41A5E90035C427 /* Scan2Cook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scan2Cook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE6DB0322A41A5E90035C427 /* Scan2CookApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scan2CookApp.swift; sourceTree = "<group>"; };
 		DE6DB0342A41A5E90035C427 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -131,6 +141,32 @@
 			path = Recipe;
 			sourceTree = "<group>";
 		};
+		D87DC5B42A4AD5780002503E /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				D87DC5B52A4AD57D0002503E /* MLModel */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		D87DC5B52A4AD57D0002503E /* MLModel */ = {
+			isa = PBXGroup;
+			children = (
+				D87DC5B62A4AD5B00002503E /* Scan2CookMLModel.mlmodel */,
+				D87DC5B82A4AD5BA0002503E /* MLManager.swift */,
+			);
+			path = MLModel;
+			sourceTree = "<group>";
+		};
+		D87DC5BC2A4AD5FC0002503E /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				D87DC5BF2A4AD6500002503E /* CameraPreview.swift */,
+				D87DC5C12A4AD66B0002503E /* CameraPreviewView.swift */,
+			);
+			path = Camera;
+			sourceTree = "<group>";
+		};
 		DE6DB0262A41A5E90035C427 = {
 			isa = PBXGroup;
 			children = (
@@ -150,6 +186,7 @@
 		DE6DB0312A41A5E90035C427 /* Scan2Cook */ = {
 			isa = PBXGroup;
 			children = (
+				D87DC5B42A4AD5780002503E /* Core */,
 				DEE450E42A45CB1F00D2EA4A /* utils */,
 				DE9B72432A424D9100C3DEDD /* components */,
 				DE9B723E2A42423B00C3DEDD /* Enums */,
@@ -175,6 +212,7 @@
 		DE6DB0402A41BAE50035C427 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D87DC5BC2A4AD5FC0002503E /* Camera */,
 				C5AFAED82A478545003D3DF0 /* Recipe */,
 				DEE450D82A45BF7B00D2EA4A /* Scan */,
 				DEE450D62A45BF5C00D2EA4A /* Onboarding */,
@@ -193,6 +231,7 @@
 				DEE450F52A45F70700D2EA4A /* Ingredient.swift */,
 				C56F4E922A4838D3004FD059 /* Education.swift */,
 				C51A3F622A49EADE00307CFD /* SectionedRecipes.swift */,
+				D87DC5BA2A4AD5E00002503E /* CameraModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -346,11 +385,14 @@
 				DE9B72422A42457B00C3DEDD /* PersonalizationViewModel.swift in Sources */,
 				C51A3F652A49F2E000307CFD /* RecipeListView.swift in Sources */,
 				DEE450DA2A45C2D000D2EA4A /* MainView.swift in Sources */,
+				D87DC5C22A4AD66B0002503E /* CameraPreviewView.swift in Sources */,
 				C51A3F632A49EADE00307CFD /* SectionedRecipes.swift in Sources */,
 				C56F4E932A4838D3004FD059 /* Education.swift in Sources */,
+				D87DC5BB2A4AD5E00002503E /* CameraModel.swift in Sources */,
 				DEE450EE2A45E95200D2EA4A /* RecipeTag.swift in Sources */,
 				DEE450E82A45CC1200D2EA4A /* CustomTabBar.swift in Sources */,
 				C56F4E952A483AEA004FD059 /* EducationView.swift in Sources */,
+				D87DC5C02A4AD6500002503E /* CameraPreview.swift in Sources */,
 				C5E7F0DB2A4A321C00CAB1E8 /* FilterTag.swift in Sources */,
 				C56F4E9B2A48B903004FD059 /* SearchResultView.swift in Sources */,
 				DE9B72402A42425200C3DEDD /* PersonalizationType.swift in Sources */,
@@ -363,6 +405,7 @@
 				C53E81082A47716E000CB351 /* RecipeDetailsView1.swift in Sources */,
 				DEE450DC2A45C32D00D2EA4A /* BookmarkView.swift in Sources */,
 				C5AFAEDA2A478561003D3DF0 /* RecipeStepsView.swift in Sources */,
+				D87DC5B72A4AD5B00002503E /* Scan2CookMLModel.mlmodel in Sources */,
 				C51A3F5F2A49C45F00307CFD /* RecipeDetailsView.swift in Sources */,
 				DEE450CF2A45A6B800D2EA4A /* HorizontalScrollViewMenu.swift in Sources */,
 				C51A3F612A49C8B500307CFD /* RecipeContent.swift in Sources */,
@@ -382,6 +425,7 @@
 				DEE450D52A45AA2800D2EA4A /* Recipe.swift in Sources */,
 				DE6DB0332A41A5E90035C427 /* Scan2CookApp.swift in Sources */,
 				DE9B72382A423E0C00C3DEDD /* OnboardingPersonalizationView.swift in Sources */,
+				D87DC5B92A4AD5BA0002503E /* MLManager.swift in Sources */,
 				C5E04B7D2A4820DD00FA2185 /* PillIndicator.swift in Sources */,
 				DEE450F22A45F65B00D2EA4A /* ScanResultView.swift in Sources */,
 				DEE450EC2A45DF7E00D2EA4A /* RecipeCard.swift in Sources */,
