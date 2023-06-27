@@ -77,6 +77,8 @@
 		C56F4E982A48A37A004FD059 /* RecipeLists.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeLists.swift; sourceTree = "<group>"; };
 		C56F4E9A2A48B903004FD059 /* SearchResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultView.swift; sourceTree = "<group>"; };
 		C5AFAED92A478561003D3DF0 /* RecipeStepsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeStepsView.swift; sourceTree = "<group>"; };
+		C5C491D72A4B99D800F7A9BC /* Epilogue.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Epilogue.ttf; sourceTree = "<group>"; };
+		C5C491D82A4B99F000F7A9BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C5E04B7A2A481B8D00FA2185 /* DotIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotIndicator.swift; sourceTree = "<group>"; };
 		C5E04B7C2A4820DD00FA2185 /* PillIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillIndicator.swift; sourceTree = "<group>"; };
 		C5E7F0D82A4A302900CAB1E8 /* FilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewModel.swift; sourceTree = "<group>"; };
@@ -192,6 +194,8 @@
 		DE6DB0312A41A5E90035C427 /* Scan2Cook */ = {
 			isa = PBXGroup;
 			children = (
+				C5C491D82A4B99F000F7A9BC /* Info.plist */,
+				C5C491D72A4B99D800F7A9BC /* Epilogue.ttf */,
 				D87DC5B42A4AD5780002503E /* Core */,
 				DEE450E42A45CB1F00D2EA4A /* utils */,
 				DE9B72432A424D9100C3DEDD /* components */,
@@ -574,6 +578,7 @@
 				DEVELOPMENT_TEAM = KYR4X9M655;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Scan2Cook/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -603,6 +608,7 @@
 				DEVELOPMENT_TEAM = KYR4X9M655;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Scan2Cook/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
