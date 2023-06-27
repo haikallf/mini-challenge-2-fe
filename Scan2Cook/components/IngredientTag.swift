@@ -15,15 +15,11 @@ struct IngredientTag: View {
     var body: some View {
         Button(action: onTap, label: {
             HStack(spacing: 8) {
-                Image(systemName: "circle.fill")
-                    .resizable()
-                    .frame(width: 24, height: 24)
-                    .foregroundColor(.gray)
-                
                 Text(text.capitalized)
                 
                 Image(systemName: isSelected ? "xmark" : "plus")
             }
+            .font(.footnote)
             .padding(8)
             .overlay(
                 RoundedRectangle(cornerRadius: 8)

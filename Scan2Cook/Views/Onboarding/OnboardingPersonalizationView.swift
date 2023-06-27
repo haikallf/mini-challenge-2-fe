@@ -85,7 +85,7 @@ struct OnboardingPersonalizationView: View {
                 CupertinoButton(viewModel.personalizations.count == 0 ? "Aku Makan Semuanya" : "Lanjut", action: {
                     viewModel.setPersonalizations()
                     shouldNavigate = true
-                }, isDisabled: viewModel.personalizations.isEmpty)
+                })
                 
                 //MARK: Navigate to MainView triggered by shouldNavigate
                 NavigationLink(destination: MainView(), isActive: $shouldNavigate) {
