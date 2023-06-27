@@ -10,16 +10,17 @@ import SwiftUI
 struct Ingredient: Equatable, Identifiable, Hashable {
     let id: String
     let name: String
+    let attribute: String?
 }
 
 extension Ingredient {
     static let all = [
-        Ingredient(id: "BAWANG_MERAH", name: "Bawang Merah"),
-        Ingredient(id: "TELUR", name: "Telur"),
-        Ingredient(id: "INDOMIE", name: "Indomie"),
-        Ingredient(id: "JAGUNG", name: "Jagung"),
-        Ingredient(id: "PAKCOY", name: "Pakcoy"),
-        Ingredient(id: "ROTI", name: "Roti"),
-        Ingredient(id: "BAWANG_PUTIH", name: "Bawang Putih"),
+        Ingredient(id: "BAWANG_MERAH", name: "Bawang Merah", attribute: ""),
+        Ingredient(id: "TELUR", name: "Telur", attribute: ""),
+        Ingredient(id: "INDOMIE", name: "Indomie", attribute: ""),
+        Ingredient(id: "JAGUNG", name: "Jagung", attribute: ""),
+        Ingredient(id: "PAKCOY", name: "Pakcoy", attribute: ""),
+        Ingredient(id: "ROTI", name: "Roti", attribute: ""),
+        Ingredient(id: "BAWANG_PUTIH", name: "Bawang Putih", attribute: ""),
     ]
 }
