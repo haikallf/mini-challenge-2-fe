@@ -31,29 +31,26 @@ struct OnboardingContent1: View {
             .opacity(runAnimation ? 1 : 0)
             .animation(animation)
             
-            RoundedRectangle(cornerRadius: 30)
-                .frame(width: 160, height: 160)
+            Image("chives")
                 .transition(.move(edge: .bottom))
                 .offset(x: UIScreen.main.bounds.width - 300,  y: runAnimation ? -140 : UIScreen.main.bounds.height)
                 .animation(animation.delay(1))
             
-            RoundedRectangle(cornerRadius: 30)
-                .frame(width: 160, height: 160)
+            Image("carrot")
                 .transition(.move(edge: .bottom))
-                .offset(x: UIScreen.main.bounds.width - 490,  y: runAnimation ? -40 : UIScreen.main.bounds.height)
+                .offset(x: UIScreen.main.bounds.width - 450,  y: runAnimation ? -40 : UIScreen.main.bounds.height)
                 .animation(animation.delay(2))
             
-            RoundedRectangle(cornerRadius: 30)
-                .frame(width: 160, height: 160)
+            Image("egg")
                 .transition(.move(edge: .bottom))
                 .offset(x: UIScreen.main.bounds.width - 300,  y: runAnimation ? 80 : UIScreen.main.bounds.height)
                 .animation(animation.delay(3))
             
-            RoundedRectangle(cornerRadius: 30)
-                .frame(width: 160, height: 160)
+            Image("instant-noodles")
                 .transition(.move(edge: .bottom))
-                .offset(x: UIScreen.main.bounds.width - 490,  y: runAnimation ? 180 : UIScreen.main.bounds.height)
+                .offset(x: UIScreen.main.bounds.width - 490,  y: runAnimation ? 255 : UIScreen.main.bounds.height)
                 .animation(animation.delay(4))
+
             
             VStack {
                 Spacer()
@@ -64,7 +61,7 @@ struct OnboardingContent1: View {
                 });
             }
             .padding(.vertical, 14)
-            .padding(.horizontal)
+            .padding(.horizontal, 60)
             .opacity(runAnimation ? 1 : 0)
             .animation(animation.delay(5))
         }
