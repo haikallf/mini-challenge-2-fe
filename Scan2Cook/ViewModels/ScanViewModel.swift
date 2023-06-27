@@ -25,11 +25,11 @@ class ScanViewModel: ObservableObject {
     }
     
     var filteredIngredients: [Ingredient] {
-        let subtractedIngredients = ingredients.filter { !self.selectedIngredients.contains($0) }
+//        let subtractedIngredients = ingredients.filter { !self.selectedIngredients.contains($0) }
         
-        guard !self.searchText.isEmpty else { return subtractedIngredients }
+        guard !self.searchText.isEmpty else { return ingredients }
         
-        let ingredientsTemp = subtractedIngredients.filter { ingredient in
+        let ingredientsTemp = ingredients.filter { ingredient in
             ingredient.name.lowercased().contains(self.searchText.lowercased())
         }
         
