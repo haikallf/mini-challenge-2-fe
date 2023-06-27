@@ -22,7 +22,7 @@ struct HomeView: View {
                 //MARK: Heading
                 HStack {
                     VStack( alignment: .leading, spacing: 2) {
-                        Text("Halo, Friend!")
+                        Text("Halo, \(viewModel.username)")
                             .font(.subheadline)
                         
                         Text("Selamat Siang")

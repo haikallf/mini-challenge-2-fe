@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct OnboardingContent3: View {
+    @StateObject var viewModel = PersonalizationViewModel()
     @State private var shouldNavigate: Bool = false
     @State var runAnimation = false
     @State var fullName = ""
@@ -37,7 +38,7 @@ struct OnboardingContent3: View {
                     .opacity(runAnimation ? 1 : 0)
                     .animation(animation.delay(1))
                 
-                TextField("", text: $fullName)
+                TextField("", text: $viewModel.username)
                     .padding(.bottom, 8)
                     .fontWeight(.bold)
                     .textFieldStyle(.plain)
@@ -62,9 +63,10 @@ struct OnboardingContent3: View {
             VStack {
                 Spacer()
                 
-                CupertinoButton("Lanjut", action: {
+                CupertinoButton("Simpan", action: {
+                    viewModel.setUsername()
                     shouldNavigate = true
-                }, isDisabled: fullName == "")
+                }, isDisabled: viewModel.username == "")
                     .opacity(runAnimation ? 1 : 0)
                     .animation(isAnimationRun ? Animation.linear(duration: 0) : animation.delay(2))
                     .onReceive(timer) { time in
@@ -75,7 +77,7 @@ struct OnboardingContent3: View {
             .padding(.vertical, 14)
             .padding(.horizontal, 40)
             
-            NavigationLink(destination: MainView(), isActive: $shouldNavigate) {
+            NavigationLink(destination: OnboardingPersonalizationView(), isActive: $shouldNavigate) {
                 EmptyView()
             }
             .opacity(0)
