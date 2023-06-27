@@ -6,7 +6,7 @@
 //
 
 import CoreML
-import UIKit
+import SwiftUI
 import Vision
 class MLManager {
     private var model : VNCoreMLModel? = nil
@@ -35,10 +35,11 @@ class MLManager {
         return visionModel
     }
     
-    func detectObjects(in image: UIImage){
+    func detectObjects(in image: UIImage) -> [VNRecognizedObjectObservation]?{
+        var finalResults : [VNRecognizedObjectObservation] = [VNRecognizedObjectObservation]()
         guard let ciImage = CIImage(image: image) else {
             print("Failed to create CIImage from UIImage")
-            return
+            return nil
         }
         
         let request = VNCoreMLRequest(model: model!) { request, error in
@@ -60,13 +61,15 @@ class MLManager {
                     }
                 }
             }
-            
+            finalResults = results
         }
+        
         let handler = VNImageRequestHandler(ciImage: ciImage)
         do {
             try handler.perform([request])
         } catch {
             print("Error performing object detection: \(error.localizedDescription)")
         }
+        return finalResults
     }
 }

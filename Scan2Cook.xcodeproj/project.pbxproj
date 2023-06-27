@@ -59,24 +59,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D8506F572A45B17C004D86E5 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				D8506F592A45B192004D86E5 /* CameraModel.swift */,
-				D87943CA2A4857C4002DCA87 /* MLManager.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		D8506F582A45B187004D86E5 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				D8506F552A45A669004D86E5 /* CameraView.swift */,
-				D8506F5B2A4676A3004D86E5 /* CameraPreview.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		D8F7863D2A442BAA00CE974D /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -88,6 +70,7 @@
 		D8F7863E2A442BB300CE974D /* MLModel */ = {
 			isa = PBXGroup;
 			children = (
+				D87943CA2A4857C4002DCA87 /* MLManager.swift */,
 				D8F7863F2A442BD300CE974D /* Scan2CookMLModel.mlmodel */,
 			);
 			path = MLModel;
@@ -96,8 +79,8 @@
 		D8F786482A4440A600CE974D /* Camera */ = {
 			isa = PBXGroup;
 			children = (
-				D8506F582A45B187004D86E5 /* View */,
-				D8506F572A45B17C004D86E5 /* Model */,
+				D8506F552A45A669004D86E5 /* CameraView.swift */,
+				D8506F5B2A4676A3004D86E5 /* CameraPreview.swift */,
 			);
 			path = Camera;
 			sourceTree = "<group>";
@@ -159,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				DE9B72352A42374D00C3DEDD /* Onboarding.swift */,
+				D8506F592A45B192004D86E5 /* CameraModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";

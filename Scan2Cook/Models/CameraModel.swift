@@ -9,13 +9,24 @@ import AVFoundation
 import Foundation
 import SwiftUI
 
+enum CameraState{
+    case cameraInitialized
+    case photoTaken
+    case objectDetected
+}
+
 class CameraModel : NSObject, ObservableObject, AVCapturePhotoCaptureDelegate {
-    @Published var isTaken = false
+    @Published var cameraState : CameraState = .cameraInitialized
     @Published var session = AVCaptureSession()
     private var showAlert = false
     @Published var output = AVCapturePhotoOutput()
     @Published var previewLayer : AVCaptureVideoPreviewLayer?
+    @Published var objectsDetected : Int = 0
     private var mlManager = MLManager()
+    
+    init(isTaken : CameraState = .cameraInitialized){
+        self.cameraState = isTaken
+    }
     
     func checkPermission(){
         switch AVCaptureDevice.authorizationStatus(for: .video){
@@ -75,7 +86,7 @@ class CameraModel : NSObject, ObservableObject, AVCapturePhotoCaptureDelegate {
             
             DispatchQueue.main.async {
                 withAnimation {
-                    self.isTaken.toggle()
+                    self.cameraState = .photoTaken
                 }
             }
         }
@@ -88,7 +99,7 @@ class CameraModel : NSObject, ObservableObject, AVCapturePhotoCaptureDelegate {
             
             DispatchQueue.main.async {
                 withAnimation {
-                    self.isTaken.toggle()
+                    self.cameraState = .cameraInitialized
                 }
             }
         }
@@ -111,7 +122,11 @@ class CameraModel : NSObject, ObservableObject, AVCapturePhotoCaptureDelegate {
         }
         
         let resizedImage = resizeImage(image, targetSize: CGSize(width: 1000, height: 1000))!
-        mlManager.detectObjects(in: resizedImage)
+    
+        let objectsDetectedInModel = mlManager.detectObjects(in: resizedImage)
+        
+        self.cameraState = .objectDetected
+        objectsDetected = objectsDetectedInModel!.count
     }
     
     func resizeImage(_ image: UIImage, targetSize: CGSize) -> UIImage? {
