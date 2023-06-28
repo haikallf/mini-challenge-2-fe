@@ -12,10 +12,11 @@ struct RecipeTag: View {
     
     var body: some View {
         Text(text.capitalized)
-            .font(.caption2)
+            .font(CustomFont.caption2)
             .padding(.vertical, 4)
             .padding(.horizontal, 8)
-            .background(Color("fillsTertiary"))
+            .foregroundColor(Colors.onPrimaryContainer)
+            .background(Colors.primaryContainer)
             .cornerRadius(120)
     }
 }

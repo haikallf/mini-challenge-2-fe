@@ -25,7 +25,7 @@ struct OnboardingContent3: View {
     var body: some View {
         ZStack {
             Circle()
-                .fill(.gray)
+                .fill(Colors.tertiaryContainer)
                 .frame(width: 439, height: 439)
                 .transition(.move(edge: .bottom))
                 .offset(x: runAnimation ? UIScreen.main.bounds.width - 260 : UIScreen.main.bounds.width + 63,  y: runAnimation ? -380 : -UIScreen.main.bounds.height)
@@ -57,6 +57,7 @@ struct OnboardingContent3: View {
 //                    .opacity(runAnimation ? 1 : 0)
 //                    .animation(animation.delay(1))
             }
+            .foregroundColor(Colors.AAA)
             .font(CustomFont.epilogue(size: 28))
             .padding(.horizontal, 40)
             

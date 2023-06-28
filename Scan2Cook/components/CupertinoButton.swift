@@ -23,8 +23,8 @@ struct CupertinoButton: View {
             Text(text)
                 .padding()
                 .frame(maxWidth: .infinity)
-                .background(isDisabled ? Color("fillsTertiary") : .black)
-                .foregroundColor(isDisabled ? Color("labelsTertiary") : .white )
+                .background(isDisabled ? Color("fillsTertiary") : Colors.secondary)
+                .foregroundColor(isDisabled ? Color("labelsTertiary") : Colors.onPrimary )
                 .foregroundColor(.white)
                 .cornerRadius(12)
         }

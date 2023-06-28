@@ -13,7 +13,9 @@ struct RecipeCardList: View {
         HStack {
             VStack(alignment: .leading) {
                 Text(recipe.name)
-                    .fontWeight(.semibold)
+                    .font(CustomFont.body)
+                    .fontWeight(.bold)
+                    .foregroundColor(Colors.AAA)
                     .frame(maxWidth: 234, alignment: .leading)
                     .multilineTextAlignment(.leading)
                 

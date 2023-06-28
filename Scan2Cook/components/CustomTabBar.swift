@@ -14,11 +14,11 @@ struct CustomTabBar: View {
         HStack(spacing: 16) {
             VStack(spacing: 4) {
                 Image(systemName: "house.fill")
-                    .foregroundColor(globalStates.selectedPageIndex == 1 ? .black : Color("labelsSecondary"))
+                    .foregroundColor(globalStates.selectedPageIndex == 1 ? Colors.onTertiaryContainer : Colors.disabled)
                 
                 if (globalStates.selectedPageIndex == 1) {
                     Circle()
-                        .fill()
+                        .fill(Colors.onTertiaryContainer)
                         .frame(width: 6)
                 }
             }
@@ -29,11 +29,11 @@ struct CustomTabBar: View {
             
             VStack(spacing: 4) {
                 Image(systemName: "camera.metering.multispot")
-                    .foregroundColor(globalStates.selectedPageIndex == 2 ? .black : Color("labelsSecondary"))
+                    .foregroundColor(globalStates.selectedPageIndex == 2 ? Colors.onTertiaryContainer : Colors.disabled)
                 
                 if (globalStates.selectedPageIndex == 2) {
                     Circle()
-                        .fill()
+                        .fill(Colors.onTertiaryContainer)
                         .frame(width: 6)
                 }
             }
@@ -44,11 +44,11 @@ struct CustomTabBar: View {
             
             VStack(spacing: 4) {
                 Image(systemName: "books.vertical")
-                    .foregroundColor(globalStates.selectedPageIndex == 3 ? .black : Color("labelsSecondary"))
+                    .foregroundColor(globalStates.selectedPageIndex == 3 ? Colors.onTertiaryContainer : Colors.disabled)
                 
                 if (globalStates.selectedPageIndex == 3) {
                     Circle()
-                        .fill()
+                        .fill(Colors.onTertiaryContainer)
                         .frame(width: 6)
                 }
             }
@@ -60,7 +60,7 @@ struct CustomTabBar: View {
         .frame(height: 32)
         .padding(.vertical, 8)
         .padding(.horizontal, 24)
-        .background(Color("gray5"))
+        .background(Colors.tertiaryContainer)
         .cornerRadius(120)
     }
 }

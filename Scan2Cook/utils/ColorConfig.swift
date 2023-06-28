@@ -42,7 +42,7 @@ struct Colors {
         return Color(hex: 0xffffff)
     }
     public static var secondaryContainer: Color {
-        return Color(hex: 0xffddc7 )
+        return Color(hex: 0xffddc7)
     }
     public static var onSecondaryContainer: Color {
         return Color(hex: 0x2b1708)
@@ -70,7 +70,7 @@ struct Colors {
         return Color(hex: 0xffffff)
     }
     public static var errorContainer: Color {
-        return Color(hex: 0xba1a1a)
+        return Color(hex: 0xffdad6)
     }
     public static var onErrorContainer: Color {
         return Color(hex: 0x410002)
@@ -159,4 +159,11 @@ struct Colors {
         return Color(hex: 0xfff8f5)
     }
     
+    //MARK: - Thunderbird
+    public static var thunderbird87: Color {
+        return Color(hex: 0xffcfc9)
+    }
+    public static var thunderbird20: Color {
+        return Color(hex: 0x690005)
+    }
 }

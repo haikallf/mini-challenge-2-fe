@@ -20,8 +20,8 @@ struct BookmarkView: View {
             VStack(alignment: .leading) {
                 HStack {
                     Text("Resep Disimpan")
-                        .font(.title)
-                    .fontWeight(.bold)
+                        .font(CustomFont.title3)
+                        .fontWeight(.bold)
                     
                     Spacer()
                 }
@@ -30,6 +30,7 @@ struct BookmarkView: View {
                     Spacer()
                 }
             }
+            .foregroundColor(Colors.AAA)
             .padding(.horizontal)
             
             //MARK: Recipes List

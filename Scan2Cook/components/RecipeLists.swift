@@ -27,14 +27,12 @@ struct RecipeLists: View {
                         
                         Text("Filter")
                     }
-                    .font(.footnote)
-                    .fontWeight(.semibold)
+                    .font(CustomFont.footnote)
                     .padding(.vertical, 8)
                     .padding(.horizontal, 12)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 120)
-                            .stroke(Color.gray, lineWidth: 1)
-                    )
+                    .foregroundColor(Colors.onSecondaryContainer)
+                    .background(Colors.secondaryContainer)
+                    .cornerRadius(120)
                 })
                 
                 Spacer()
@@ -47,7 +45,8 @@ struct RecipeLists: View {
                         .font(.callout)
                         .fontWeight(.semibold)
                         .padding(6)
-                        .background(selectedViewMode == "list" ? Color("fillsPrimary") : .white)
+                        .foregroundColor(selectedViewMode == "list" ? Colors.onSecondaryContainer : Colors.disabled)
+                        .background(selectedViewMode == "list" ? Colors.secondaryContainer : .white.opacity(0))
                         .clipShape(Circle())
                 })
                 
@@ -58,7 +57,8 @@ struct RecipeLists: View {
                         .font(.callout)
                         .fontWeight(.semibold)
                         .padding(6)
-                        .background(selectedViewMode == "icons" ? Color("fillsPrimary") : .white)
+                        .foregroundColor(selectedViewMode == "icons" ? Colors.onSecondaryContainer : Colors.disabled)
+                        .background(selectedViewMode == "icons" ? Colors.secondaryContainer : .white.opacity(0))
                         .clipShape(Circle())
                 })
                 
