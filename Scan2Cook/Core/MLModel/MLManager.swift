@@ -61,17 +61,18 @@ class MLManager {
                         print("Detected \(className.identifier), with confidence \(className.confidence)")
                         finalResults.append(className)
                     }
-                    
+
                 }
             }
         }
-        
+
         let handler = VNImageRequestHandler(ciImage: ciImage)
         do {
             try handler.perform([request])
         } catch {
             print("Error performing object detection: \(error.localizedDescription)")
         }
+        
         return finalResults
     }
 }

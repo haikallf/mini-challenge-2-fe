@@ -162,6 +162,7 @@ class CameraModel : NSObject, ObservableObject, AVCapturePhotoCaptureDelegate {
             }){
                 if !ingredientsFound.contains(ingredientFound){
                     ingredientsFound.append(ingredientFound)
+                    print("Ingredients Appended \(ingredientFound.name)")
                 }
             }
         }

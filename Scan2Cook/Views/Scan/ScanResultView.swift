@@ -22,13 +22,6 @@ struct ScanResultView: View {
                Image(uiImage: scanViewModel.image)
                    .resizable()
                    .scaledToFill()
-                   
-               VStack {
-                   //MARK: Back Button
-                   BackButton()
-                   Spacer()
-               }
-                   
            }.frame(height: 300)
 
             
@@ -79,10 +72,11 @@ struct ScanResultView: View {
             }
             .opacity(0)
         }
+        
+        .navigationBarBackButtonHidden()
         .onAppear {
             selectedIngredientsTemp = scanViewModel.selectedIngredients
         }
-        .navigationBarBackButtonHidden(true)
         .sheet(isPresented: $isAddIngredientsSheetShown, content: {
             NavigationView {
                 VStack {

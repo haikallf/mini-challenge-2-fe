@@ -53,7 +53,7 @@ struct CameraPreviewView: View {
                                         .font(.body)
                                 }
                             }.frame(height: 180)
-                            
+
                         } else {
                             HStack{
                                 Spacer()
@@ -87,12 +87,13 @@ struct CameraPreviewView: View {
                                         .font(.system(size: 56))
                                 }
                                 Spacer()
-                                
+
                             }.frame(height: 180)
                         }
                     }
                 }
             }
+            
             .onAppear {
                 cameraModel.checkPermission()
             }
@@ -103,9 +104,12 @@ struct CameraPreviewView: View {
                     ScanResultView()
                         .environmentObject(scanViewModel)
                 }
-                
+
             }
-        }
+
+        }.navigationBarBackButtonHidden(true)
+            .navigationBarItems(leading: backButton())
+        .modifier(HideBackButtonModifier())
     }
 }
 
@@ -119,4 +123,20 @@ struct CameraPreviewView_Previews: PreviewProvider {
 enum CameraPreviewNavigation{
     case scanResult
     case education
+}
+
+struct HideBackButtonModifier: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .navigationBarBackButtonHidden(true)
+            .navigationBarItems(leading: EmptyView()) // Clear the leading items
+    }
+}
+
+private func backButton() -> some View {
+    HStack {
+        BackButton(color: .white)
+            .offset(x: -20)
+        Spacer()
+    }
 }
