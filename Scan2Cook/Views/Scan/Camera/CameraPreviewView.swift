@@ -8,63 +8,71 @@
 import SwiftUI
 
 struct CameraPreviewView: View {
+    @EnvironmentObject var scanViewModel : ScanViewModel
     @StateObject var cameraModel = CameraModel()
+    @State var navigateNextView = false
     var body: some View {
-        ZStack{
-            CameraPreview(camera: cameraModel)
-                .ignoresSafeArea()
-            VStack{
-                ZStack{
-                    VStack{
-                        Spacer()
-                         if cameraModel.cameraState == .cameraInitialized {
-                             VStack{
-                                 Button(action: {}) {
-                                     Text("Gimana cara pakenya sii?")
-                                         .foregroundColor(Color.white)
-                                 }
-                                 Button(action: cameraModel.takePicture) {
-                                     ZStack{
-                                         Circle()
-                                             .fill(Color.white)
-                                             .frame(width: 80, height: 80)
-                                         Circle()
-                                             .stroke(Color.white, lineWidth: 4)
-                                             .frame(width: 96, height: 96)
+        NavigationStack{
+            ZStack{
+                CameraPreview(camera: cameraModel)
+                    .ignoresSafeArea()
+                VStack{
+                    ZStack{
+                        VStack{
+                            Spacer()
+                             if cameraModel.cameraState == .cameraInitialized {
+                                 VStack{
+                                     Button(action: {}) {
+                                         Text("Gimana cara pakenya sii?")
+                                             .foregroundColor(Color.white)
+                                     }
+                                     Button(action: cameraModel.takePicture) {
+                                         ZStack{
+                                             Circle()
+                                                 .fill(Color.white)
+                                                 .frame(width: 80, height: 80)
+                                             Circle()
+                                                 .stroke(Color.white, lineWidth: 4)
+                                                 .frame(width: 96, height: 96)
+                                         }
                                      }
                                  }
-                             }
-                        } else if cameraModel.cameraState == .photoTaken {
-                            Button(action: cameraModel.retakePicture) {
-                                Text("Done")
-                                    .multilineTextAlignment(.trailing)
-                            }
-                        } else {
-                            HStack{
+                            } else if cameraModel.cameraState == .photoTaken {
                                 Button(action: cameraModel.retakePicture) {
-                                    Image(systemName: "arrowshape.turn.up.backward.circle.fill")
-                                        .foregroundColor(Color("fillsSecondary"))
-                                        .font(.title)
+                                    Text("Done")
+                                        .multilineTextAlignment(.trailing)
                                 }
-                                VStack{
-                                    Text("\(cameraModel.objectsDetected)")
-                                    Text("Bahan Ditemukan")
-                                }
-                                Button(action: {}) {
-                                    Image(systemName: "checkmark.circle.fill")
+                            } else {
+                                HStack{
+                                    Button(action: cameraModel.retakePicture) {
+                                        Image(systemName: "arrowshape.turn.up.backward.circle.fill")
+                                            .foregroundColor(Color.white)
+                                            .font(.title)
+                                    }
+                                    VStack{
+                                        Text("\(cameraModel.objectsDetected)")
+                                        Text("Bahan Ditemukan")
+                                    }
+                                    Button {
+                                        scanViewModel.setSelectedIngredients(ingredients: [Ingredient]())
+                                    } label: {
+                                        Image(systemName: "checkmark.circle.fill")
+                                            .foregroundColor(Color.white)
+                                            .font(.title)
+                                    }
+
                                 }
                             }
                         }
                     }
-                    
-                        
-                    
                 }
-                
             }
-        }
-        .onAppear {
-            cameraModel.checkPermission()
+            .onAppear {
+                cameraModel.checkPermission()
+            }
+            .navigationDestination(isPresented: $navigateNextView) {
+                ScanResultView()
+            }
         }
     }
 }
@@ -72,5 +80,6 @@ struct CameraPreviewView: View {
 struct CameraPreviewView_Previews: PreviewProvider {
     static var previews: some View {
         CameraPreviewView(cameraModel: CameraModel())
+            .environmentObject(ScanViewModel())
     }
 }

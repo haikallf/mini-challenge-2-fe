@@ -96,7 +96,6 @@ class CameraModel : NSObject, ObservableObject, AVCapturePhotoCaptureDelegate {
     func retakePicture(){
         DispatchQueue.global(qos: .background).async {
             self.session.startRunning()
-            
             DispatchQueue.main.async {
                 withAnimation {
                     self.cameraState = .cameraInitialized
@@ -124,7 +123,6 @@ class CameraModel : NSObject, ObservableObject, AVCapturePhotoCaptureDelegate {
         let resizedImage = resizeImage(image, targetSize: CGSize(width: 1000, height: 1000))!
     
         let objectsDetectedInModel = mlManager.detectObjects(in: resizedImage)
-        
         self.cameraState = .objectDetected
         objectsDetected = objectsDetectedInModel!.count
     }
