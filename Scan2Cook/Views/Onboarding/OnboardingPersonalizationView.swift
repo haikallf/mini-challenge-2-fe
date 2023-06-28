@@ -34,7 +34,7 @@ struct OnboardingPersonalizationView: View {
                 //MARK: Personalization Section
                 VStack(alignment: .leading, spacing: 14) {
                     Text("Oke, \(viewModel.username). Ada makanan yang kamu **hindarin** gak?")
-                        .font(.title)
+                        .font(CustomFont.epilogue(size: 28))
                         .opacity(runAnimation ? 1 : 0)
                         .animation(animation.delay(1))
                     

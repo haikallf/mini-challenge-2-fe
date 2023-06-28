@@ -18,11 +18,17 @@ struct OnboardingContent1: View {
     var body: some View {
         ZStack {
             VStack {
+                Circle()
+                    .fill(Colors.onPrimaryContainer)
+                    .offset(x: 90)
+                    .frame(width: 439, height: 439)
+            }
+            VStack {
                 Text("Masak Ga Ribet?")
-                    .font(.largeTitle)
+                    .font(CustomFont.epilogue(size: 34))
                 
                 Text("Gampang Banget")
-                    .font(.largeTitle)
+                    .font(CustomFont.epilogue(size: 34))
                     .fontWeight(.bold)
                 
                 Spacer()

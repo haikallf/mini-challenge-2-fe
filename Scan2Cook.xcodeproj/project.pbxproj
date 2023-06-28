@@ -43,6 +43,11 @@
 		DE9B72422A42457B00C3DEDD /* PersonalizationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9B72412A42457B00C3DEDD /* PersonalizationViewModel.swift */; };
 		DE9B72452A424DAC00C3DEDD /* CupertinoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9B72442A424DAC00C3DEDD /* CupertinoButton.swift */; };
 		DE9B72472A42565C00C3DEDD /* PersonalizationTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9B72462A42565C00C3DEDD /* PersonalizationTag.swift */; };
+		DED53A5E2A4C2C1800208654 /* FontConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED53A5D2A4C2C1800208654 /* FontConfig.swift */; };
+		DED53A632A4C3EEE00208654 /* Epilogue-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DED53A622A4C3EEE00208654 /* Epilogue-VariableFont_wght.ttf */; };
+		DED53A662A4C3F5500208654 /* Epilogue-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DED53A642A4C3F5500208654 /* Epilogue-Bold.ttf */; };
+		DED53A672A4C3F5500208654 /* Epilogue-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DED53A652A4C3F5500208654 /* Epilogue-SemiBold.ttf */; };
+		DED53A692A4C473600208654 /* ColorConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED53A682A4C473600208654 /* ColorConfig.swift */; };
 		DEE450CF2A45A6B800D2EA4A /* HorizontalScrollViewMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE450CE2A45A6B800D2EA4A /* HorizontalScrollViewMenu.swift */; };
 		DEE450D32A45A9C100D2EA4A /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE450D22A45A9C100D2EA4A /* HomeViewModel.swift */; };
 		DEE450D52A45AA2800D2EA4A /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE450D42A45AA2800D2EA4A /* Recipe.swift */; };
@@ -76,7 +81,6 @@
 		C56F4E982A48A37A004FD059 /* RecipeLists.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeLists.swift; sourceTree = "<group>"; };
 		C56F4E9A2A48B903004FD059 /* SearchResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultView.swift; sourceTree = "<group>"; };
 		C5AFAED92A478561003D3DF0 /* RecipeStepsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeStepsView.swift; sourceTree = "<group>"; };
-		C5C491D72A4B99D800F7A9BC /* Epilogue.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Epilogue.ttf; sourceTree = "<group>"; };
 		C5C491D82A4B99F000F7A9BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C5E04B7A2A481B8D00FA2185 /* DotIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotIndicator.swift; sourceTree = "<group>"; };
 		C5E04B7C2A4820DD00FA2185 /* PillIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillIndicator.swift; sourceTree = "<group>"; };
@@ -103,6 +107,11 @@
 		DE9B72412A42457B00C3DEDD /* PersonalizationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalizationViewModel.swift; sourceTree = "<group>"; };
 		DE9B72442A424DAC00C3DEDD /* CupertinoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CupertinoButton.swift; sourceTree = "<group>"; };
 		DE9B72462A42565C00C3DEDD /* PersonalizationTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalizationTag.swift; sourceTree = "<group>"; };
+		DED53A5D2A4C2C1800208654 /* FontConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontConfig.swift; sourceTree = "<group>"; };
+		DED53A622A4C3EEE00208654 /* Epilogue-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Epilogue-VariableFont_wght.ttf"; sourceTree = "<group>"; };
+		DED53A642A4C3F5500208654 /* Epilogue-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Epilogue-Bold.ttf"; sourceTree = "<group>"; };
+		DED53A652A4C3F5500208654 /* Epilogue-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Epilogue-SemiBold.ttf"; sourceTree = "<group>"; };
+		DED53A682A4C473600208654 /* ColorConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorConfig.swift; sourceTree = "<group>"; };
 		DEE450CE2A45A6B800D2EA4A /* HorizontalScrollViewMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalScrollViewMenu.swift; sourceTree = "<group>"; };
 		DEE450D22A45A9C100D2EA4A /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		DEE450D42A45AA2800D2EA4A /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
@@ -178,6 +187,7 @@
 			children = (
 				DE6DB0312A41A5E90035C427 /* Scan2Cook */,
 				DE6DB0302A41A5E90035C427 /* Products */,
+				DED53A5A2A4C2AF300208654 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -192,8 +202,10 @@
 		DE6DB0312A41A5E90035C427 /* Scan2Cook */ = {
 			isa = PBXGroup;
 			children = (
+				DED53A622A4C3EEE00208654 /* Epilogue-VariableFont_wght.ttf */,
+				DED53A642A4C3F5500208654 /* Epilogue-Bold.ttf */,
+				DED53A652A4C3F5500208654 /* Epilogue-SemiBold.ttf */,
 				C5C491D82A4B99F000F7A9BC /* Info.plist */,
-				C5C491D72A4B99D800F7A9BC /* Epilogue.ttf */,
 				D87DC5B42A4AD5780002503E /* Core */,
 				DEE450E42A45CB1F00D2EA4A /* utils */,
 				DE9B72432A424D9100C3DEDD /* components */,
@@ -284,6 +296,13 @@
 			path = components;
 			sourceTree = "<group>";
 		};
+		DED53A5A2A4C2AF300208654 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		DEE450D62A45BF5C00D2EA4A /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
@@ -311,7 +330,9 @@
 		DEE450E42A45CB1F00D2EA4A /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				DED53A5D2A4C2C1800208654 /* FontConfig.swift */,
 				DEE450E52A45CB2C00D2EA4A /* GlobalStates.swift */,
+				DED53A682A4C473600208654 /* ColorConfig.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -381,6 +402,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE6DB03A2A41A5EB0035C427 /* Preview Assets.xcassets in Resources */,
+				DED53A662A4C3F5500208654 /* Epilogue-Bold.ttf in Resources */,
+				DED53A632A4C3EEE00208654 /* Epilogue-VariableFont_wght.ttf in Resources */,
+				DED53A672A4C3F5500208654 /* Epilogue-SemiBold.ttf in Resources */,
 				DE6DB0372A41A5EB0035C427 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -411,6 +435,7 @@
 				DE9B72402A42425200C3DEDD /* PersonalizationType.swift in Sources */,
 				DE6DB0422A41BAFB0035C427 /* OnboardingView.swift in Sources */,
 				DEE450E02A45C80500D2EA4A /* RecipeDetailsSheet.swift in Sources */,
+				DED53A692A4C473600208654 /* ColorConfig.swift in Sources */,
 				DE6DB0352A41A5E90035C427 /* ContentView.swift in Sources */,
 				DEE450E62A45CB2C00D2EA4A /* GlobalStates.swift in Sources */,
 				C56F4E992A48A37A004FD059 /* RecipeLists.swift in Sources */,
@@ -436,6 +461,7 @@
 				DEE450F42A45F68A00D2EA4A /* ScanViewModel.swift in Sources */,
 				DEE450D52A45AA2800D2EA4A /* Recipe.swift in Sources */,
 				DE6DB0332A41A5E90035C427 /* Scan2CookApp.swift in Sources */,
+				DED53A5E2A4C2C1800208654 /* FontConfig.swift in Sources */,
 				DE9B72382A423E0C00C3DEDD /* OnboardingPersonalizationView.swift in Sources */,
 				D87DC5B92A4AD5BA0002503E /* MLManager.swift in Sources */,
 				C5E04B7D2A4820DD00FA2185 /* PillIndicator.swift in Sources */,
