@@ -47,6 +47,7 @@
 		DED53A632A4C3EEE00208654 /* Epilogue-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DED53A622A4C3EEE00208654 /* Epilogue-VariableFont_wght.ttf */; };
 		DED53A662A4C3F5500208654 /* Epilogue-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DED53A642A4C3F5500208654 /* Epilogue-Bold.ttf */; };
 		DED53A672A4C3F5500208654 /* Epilogue-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DED53A652A4C3F5500208654 /* Epilogue-SemiBold.ttf */; };
+		DED53A692A4C473600208654 /* ColorConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED53A682A4C473600208654 /* ColorConfig.swift */; };
 		DEE450CF2A45A6B800D2EA4A /* HorizontalScrollViewMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE450CE2A45A6B800D2EA4A /* HorizontalScrollViewMenu.swift */; };
 		DEE450D32A45A9C100D2EA4A /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE450D22A45A9C100D2EA4A /* HomeViewModel.swift */; };
 		DEE450D52A45AA2800D2EA4A /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE450D42A45AA2800D2EA4A /* Recipe.swift */; };
@@ -110,6 +111,7 @@
 		DED53A622A4C3EEE00208654 /* Epilogue-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Epilogue-VariableFont_wght.ttf"; sourceTree = "<group>"; };
 		DED53A642A4C3F5500208654 /* Epilogue-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Epilogue-Bold.ttf"; sourceTree = "<group>"; };
 		DED53A652A4C3F5500208654 /* Epilogue-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Epilogue-SemiBold.ttf"; sourceTree = "<group>"; };
+		DED53A682A4C473600208654 /* ColorConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorConfig.swift; sourceTree = "<group>"; };
 		DEE450CE2A45A6B800D2EA4A /* HorizontalScrollViewMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalScrollViewMenu.swift; sourceTree = "<group>"; };
 		DEE450D22A45A9C100D2EA4A /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		DEE450D42A45AA2800D2EA4A /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
@@ -200,7 +202,6 @@
 		DE6DB0312A41A5E90035C427 /* Scan2Cook */ = {
 			isa = PBXGroup;
 			children = (
-				DED53A5D2A4C2C1800208654 /* FontConfig.swift */,
 				DED53A622A4C3EEE00208654 /* Epilogue-VariableFont_wght.ttf */,
 				DED53A642A4C3F5500208654 /* Epilogue-Bold.ttf */,
 				DED53A652A4C3F5500208654 /* Epilogue-SemiBold.ttf */,
@@ -329,7 +330,9 @@
 		DEE450E42A45CB1F00D2EA4A /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				DED53A5D2A4C2C1800208654 /* FontConfig.swift */,
 				DEE450E52A45CB2C00D2EA4A /* GlobalStates.swift */,
+				DED53A682A4C473600208654 /* ColorConfig.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -432,6 +435,7 @@
 				DE9B72402A42425200C3DEDD /* PersonalizationType.swift in Sources */,
 				DE6DB0422A41BAFB0035C427 /* OnboardingView.swift in Sources */,
 				DEE450E02A45C80500D2EA4A /* RecipeDetailsSheet.swift in Sources */,
+				DED53A692A4C473600208654 /* ColorConfig.swift in Sources */,
 				DE6DB0352A41A5E90035C427 /* ContentView.swift in Sources */,
 				DEE450E62A45CB2C00D2EA4A /* GlobalStates.swift in Sources */,
 				C56F4E992A48A37A004FD059 /* RecipeLists.swift in Sources */,
