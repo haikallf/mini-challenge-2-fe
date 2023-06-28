@@ -18,7 +18,7 @@ struct OnboardingContent2: View {
     var body: some View {
         ZStack {
             Circle()
-                .fill(.gray)
+                .fill(Colors.onPrimaryContainer)
                 .frame(width: 439, height: 439)
                 .transition(.move(edge: .bottom))
                 .offset(x: runAnimation ? UIScreen.main.bounds.width - 300 : UIScreen.main.bounds.width + 63,  y: -140)
@@ -38,6 +38,7 @@ struct OnboardingContent2: View {
                 Text("Kita bisa bantu kamu manfaatin bahan yang kamu punya, dengan scan bahan makanan yang ada")
                     .padding(.vertical, 24)
                     .font(CustomFont.epilogue(size: 22))
+                    .foregroundColor(Colors.AAA)
                     .multilineTextAlignment(.center)
                     .opacity(runAnimation ? 1 : 0)
                     .animation(animation.delay(1))

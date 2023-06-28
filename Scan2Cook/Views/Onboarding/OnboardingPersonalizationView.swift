@@ -23,9 +23,11 @@ struct OnboardingPersonalizationView: View {
     
     var body: some View {
         ZStack {
+            Colors.background
+                .ignoresSafeArea()
             //MARK: Bottom Circle
             Circle()
-                .fill(.gray)
+                .fill(Colors.tertiaryContainer)
                 .frame(width: 439)
                 .offset(x: 0,  y: runAnimation ? UIScreen.main.bounds.height - 500 : UIScreen.main.bounds.height)
                 .animation(animation)
@@ -35,6 +37,7 @@ struct OnboardingPersonalizationView: View {
                 VStack(alignment: .leading, spacing: 14) {
                     Text("Oke, \(viewModel.username). Ada makanan yang kamu **hindarin** gak?")
                         .font(CustomFont.epilogue(size: 28))
+                        .foregroundColor(Colors.AAA)
                         .opacity(runAnimation ? 1 : 0)
                         .animation(animation.delay(1))
                     

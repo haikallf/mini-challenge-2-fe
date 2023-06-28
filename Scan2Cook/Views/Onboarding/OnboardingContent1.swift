@@ -33,6 +33,7 @@ struct OnboardingContent1: View {
                 
                 Spacer()
             }
+            .foregroundColor(Colors.AAA)
             .padding(.vertical, 32)
             .opacity(runAnimation ? 1 : 0)
             .animation(animation)

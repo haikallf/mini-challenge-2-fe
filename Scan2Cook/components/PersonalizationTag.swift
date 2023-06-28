@@ -25,14 +25,15 @@ struct PersonalizationTag: View {
             Text(emoji)
                 .frame(width: 15, height: 20)
             Text(text)
+                .foregroundColor(isSelected ? Colors.AAA : Colors.onPrimaryContainer)
         }
         .font(.subheadline)
         .padding(10)
-        .background(isSelected ? Color("fillsSecondary") : .white)
+        .background(isSelected ? Colors.card1 : Colors.card5)
         .cornerRadius(8)
         .overlay(
             RoundedRectangle(cornerRadius: 8)
-                .stroke(Color.gray, lineWidth: 1)
+                .stroke(Colors.border1, lineWidth: 1)
         )
         .onTapGesture {
             action()

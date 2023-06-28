@@ -12,17 +12,20 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            //TODO: Uncomment on final version
-            Group {
-                if (UserDefaults.standard.object(forKey: "isNotFirstTimer") != nil) {
-                    MainView()
-                } else {
-                    OnboardingView()
+            ZStack {
+                Colors.background
+                    .ignoresSafeArea()
+                
+                //TODO: Uncomment on final version
+                Group {
+                    if (UserDefaults.standard.object(forKey: "isNotFirstTimer") != nil) {
+                        MainView()
+                    } else {
+                        OnboardingView()
+                    }
                 }
+//                OnboardingView()
             }
-            
-//            RecipeDetailsView(recipeId: "1")
-//            OnboardingView()
         }
     }
 }
