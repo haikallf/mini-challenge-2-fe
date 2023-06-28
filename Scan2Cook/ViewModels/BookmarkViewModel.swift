@@ -29,6 +29,8 @@ class BookmarkViewModel: ObservableObject {
             filteredRecipes = bookmarkedRecipes.filter { recipe in
                 recipe.name.lowercased().contains(searchText.lowercased())
             }
+        } else {
+            filteredRecipes = Recipe.all
         }
     }
     

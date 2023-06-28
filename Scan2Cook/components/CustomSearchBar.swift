@@ -15,11 +15,15 @@ struct CustomSearchBar: View {
         //MARK: SearchBar
         HStack(spacing: 8) {
             Image(systemName: "magnifyingglass")
-                .foregroundColor(Color("labelsSecondary"))
-            TextField(placeholder, text: $searchText)
+                .foregroundColor(Colors.disabled)
+            
+            TextField("", text: $searchText, prompt:
+                        Text(placeholder).foregroundColor(Colors.disabled)
+            )
+            .foregroundColor(Colors.AAA)
         }
         .padding(8)
-        .background(Color("fillsPrimary"))
+        .background(Colors.surfaceContainerHighest)
         .cornerRadius(8)
         .padding(.vertical, 12)
     }

@@ -17,7 +17,9 @@ struct RecipeCard: View {
                 .cornerRadius(8)
             
             Text(recipe.name)
-                .fontWeight(.semibold)
+                .font(CustomFont.body)
+                .fontWeight(.bold)
+                .foregroundColor(Colors.AAA)
                 .multilineTextAlignment(.leading)
             
             HStack(spacing: 8) {
