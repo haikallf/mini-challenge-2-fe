@@ -10,93 +10,101 @@ import WrapLayout
 
 struct OnboardingPersonalizationView: View {
     @StateObject var viewModel = PersonalizationViewModel()
+    @State var runAnimation = false
+    @State var isAnimationRun = false
     
     @State private var shouldNavigate: Bool = false
     
+    var animation: Animation {
+        Animation.easeOut(duration: 1)
+    }
+    
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    
     var body: some View {
-        VStack(alignment: .leading) {
-            // MARK: Skip Button
-            HStack {
+        ZStack {
+            //MARK: Bottom Circle
+            Circle()
+                .fill(.gray)
+                .frame(width: 439)
+                .offset(x: 0,  y: runAnimation ? UIScreen.main.bounds.height - 500 : UIScreen.main.bounds.height)
+                .animation(animation)
+            
+            VStack(alignment: .leading) {
+                //MARK: Personalization Section
+                VStack(alignment: .leading, spacing: 14) {
+                    Text("Oke, \(viewModel.username). Ada makanan yang kamu **hindarin** gak?")
+                        .font(.title)
+                        .opacity(runAnimation ? 1 : 0)
+                        .animation(animation.delay(1))
+                    
+                    WrapLayout(horizontalSpacing: 14, verticalSpacing: 14) {
+                        PersonalizationTag("Laktosa", emoji: "🥛", isSelected: viewModel.personalizations.contains(
+                            getPersonalizationType(personalization: PersonalizationType.laktosa)
+                        ), action:  {
+                            viewModel.updatePersonalizations(
+                                personalization: getPersonalizationType(personalization: PersonalizationType.laktosa)
+                            )
+                        })
+                        
+                        PersonalizationTag("Seafood", emoji: "🐟", isSelected: viewModel.personalizations.contains(
+                            getPersonalizationType(personalization: PersonalizationType.seafood)
+                        ), action:  {
+                            viewModel.updatePersonalizations(
+                                personalization: getPersonalizationType(personalization: PersonalizationType.seafood)
+                            )
+                        })
+                        
+                        PersonalizationTag("Kacang", emoji: "🥜", isSelected: viewModel.personalizations.contains(
+                            getPersonalizationType(personalization: PersonalizationType.kacang)
+                        ), action:  {
+                            viewModel.updatePersonalizations(
+                                personalization: getPersonalizationType(personalization: PersonalizationType.kacang)
+                            )
+                        })
+                        
+                        PersonalizationTag("Babi", emoji: "🐷", isSelected: viewModel.personalizations.contains(
+                            getPersonalizationType(personalization: PersonalizationType.babi)
+                        ), action:  {
+                            viewModel.updatePersonalizations(
+                                personalization: getPersonalizationType(personalization: PersonalizationType.babi)
+                            )
+                        })
+                    }
+                    .opacity(runAnimation ? 1 : 0)
+                    .animation(isAnimationRun ? Animation.linear(duration: 0) : animation.delay(2))
+                }
+                .padding(.vertical, 12)
+            }
+            .padding(.horizontal, 40)
+            
+            //MARK: Continue Button
+            VStack {
                 Spacer()
-                NavigationLink(destination: MainView()) {
-                    Text("Lewati")
-                        .foregroundColor(.black)
-                }
-            }
-            .padding(.vertical, 11)
-            
-            //MARK: Heading Section
-            VStack(alignment: .leading, spacing: 6) {
-                //MARK: Page Heading
-                Text("Personalisasi Akun")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .multilineTextAlignment(.leading)
                 
-                //MARK: Page Subheading
-                Text("Cupcake ipsum dolor sit amet cookie. Oat cake apple pie sweet dessert jujubes brownie.")
-                    .font(.subheadline)
-                    .multilineTextAlignment(.leading)
-            }
-            .padding(.vertical, 12)
-            
-            //MARK: Personalization Section
-            VStack(alignment: .leading, spacing: 14) {
-                Text("Aku ga bisa makan...")
-                    .font(.title3)
-                    .fontWeight(.semibold)
-                WrapLayout(horizontalSpacing: 14, verticalSpacing: 14) {
-                    PersonalizationTag("Laktosa", emoji: "🥛", isSelected: viewModel.personalizations.contains(
-                        getPersonalizationType(personalization: PersonalizationType.laktosa)
-                    ), action:  {
-                        viewModel.updatePersonalizations(
-                            personalization: getPersonalizationType(personalization: PersonalizationType.laktosa)
-                        )
-                    })
-                    
-                    PersonalizationTag("Seafood", emoji: "🐟", isSelected: viewModel.personalizations.contains(
-                        getPersonalizationType(personalization: PersonalizationType.seafood)
-                    ), action:  {
-                        viewModel.updatePersonalizations(
-                            personalization: getPersonalizationType(personalization: PersonalizationType.seafood)
-                        )
-                    })
-                    
-                    PersonalizationTag("Kacang", emoji: "🥜", isSelected: viewModel.personalizations.contains(
-                        getPersonalizationType(personalization: PersonalizationType.kacang)
-                    ), action:  {
-                        viewModel.updatePersonalizations(
-                            personalization: getPersonalizationType(personalization: PersonalizationType.kacang)
-                        )
-                    })
-                    
-                    PersonalizationTag("Babi", emoji: "🐷", isSelected: viewModel.personalizations.contains(
-                        getPersonalizationType(personalization: PersonalizationType.babi)
-                    ), action:  {
-                        viewModel.updatePersonalizations(
-                            personalization: getPersonalizationType(personalization: PersonalizationType.babi)
-                        )
-                    })
+                CupertinoButton(viewModel.personalizations.count == 0 ? "Aku Makan Semuanya" : "Lanjut", action: {
+                    viewModel.setPersonalizations()
+                    shouldNavigate = true
+                })
+                
+                //MARK: Navigate to MainView triggered by shouldNavigate
+                NavigationLink(destination: MainView(), isActive: $shouldNavigate) {
+                    EmptyView()
                 }
+                .opacity(0)
             }
-            .padding(.vertical, 12)
-            
-            Spacer()
-            
-            CupertinoButton("Lanjut", action: {viewModel.setPersonalizations()
-                shouldNavigate=true
-            }, isDisabled: viewModel.personalizations.isEmpty)
-            
-            //MARK: Navigate to MainView triggered by shouldNavigate
-            NavigationLink(destination: MainView(), isActive: $shouldNavigate) {
-                EmptyView()
+            .padding(.horizontal, 40)
+            .opacity(runAnimation ? 1 : 0)
+            .animation(isAnimationRun ? Animation.linear(duration: 0) : animation.delay(3))
+            .onReceive(timer) { time in
+                isAnimationRun = true
+                timer.upstream.connect().cancel()
             }
-            .opacity(0)
         }
-        .padding(.horizontal)
         .navigationBarBackButtonHidden(true)
         .onAppear {
-            print(viewModel.personalizations)
+            viewModel.clearPersonalization()
+            runAnimation = true
         }
         .onDisappear {
             UserDefaults.standard.set(true, forKey: "isNotFirstTimer")

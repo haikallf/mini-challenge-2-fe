@@ -11,23 +11,29 @@ import WrapLayout
 struct ScanResultView: View {
     @EnvironmentObject var scanViewModel: ScanViewModel
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    var image : UIImage
-    
     @State var shouldNavigate: Bool = false
+    @State var isAddIngredientsSheetShown: Bool = false
+    @State var selectedIngredientsTemp: [Ingredient] = []
     
     var body: some View {
         VStack {
             //MARK: Image Preview
-            Image(uiImage: image)
-                .resizable()
-                .frame(height: 416)
-                .aspectRatio(contentMode: .fill)
+            ZStack{
+               Image(uiImage: scanViewModel.image)
+                   .resizable()
+                   .scaledToFill()
+                   
+               VStack {
+                   //MARK: Back Button
+                   BackButton()
+                   Spacer()
+               }
+                   
+           }.frame(height: 300)
+
             
             //MARK: Ingredients Detail Section
             VStack {
-                //MARK: Back Button
-                BackButton()
-                
                 //MARK: Heading
                 VStack(alignment: .leading, spacing: 4) {
                     Text("\(scanViewModel.selectedIngredients.count) Bahan ditemukan")
@@ -46,62 +52,106 @@ struct ScanResultView: View {
                     ForEach(scanViewModel.selectedIngredients, id: \.self) { ingredient in
                         IngredientTag(text: ingredient.name, isSelected: true, onTap: {
                             scanViewModel.updateSelectedIngredients(ingredient: ingredient)
-                            
-                        })
+                        }, backgroundColor: .orange.opacity(0.2))
                     }
-                    if (scanViewModel.selectedIngredients.count != 0) {
-                        HStack {
-                            Spacer()
-                        }
+                    IngredientTag(text: "Tambah Bahan", isSelected: false, onTap: {
+                        isAddIngredientsSheetShown = true
+                    }, backgroundColor: .green.opacity(0.2))
+                    HStack {
+                        Spacer()
                     }
                 }
                 .padding(.horizontal, 20)
-                
-                Divider()
-                    .ignoresSafeArea()
-                    .padding(0)
-                
-                //MARK: SearchBar
-                CustomSearchBar(placeholder: "Cari Bahan...", searchText: $scanViewModel.searchText)
-                    .padding(.horizontal)
-                
-                //MARK: Available Ingredients
-                ScrollView {
-                    WrapLayout(horizontalSpacing: 10, verticalSpacing: 14) {
-                        ForEach(scanViewModel.filteredIngredients, id: \.self) { ingredient in
-                            IngredientTag(text: ingredient.name, isSelected: false, onTap: {
-                                scanViewModel.updateSelectedIngredients(ingredient: ingredient)
-                            })
-                        }
-                        HStack {
-                            Spacer()
-                        }
-                    }
-                    .padding(.horizontal, 20)
-                }
-                
-                //MARK: Search Button
-                CupertinoButton("Lanjut", action: {
-                    shouldNavigate = true
-                })
-                    .padding(.horizontal)
-                
-                //MARK: Navigate to SearchResult triggered by shouldNavigate
-                NavigationLink(destination: SearchResultView(), isActive: $shouldNavigate) {
-                    EmptyView()
-                }
-                .opacity(0)
-            }
+                Spacer()
+            }.background(in: Rectangle())
             
-            Spacer()
+            
+            
+            //MARK: Search Button
+            CupertinoButton("Lanjut", action: {
+                shouldNavigate = true
+            })
+                .padding(.horizontal)
+            
+            //MARK: Navigate to SearchResult triggered by shouldNavigate
+            NavigationLink(destination: SearchResultView(), isActive: $shouldNavigate) {
+                EmptyView()
+            }
+            .opacity(0)
+        }
+        .onAppear {
+            selectedIngredientsTemp = scanViewModel.selectedIngredients
         }
         .navigationBarBackButtonHidden(true)
+        .sheet(isPresented: $isAddIngredientsSheetShown, content: {
+            NavigationView {
+                VStack {
+                    //MARK: SearchBar
+                    CustomSearchBar(placeholder: "Cari Bahan...", searchText: $scanViewModel.searchText)
+                        .padding(.horizontal)
+                    
+                    Divider()
+                        .padding(.bottom)
+                    
+                    //MARK: Available Ingredients
+                    ScrollView {
+                        WrapLayout(horizontalSpacing: 10, verticalSpacing: 14) {
+                            ForEach(scanViewModel.filteredIngredients, id: \.self) { ingredient in
+                                IngredientTag(text: ingredient.name, isSelected: scanViewModel.selectedIngredients.contains(ingredient), onTap: {
+                                    scanViewModel.updateSelectedIngredients(ingredient: ingredient)
+                                }, backgroundColor: scanViewModel.selectedIngredients.contains(ingredient) ? .orange.opacity(0.2) : .white.opacity(0))
+                            }
+                            HStack {
+                                Spacer()
+                            }
+                        }
+                        .padding(.horizontal, 20)
+                    }
+                }
+                .onAppear {
+                    selectedIngredientsTemp = scanViewModel.selectedIngredients
+                }
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button(action: {
+                            scanViewModel.selectedIngredients = selectedIngredientsTemp
+                            print(scanViewModel.selectedIngredients)
+                            isAddIngredientsSheetShown = false
+                        }, label: {
+                            HStack {
+                                Image(systemName: "chevron.left")
+                                
+                                Text("Batal")
+                            }
+                        })
+                    }
+                    
+                    ToolbarItem(placement: .principal) {
+                        Text("Filter")
+                            .fontWeight(.semibold)
+                    }
+                    
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        HStack {
+                            Button("Simpan", action: {
+                                selectedIngredientsTemp = scanViewModel.selectedIngredients
+                                isAddIngredientsSheetShown = false
+                            })
+                        }
+                    }
+                }
+                .navigationBarTitleDisplayMode(.inline)
+                
+            }
+            .interactiveDismissDisabled(true)
+            
+        })
     }
 }
 
 struct ScanResultView_Previews: PreviewProvider {
     static var previews: some View {
-        ScanResultView(image: UIImage(imageLiteralResourceName: "dummy-img"))
+        ScanResultView()
             .environmentObject(ScanViewModel())
     }
 }

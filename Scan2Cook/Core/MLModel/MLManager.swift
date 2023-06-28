@@ -8,6 +8,7 @@
 import CoreML
 import SwiftUI
 import Vision
+
 class MLManager {
     private var model : VNCoreMLModel? = nil
     var boundingBoxes : CGRect = CGRect()
@@ -17,6 +18,7 @@ class MLManager {
         print("load model success")
     }
     
+    // MARK: Load Model
     func loadModel() -> VNCoreMLModel? {
         guard let modelURL = Bundle.main.url(forResource: "Scan2CookMLModel", withExtension: "mlmodelc") else {
             print("Model file not found")
@@ -35,7 +37,7 @@ class MLManager {
         
         return visionModel
     }
-    
+    // MARK: Object Detection
     func detectObjects(in image: UIImage) -> [VNClassificationObservation]?{
         var finalResults : [VNClassificationObservation] = [VNClassificationObservation]()
         guard let ciImage = CIImage(image: image) else {
@@ -52,9 +54,6 @@ class MLManager {
                 print("Result empty")
             }else {
                 for result in results {
-                    
-                    let boundingBox = result.boundingBox
-                    self.boundingBoxes = boundingBox
                     let resultsFiltered = result.labels.filter { label in
                         label.confidence >= 0.8
                     }
@@ -73,7 +72,6 @@ class MLManager {
         } catch {
             print("Error performing object detection: \(error.localizedDescription)")
         }
-//        print("\(finalResults)")
         return finalResults
     }
 }

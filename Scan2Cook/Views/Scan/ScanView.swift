@@ -25,9 +25,7 @@ struct ScanView: View {
                     .opacity(0)
                 
                 if (isLoading) {
-                    Button(action: {
-                        
-                    }, label: {
+                    Button(action: {}, label: {
                         VStack(spacing: 0) {
                             Text("Loading...")
                                 .font(.title2)
@@ -134,14 +132,6 @@ struct ScanView: View {
         }
             .presentationDragIndicator(.visible)
             .padding(.horizontal)
-//            .presentationDetents(
-//                [.height(140), .large],
-//                selection: $settingsDetent
-//             )
-//            .presentationBackgroundInteraction(
-//                .enabled(upThrough: .large)
-//            )
-//            .interactiveDismissDisabled(true)
     }
 }
 

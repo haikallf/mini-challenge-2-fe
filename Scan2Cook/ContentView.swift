@@ -13,16 +13,16 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             //TODO: Uncomment on final version
-//            Group {
-//                if (UserDefaults.standard.object(forKey: "isNotFirstTimer") != nil) {
-//                    MainView()
-//                } else {
-//                    OnboardingView()
-//                }
-//            }
+            Group {
+                if (UserDefaults.standard.object(forKey: "isNotFirstTimer") != nil) {
+                    MainView()
+                } else {
+                    OnboardingView()
+                }
+            }
             
 //            RecipeDetailsView(recipeId: "1")
-            OnboardingView()
+//            OnboardingView()
         }
     }
 }

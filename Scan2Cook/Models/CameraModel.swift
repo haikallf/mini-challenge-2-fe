@@ -19,17 +19,19 @@ enum CameraState{
 class CameraModel : NSObject, ObservableObject, AVCapturePhotoCaptureDelegate {
     @Published var cameraState : CameraState = .cameraInitialized
     @Published var session = AVCaptureSession()
-    private var showAlert = false
     @Published var output = AVCapturePhotoOutput()
     @Published var previewLayer : AVCaptureVideoPreviewLayer?
-    @Published var objectsDetected : [Ingredient] = []
-    @Published var processedImage : UIImage?
-    var mlManager = MLManager()
+    @Published var objectsDetected : [VNClassificationObservation]?
+    @Published var processedImage : UIImage = UIImage()
+    @Published var identifiedIngredients : [Ingredient] = []
+    private var mlManager = MLManager()
+    private var showAlert = false
     
     init(isTaken : CameraState = .cameraInitialized){
         self.cameraState = isTaken
     }
     
+    // MARK: Permissions
     func checkPermission(){
         switch AVCaptureDevice.authorizationStatus(for: .video){
         case .authorized :
@@ -50,7 +52,7 @@ class CameraModel : NSObject, ObservableObject, AVCapturePhotoCaptureDelegate {
             return
         }
     }
-    
+    // MARK: Camera Setup
     func cameraSetup(){
         do{
             self.session.beginConfiguration()
@@ -74,6 +76,7 @@ class CameraModel : NSObject, ObservableObject, AVCapturePhotoCaptureDelegate {
         }
     }
     
+    // MARK: Picture State
     func takePicture(){
         DispatchQueue.global(qos: .background).async {
             let settings = AVCapturePhotoSettings()
@@ -98,7 +101,6 @@ class CameraModel : NSObject, ObservableObject, AVCapturePhotoCaptureDelegate {
     func retakePicture(){
         DispatchQueue.global(qos: .background).async {
             self.session.startRunning()
-            
             DispatchQueue.main.async {
                 withAnimation {
                     self.cameraState = .cameraInitialized
@@ -107,6 +109,7 @@ class CameraModel : NSObject, ObservableObject, AVCapturePhotoCaptureDelegate {
         }
     }
      
+    // MARK: Photo Output
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         if let error = error {
             print("Error capturing photo: \(error.localizedDescription)")
@@ -122,23 +125,16 @@ class CameraModel : NSObject, ObservableObject, AVCapturePhotoCaptureDelegate {
             print("Unable to convert UIImage")
             return
         }
-        
-        let resizedImage = resizeImage(image, targetSize: CGSize(width: 800, height: 800))!
+    
+        let resizedImage = resizeImage(image, targetSize: CGSize(width: 1000, height: 1000))!
         processedImage = resizedImage
-        let objectsDetectedInModel = mlManager.detectObjects(in: resizedImage)!
-        
+    
+        objectsDetected = mlManager.detectObjects(in: resizedImage)
         self.cameraState = .objectDetected
-        let ingredients = Ingredient.all
-        for obj in objectsDetectedInModel {
-            if let ingredientFound = ingredients.first(where: { ingredient in
-                ingredient.attribute == obj.identifier
-            }) {
-                objectsDetected.append(ingredientFound)
-                print("\(ingredientFound.name) is appended")
-            }
-        }
+        identifiedIngredients = identifyIngredients(objectsDetected: objectsDetected!)
     }
     
+    // MARK: Resize Image
     func resizeImage(_ image: UIImage, targetSize: CGSize) -> UIImage? {
         let size = image.size
         
@@ -154,5 +150,21 @@ class CameraModel : NSObject, ObservableObject, AVCapturePhotoCaptureDelegate {
         }
         
         return resizedImage
+    }
+    
+    // MARK: Identify Ingredients
+    func identifyIngredients(objectsDetected : [VNClassificationObservation]) -> [Ingredient]{
+        let ingredients = Ingredient.all
+        var ingredientsFound : [Ingredient] = []
+        for obj in objectsDetected{
+            if let ingredientFound = ingredients.first(where: { ingredient in
+                ingredient.attribute == obj.identifier
+            }){
+                if !ingredientsFound.contains(ingredientFound){
+                    ingredientsFound.append(ingredientFound)
+                }
+            }
+        }
+        return ingredientsFound
     }
 }
