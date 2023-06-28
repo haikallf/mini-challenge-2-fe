@@ -8,6 +8,7 @@
 import CoreML
 import SwiftUI
 import Vision
+
 class MLManager {
     private var model : VNCoreMLModel? = nil
     

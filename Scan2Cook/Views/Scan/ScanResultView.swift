@@ -19,17 +19,18 @@ struct ScanResultView: View {
     var body: some View {
         VStack {
             //MARK: Image Preview
-            Image(uiImage: scanViewModel.image)
-                .resizable()
-                .frame(height: 400)
-                .aspectRatio(contentMode: .fill)
-                .overlay {
-                    VStack {
-                        //MARK: Back Button
-                        BackButton()
-                        Spacer()
-                    }
+            ZStack{
+                Image(uiImage: scanViewModel.image)
+                    .resizable()
+                    .scaledToFill()
+                    
+                VStack {
+                    //MARK: Back Button
+                    BackButton()
+                    Spacer()
                 }
+                    
+            }.frame(height: 300)
             
             //MARK: Ingredients Detail Section
             VStack {
@@ -61,9 +62,10 @@ struct ScanResultView: View {
                     }
                 }
                 .padding(.horizontal, 20)
-            }
+                Spacer()
+            }.background(in: Rectangle())
             
-            Spacer()
+            
             
             //MARK: Search Button
             CupertinoButton("Lanjut", action: {
@@ -139,8 +141,10 @@ struct ScanResultView: View {
                     }
                 }
                 .navigationBarTitleDisplayMode(.inline)
+                
             }
             .interactiveDismissDisabled(true)
+            
         })
     }
 }

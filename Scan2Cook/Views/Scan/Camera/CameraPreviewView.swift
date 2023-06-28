@@ -14,59 +14,60 @@ struct CameraPreviewView: View {
     var body: some View {
         NavigationStack{
             ZStack{
-                CameraPreview(camera: cameraModel)
+                Color.black
                     .ignoresSafeArea()
                 VStack{
-                    ZStack{
-                        VStack{
-                            Spacer()
-                             if cameraModel.cameraState == .cameraInitialized {
-                                 VStack{
-                                     Button(action: {}) {
-                                         Text("Gimana cara pakenya sii?")
-                                             .foregroundColor(Color.white)
-                                     }
-                                     Button(action: cameraModel.takePicture) {
-                                         ZStack{
-                                             Circle()
-                                                 .fill(Color.white)
-                                                 .frame(width: 80, height: 80)
-                                             Circle()
-                                                 .stroke(Color.white, lineWidth: 4)
-                                                 .frame(width: 96, height: 96)
-                                         }
+                    CameraPreview(camera: cameraModel)
+                        .ignoresSafeArea()
+                        .cornerRadius(24)
+                    VStack{
+                         if cameraModel.cameraState == .cameraInitialized {
+                             VStack{
+                                 Button(action: {}) {
+                                     Text("Gimana cara pakenya sii?")
+                                         .foregroundColor(Color.white)
+                                 }
+                                 Button(action: cameraModel.takePicture) {
+                                     ZStack{
+                                         Circle()
+                                             .fill(Color.white)
+                                             .frame(width: 80, height: 80)
+                                         Circle()
+                                             .stroke(Color.white, lineWidth: 4)
+                                             .frame(width: 96, height: 96)
                                      }
                                  }
-                            } else if cameraModel.cameraState == .photoTaken {
-                                Button(action: cameraModel.retakePicture) {
-                                    Text("Done")
-                                        .multilineTextAlignment(.trailing)
+                             }
+                        } else if cameraModel.cameraState == .photoTaken {
+                            Button(action: cameraModel.retakePicture) {
+                                Text("Done")
+                                    .multilineTextAlignment(.trailing)
+                            }
+                        } else {
+                            HStack{
+                                Button {
+                                    cameraModel.objectsDetected = nil
+                                    cameraModel.retakePicture()
+                                } label: {
+                                    Image(systemName: "arrowshape.turn.up.backward.circle.fill")
+                                        .foregroundColor(Color("fillsPrimary"))
+                                        .font(.title)
                                 }
-                            } else {
-                                //MARK: Photo Captured buttons
-                                HStack{
-                                    Button {
-                                        cameraModel.objectsDetected = nil
-                                        cameraModel.retakePicture()
-                                    } label: {
-                                        Image(systemName: "arrowshape.turn.up.backward.circle.fill")
-                                            .foregroundColor(Color("fillsPrimary"))
-                                            .font(.title)
-                                    }
 
-                                    VStack{
-                                        Text("\(cameraModel.identifiedIngredients.count)")
-                                        Text("Bahan Ditemukan")
-                                    }
-                                    Button {
-                                        scanViewModel.setSelectedIngredients(ingredients: cameraModel.identifiedIngredients)
-                                        scanViewModel.setImage(image: cameraModel.processedImage)
-                                        navigateNextView.toggle()
-                                    } label: {
-                                        Image(systemName: "checkmark.circle.fill")
-                                            .foregroundColor(Color("fillsPrimary"))
-                                            .font(.title)
-                                    }                                }
+                                VStack{
+                                    Text("\(cameraModel.identifiedIngredients.count)")
+                                    Text("Bahan Ditemukan")
+                                }
+                                Button {
+                                    scanViewModel.setSelectedIngredients(ingredients: cameraModel.identifiedIngredients)
+                                    scanViewModel.setImage(image: cameraModel.processedImage)
+                                    navigateNextView.toggle()
+                                } label: {
+                                    Image(systemName: "checkmark.circle.fill")
+                                        .foregroundColor(Color("fillsPrimary"))
+                                        .font(.title)
+                                }
+                                
                             }
                         }
                     }
