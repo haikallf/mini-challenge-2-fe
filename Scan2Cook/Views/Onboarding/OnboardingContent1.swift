@@ -19,10 +19,10 @@ struct OnboardingContent1: View {
         ZStack {
             VStack {
                 Text("Masak Ga Ribet?")
-                    .font(.largeTitle)
+                    .font(CustomFont.epilogue(size: 34))
                 
                 Text("Gampang Banget")
-                    .font(.largeTitle)
+                    .font(CustomFont.epilogue(size: 34))
                     .fontWeight(.bold)
                 
                 Spacer()

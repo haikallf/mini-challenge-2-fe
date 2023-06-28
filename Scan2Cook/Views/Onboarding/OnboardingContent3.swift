@@ -33,7 +33,6 @@ struct OnboardingContent3: View {
             
             VStack {
                 Text("Sebelum lanjut, apa nama panggilan kamu?")
-                    
                     .multilineTextAlignment(.center)
                     .opacity(runAnimation ? 1 : 0)
                     .animation(animation.delay(1))
@@ -58,7 +57,7 @@ struct OnboardingContent3: View {
 //                    .opacity(runAnimation ? 1 : 0)
 //                    .animation(animation.delay(1))
             }
-            .font(.title)
+            .font(CustomFont.epilogue(size: 28))
             .padding(.horizontal, 40)
             
             

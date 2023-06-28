@@ -37,7 +37,7 @@ struct OnboardingContent2: View {
                 
                 Text("Kita bisa bantu kamu manfaatin bahan yang kamu punya, dengan scan bahan makanan yang ada")
                     .padding(.vertical, 24)
-                    .font(.title2)
+                    .font(CustomFont.epilogue(size: 22))
                     .multilineTextAlignment(.center)
                     .opacity(runAnimation ? 1 : 0)
                     .animation(animation.delay(1))

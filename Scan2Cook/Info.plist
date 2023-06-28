@@ -5,6 +5,9 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>Epilogue.ttf</string>
+		<string>Epilogue-VariableFont_wght.ttf</string>
+		<string>Epilogue-SemiBold.ttf</string>
+		<string>Epilogue-Bold.ttf</string>
 	</array>
 </dict>
 </plist>

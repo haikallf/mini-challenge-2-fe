@@ -7,6 +7,7 @@
 
 import SwiftUI
 import WrapLayout
+import DesignSystem
 
 struct HomeView: View {
     @ObservedObject var viewModel = HomeViewModel()
@@ -22,11 +23,11 @@ struct HomeView: View {
                 //MARK: Heading
                 VStack( alignment: .leading, spacing: 2) {
                     Text("Halo, ")
-                        .font(.callout)
+                        .font(CustomFont.callout)
                     
                     HStack {
-                        Text("\(viewModel.username) Nama Saya Panjang Bet Bet Bet Parah Parah")
-                            .font(.title2)
+                        Text(viewModel.username)
+                            .font(CustomFont.title2)
                             .multilineTextAlignment(.leading)
                             .lineLimit(2)
                         
@@ -42,7 +43,7 @@ struct HomeView: View {
                             }
                             .padding(.vertical, 6)
                             .padding(.horizontal, 10)
-                            .font(.footnote)
+                            .font(CustomFont.footnote)
                             .fontWeight(.semibold)
                             .foregroundColor(.white)
                             .background(.black)
@@ -60,14 +61,14 @@ struct HomeView: View {
                     VStack(alignment: .leading, spacing: 14) {
                         HStack {
                             Text(section.name)
-                                .font(.title3)
+                                .font(CustomFont.title6)
                                 .fontWeight(.bold)
                             
                             Spacer()
                             
                             NavigationLink(destination: RecipeListView(title: section.name, description: section.description, recipes: section.recipes), label: {
                                 Text("Lihat Semua →")
-                                    .font(.footnote)
+                                    .font(CustomFont.footnote)
                                     .fontWeight(.semibold)
                             })
                         }
