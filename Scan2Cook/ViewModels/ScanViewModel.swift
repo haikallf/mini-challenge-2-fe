@@ -44,6 +44,7 @@ class ScanViewModel: ObservableObject {
         }
     }
     
+
     func setSelectedIngredients(ingredients : [Ingredient]){
         self.selectedIngredients = ingredients
     }

@@ -12,28 +12,49 @@ struct ScanView: View {
     @StateObject var scanViewModel = ScanViewModel()
     @State private var settingsDetent = PresentationDetent.height(140)
     @State private var showSheet = false
+    @State var isLoading: Bool = false
+    @State var shouldNavigate = false
     
     var body: some View {
         VStack {
             ZStack {
-                NavigationLink(destination: CameraPreviewView().environmentObject(scanViewModel)) {
-                    VStack(spacing: 0) {
-                        Text("Cari apa hari ini?")
-                            .font(.title2)
-                            .fontWeight(.bold)
-                        
-                        Text("Tap untuk melakukan scanning")
-                            .font(.headline)
-                            .fontWeight(.bold)
-                            .padding(.bottom, 24)
-                        
-                        Image("scan-camera")
-                    }
-                    .foregroundColor(.black)
+                NavigationLink(destination: CameraPreviewView()
+                    .environmentObject(scanViewModel), isActive: $shouldNavigate) {
+                    EmptyView()
                 }
-                .simultaneousGesture(TapGesture().onEnded{
-                    showSheet = false
-                })
+                    .opacity(0)
+                
+                if (isLoading) {
+                    Button(action: {}, label: {
+                        VStack(spacing: 0) {
+                            Text("Loading...")
+                                .font(.title2)
+                                .fontWeight(.bold)
+                        }
+                        .foregroundColor(.black)
+                    })
+                } else {
+                    Button(action: {
+                        isLoading.toggle()
+                        print(isLoading)
+                        shouldNavigate = true
+                    }, label: {
+                        VStack(spacing: 0) {
+                            Text("Cari apa hari ini?")
+                                .font(.title2)
+                                .fontWeight(.bold)
+                            
+                            Text("Tap untuk melakukan scanning")
+                                .font(.headline)
+                                .fontWeight(.bold)
+                                .padding(.bottom, 24)
+                            
+                            Image("scan-camera")
+                        }
+                        .foregroundColor(.black)
+                    })
+                }
+                
                 
                 VStack {
                     Spacer()
@@ -91,6 +112,9 @@ struct ScanView: View {
             
             Spacer()
         }
+        .onDisappear(perform: {
+            isLoading = false
+        })
         .navigationBarBackButtonHidden(true)
         .sheet(isPresented: $showSheet) {
             NavigationView {

@@ -11,6 +11,7 @@ import Vision
 
 class MLManager {
     private var model : VNCoreMLModel? = nil
+    var boundingBoxes : CGRect = CGRect()
     
     init(){
         self.model = loadModel()!
@@ -36,7 +37,6 @@ class MLManager {
         
         return visionModel
     }
-    
     // MARK: Object Detection
     func detectObjects(in image: UIImage) -> [VNClassificationObservation]?{
         var finalResults : [VNClassificationObservation] = [VNClassificationObservation]()
@@ -61,16 +61,18 @@ class MLManager {
                         print("Detected \(className.identifier), with confidence \(className.confidence)")
                         finalResults.append(className)
                     }
+
                 }
             }
         }
-        
+
         let handler = VNImageRequestHandler(ciImage: ciImage)
         do {
             try handler.perform([request])
         } catch {
             print("Error performing object detection: \(error.localizedDescription)")
         }
+        
         return finalResults
     }
 }

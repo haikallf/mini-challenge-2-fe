@@ -11,7 +11,6 @@ import WrapLayout
 struct ScanResultView: View {
     @EnvironmentObject var scanViewModel: ScanViewModel
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    
     @State var shouldNavigate: Bool = false
     @State var isAddIngredientsSheetShown: Bool = false
     @State var selectedIngredientsTemp: [Ingredient] = []
@@ -20,17 +19,11 @@ struct ScanResultView: View {
         VStack {
             //MARK: Image Preview
             ZStack{
-                Image(uiImage: scanViewModel.image)
-                    .resizable()
-                    .scaledToFill()
-                    
-                VStack {
-                    //MARK: Back Button
-                    BackButton()
-                    Spacer()
-                }
-                    
-            }.frame(height: 300)
+               Image(uiImage: scanViewModel.image)
+                   .resizable()
+                   .scaledToFill()
+           }.frame(height: 300)
+
             
             //MARK: Ingredients Detail Section
             VStack {
@@ -79,10 +72,11 @@ struct ScanResultView: View {
             }
             .opacity(0)
         }
+        
+        .navigationBarBackButtonHidden()
         .onAppear {
             selectedIngredientsTemp = scanViewModel.selectedIngredients
         }
-        .navigationBarBackButtonHidden(true)
         .sheet(isPresented: $isAddIngredientsSheetShown, content: {
             NavigationView {
                 VStack {
@@ -151,6 +145,7 @@ struct ScanResultView: View {
 
 struct ScanResultView_Previews: PreviewProvider {
     static var previews: some View {
-        ScanResultView().environmentObject(ScanViewModel())
+        ScanResultView()
+            .environmentObject(ScanViewModel())
     }
 }

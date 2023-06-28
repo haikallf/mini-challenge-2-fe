@@ -125,7 +125,7 @@ class CameraModel : NSObject, ObservableObject, AVCapturePhotoCaptureDelegate {
             print("Unable to convert UIImage")
             return
         }
-        
+    
         let resizedImage = resizeImage(image, targetSize: CGSize(width: 1000, height: 1000))!
         processedImage = resizedImage
     
@@ -162,10 +162,10 @@ class CameraModel : NSObject, ObservableObject, AVCapturePhotoCaptureDelegate {
             }){
                 if !ingredientsFound.contains(ingredientFound){
                     ingredientsFound.append(ingredientFound)
+                    print("Ingredients Appended \(ingredientFound.name)")
                 }
             }
         }
         return ingredientsFound
     }
-    
 }

@@ -9,7 +9,11 @@ import SwiftUI
 
 struct BackButton: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    var color : Color
     
+    init(color: Color = .black){
+        self.color = color
+    }
     var body: some View {
         HStack {
             Button {
@@ -18,7 +22,7 @@ struct BackButton: View {
                 Image(systemName: "arrow.left")
                     .font(.headline)
                     .fontWeight(.semibold)
-                    .foregroundColor(.black)
+                    .foregroundColor(color)
             }
             
             Spacer()
