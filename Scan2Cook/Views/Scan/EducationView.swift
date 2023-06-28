@@ -73,7 +73,7 @@ struct EducationView: View {
                             .padding(.vertical, 14)
                             .padding(.horizontal, 20)
                             .foregroundColor(.white)
-                            .background(Colors.primary)
+                            .background(Colors.secondary)
                             .cornerRadius(12)
                             .minimumScaleFactor(0.01)
                     })

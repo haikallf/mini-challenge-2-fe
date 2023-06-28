@@ -15,7 +15,7 @@ struct DotIndicator: View {
         HStack(spacing: maxIndex <= 7 ? 16 : 10) {
             ForEach((1...maxIndex), id: \.self) { idx in
                 Circle()
-                    .fill(idx == currentIndex ? .black : .gray)
+                    .fill(idx == currentIndex ? Colors.primary : Colors.disabled)
                     .frame(width: idx == currentIndex ? 14 : 10)
                     .onTapGesture {
                         currentIndex = idx

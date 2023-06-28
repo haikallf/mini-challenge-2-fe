@@ -76,12 +76,13 @@ struct ScanView: View {
                 HStack {
                     VStack(alignment: .leading) {
                         Text("Terakhir Di-scan")
-                            .font(.headline)
+                            .font(CustomFont.headline)
                             .fontWeight(.semibold)
                         
                         Text("\(scanViewModel.lastSeenRecipes.count) Resep")
-                            .font(.caption)
+                            .font(CustomFont.caption)
                     }
+                    .foregroundColor(Colors.AAA)
                     
                     Spacer()
                     

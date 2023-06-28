@@ -57,7 +57,7 @@ struct RecipeDetailsSheet: View {
                 .font(CustomFont.caption)
                 .foregroundColor(.black)
                 .padding()
-                .background(Colors.card2)
+                .background(Colors.surfaceContainerHigh)
                 
                 //MARK: Ingredients
                 VStack(spacing: 12) {
@@ -106,7 +106,7 @@ struct RecipeDetailsSheet: View {
                         .cornerRadius(8)
                     }
                     
-                    //MARK: Main Ingredients
+                    //MARK: Owned Ingredients
                     VStack(spacing: 12) {
                         HStack(spacing: 8) {
                             Image(systemName: "checkmark.circle")
@@ -143,7 +143,7 @@ struct RecipeDetailsSheet: View {
                     .foregroundColor(.black)
                     .cornerRadius(8)
                     
-                    //MARK: Additional Ingredients
+                    //MARK: Not Owned Ingredients
                     VStack(spacing: 12) {
                         HStack(spacing: 8) {
                             Image(systemName: "xmark.circle")
@@ -191,6 +191,52 @@ struct RecipeDetailsSheet: View {
                     }
                     .padding(12)
                     .background(Colors.thunderbird87)
+                    .foregroundColor(.black)
+                    .cornerRadius(8)
+                    
+                    //MARK: Additional Ingredients
+                    VStack(spacing: 12) {
+                        Text("Bahan Tambahan")
+                            .font(CustomFont.subheadline)
+                            .fontWeight(.bold)
+                            .foregroundColor(Colors.AAA)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .multilineTextAlignment(.leading)
+                        
+                        Group {
+                            HStack {
+                                Text("250 gram")
+                                
+                                Spacer()
+                                
+                                Text("Tepung Terigu")
+                            }
+                            HStack {
+                                Text("150 gram")
+                                
+                                Spacer()
+                                
+                                Text("Maizena")
+                            }
+                            HStack {
+                                Text("1 bungkus")
+                                
+                                Spacer()
+                                
+                                Text("Cabai Bubuk")
+                            }
+                            HStack {
+                                Text("2 sdt")
+                                
+                                Spacer()
+                                
+                                Text("Kaldu Bubuk")
+                            }
+                        }
+                        .font(CustomFont.footnote)
+                    }
+                    .padding(12)
+                    .background(Colors.card1)
                     .foregroundColor(.black)
                     .cornerRadius(8)
                 }
