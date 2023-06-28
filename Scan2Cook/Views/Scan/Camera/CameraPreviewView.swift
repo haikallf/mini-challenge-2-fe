@@ -66,9 +66,7 @@ struct CameraPreviewView: View {
                                         Image(systemName: "checkmark.circle.fill")
                                             .foregroundColor(Color("fillsPrimary"))
                                             .font(.title)
-                                    }
-
-                                }
+                                    }                                }
                             }
                         }
                     }

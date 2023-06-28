@@ -22,7 +22,7 @@ struct ScanResultView: View {
             Image(uiImage: scanViewModel.image)
                 .resizable()
                 .frame(height: 400)
-                .aspectRatio(contentMode: .fit)
+                .aspectRatio(contentMode: .fill)
                 .overlay {
                     VStack {
                         //MARK: Back Button

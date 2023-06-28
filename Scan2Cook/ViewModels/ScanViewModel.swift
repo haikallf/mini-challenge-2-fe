@@ -26,7 +26,6 @@ class ScanViewModel: ObservableObject {
     }
     
     var filteredIngredients: [Ingredient] {
-//        let subtractedIngredients = ingredients.filter { !self.selectedIngredients.contains($0) }
         
         guard !self.searchText.isEmpty else { return ingredients }
         
