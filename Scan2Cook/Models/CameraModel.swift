@@ -8,6 +8,7 @@
 import AVFoundation
 import Foundation
 import SwiftUI
+import Vision
 
 enum CameraState{
     case cameraInitialized
@@ -21,7 +22,8 @@ class CameraModel : NSObject, ObservableObject, AVCapturePhotoCaptureDelegate {
     private var showAlert = false
     @Published var output = AVCapturePhotoOutput()
     @Published var previewLayer : AVCaptureVideoPreviewLayer?
-    @Published var objectsDetected : Int = 0
+    @Published var objectsDetected : [VNClassificationObservation]?
+    @Published var processedImage : UIImage?
     private var mlManager = MLManager()
     
     init(isTaken : CameraState = .cameraInitialized){
@@ -122,9 +124,8 @@ class CameraModel : NSObject, ObservableObject, AVCapturePhotoCaptureDelegate {
         
         let resizedImage = resizeImage(image, targetSize: CGSize(width: 1000, height: 1000))!
     
-        let objectsDetectedInModel = mlManager.detectObjects(in: resizedImage)
+        objectsDetected = mlManager.detectObjects(in: resizedImage)
         self.cameraState = .objectDetected
-        objectsDetected = objectsDetectedInModel!.count
     }
     
     func resizeImage(_ image: UIImage, targetSize: CGSize) -> UIImage? {

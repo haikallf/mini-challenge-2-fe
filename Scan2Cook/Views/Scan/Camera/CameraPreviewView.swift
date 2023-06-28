@@ -44,13 +44,17 @@ struct CameraPreviewView: View {
                                 }
                             } else {
                                 HStack{
-                                    Button(action: cameraModel.retakePicture) {
+                                    Button {
+                                        cameraModel.objectsDetected = nil
+                                        cameraModel.retakePicture()
+                                    } label: {
                                         Image(systemName: "arrowshape.turn.up.backward.circle.fill")
                                             .foregroundColor(Color.white)
                                             .font(.title)
                                     }
+
                                     VStack{
-                                        Text("\(cameraModel.objectsDetected)")
+                                        Text("\(cameraModel.objectsDetected?.count ?? 0)")
                                         Text("Bahan Ditemukan")
                                     }
                                     Button {
