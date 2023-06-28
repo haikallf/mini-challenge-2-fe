@@ -7,7 +7,6 @@
 
 import SwiftUI
 import WrapLayout
-import DesignSystem
 
 struct HomeView: View {
     @ObservedObject var viewModel = HomeViewModel()

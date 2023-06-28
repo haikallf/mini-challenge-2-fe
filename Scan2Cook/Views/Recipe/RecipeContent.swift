@@ -14,6 +14,10 @@ struct RecipeContentView: View {
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
+    var animation: Animation {
+        Animation.easeOut(duration: 0.4)
+    }
+    
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack{
@@ -42,10 +46,11 @@ struct RecipeContentView: View {
             let progress = minY / (height * (minY > 0 ? 0.5 : 0.8))
             let titleProgress =  minY / height
             
-            BackButton()
+            BackButton(isCircleButton: -progress > 1 ? false : true)
+                .animation(animation, value: -progress > 1)
                 .padding(.top, safeArea.top + 10)
                 .background(
-                    Color.white
+                    Colors.background
                         .opacity(-progress > 1 ? 1 : 0)
                 )
                 .offset(y: -minY)

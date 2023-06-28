@@ -23,7 +23,6 @@ struct RecipeDetailsView: View {
         .onAppear {
             print(recipeId)
         }
-    
     }
 }
 
