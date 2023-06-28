@@ -16,7 +16,7 @@ struct ScanView: View {
     var body: some View {
         VStack {
             ZStack {
-                NavigationLink(destination: CameraView().environmentObject(scanViewModel)) {
+                NavigationLink(destination: CameraPreviewView().environmentObject(scanViewModel)) {
                     VStack(spacing: 0) {
                         Text("Cari apa hari ini?")
                             .font(.title2)

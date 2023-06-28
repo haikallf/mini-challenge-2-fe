@@ -55,7 +55,6 @@
 		DEE450EA2A45D8BD00D2EA4A /* BookmarkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE450E92A45D8BD00D2EA4A /* BookmarkViewModel.swift */; };
 		DEE450EC2A45DF7E00D2EA4A /* RecipeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE450EB2A45DF7E00D2EA4A /* RecipeCard.swift */; };
 		DEE450EE2A45E95200D2EA4A /* RecipeTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE450ED2A45E95200D2EA4A /* RecipeTag.swift */; };
-		DEE450F02A45F45000D2EA4A /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE450EF2A45F45000D2EA4A /* CameraView.swift */; };
 		DEE450F22A45F65B00D2EA4A /* ScanResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE450F12A45F65B00D2EA4A /* ScanResultView.swift */; };
 		DEE450F42A45F68A00D2EA4A /* ScanViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE450F32A45F68A00D2EA4A /* ScanViewModel.swift */; };
 		DEE450F62A45F70700D2EA4A /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE450F52A45F70700D2EA4A /* Ingredient.swift */; };
@@ -116,7 +115,6 @@
 		DEE450E92A45D8BD00D2EA4A /* BookmarkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkViewModel.swift; sourceTree = "<group>"; };
 		DEE450EB2A45DF7E00D2EA4A /* RecipeCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCard.swift; sourceTree = "<group>"; };
 		DEE450ED2A45E95200D2EA4A /* RecipeTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTag.swift; sourceTree = "<group>"; };
-		DEE450EF2A45F45000D2EA4A /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		DEE450F12A45F65B00D2EA4A /* ScanResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanResultView.swift; sourceTree = "<group>"; };
 		DEE450F32A45F68A00D2EA4A /* ScanViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanViewModel.swift; sourceTree = "<group>"; };
 		DEE450F52A45F70700D2EA4A /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
@@ -222,7 +220,6 @@
 		DE6DB0402A41BAE50035C427 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				D87DC5BC2A4AD5FC0002503E /* Camera */,
 				C5AFAED82A478545003D3DF0 /* Recipe */,
 				DEE450D82A45BF7B00D2EA4A /* Scan */,
 				DEE450D62A45BF5C00D2EA4A /* Onboarding */,
@@ -302,8 +299,8 @@
 		DEE450D82A45BF7B00D2EA4A /* Scan */ = {
 			isa = PBXGroup;
 			children = (
+				D87DC5BC2A4AD5FC0002503E /* Camera */,
 				DEE450DD2A45C34100D2EA4A /* ScanView.swift */,
-				DEE450EF2A45F45000D2EA4A /* CameraView.swift */,
 				DEE450F12A45F65B00D2EA4A /* ScanResultView.swift */,
 				C56F4E942A483AEA004FD059 /* EducationView.swift */,
 				C56F4E9A2A48B903004FD059 /* SearchResultView.swift */,
@@ -437,7 +434,6 @@
 				DE9B72472A42565C00C3DEDD /* PersonalizationTag.swift in Sources */,
 				DEE450EA2A45D8BD00D2EA4A /* BookmarkViewModel.swift in Sources */,
 				DEE450F42A45F68A00D2EA4A /* ScanViewModel.swift in Sources */,
-				DEE450F02A45F45000D2EA4A /* CameraView.swift in Sources */,
 				DEE450D52A45AA2800D2EA4A /* Recipe.swift in Sources */,
 				DE6DB0332A41A5E90035C427 /* Scan2CookApp.swift in Sources */,
 				DE9B72382A423E0C00C3DEDD /* OnboardingPersonalizationView.swift in Sources */,
@@ -575,7 +571,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Scan2Cook/Preview Content\"";
-				DEVELOPMENT_TEAM = KYR4X9M655;
+				DEVELOPMENT_TEAM = MH2BSYHQQX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Scan2Cook/Info.plist;
@@ -605,7 +601,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Scan2Cook/Preview Content\"";
-				DEVELOPMENT_TEAM = KYR4X9M655;
+				DEVELOPMENT_TEAM = MH2BSYHQQX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Scan2Cook/Info.plist;

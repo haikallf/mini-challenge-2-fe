@@ -13,6 +13,7 @@ class ScanViewModel: ObservableObject {
     @Published var searchText: String = ""
     @Published var lastSeenRecipesId: [String]
     @Published var lastSeenRecipes: [Recipe]
+    @Published var image : UIImage = UIImage()
     
     let userDefaults = UserDefaults.standard
     let lastSeenRecipesIdKey = "lastSeenRecipesId"
@@ -25,7 +26,6 @@ class ScanViewModel: ObservableObject {
     }
     
     var filteredIngredients: [Ingredient] {
-//        let subtractedIngredients = ingredients.filter { !self.selectedIngredients.contains($0) }
         
         guard !self.searchText.isEmpty else { return ingredients }
         
@@ -44,8 +44,16 @@ class ScanViewModel: ObservableObject {
         }
     }
     
+    func setSelectedIngredients(ingredients : [Ingredient]){
+        self.selectedIngredients = ingredients
+    }
+    
     func resetIngredientsSelection() {
         self.ingredients = Ingredient.all
         self.selectedIngredients = []
+    }
+    
+    func setImage(image : UIImage){
+        self.image = image
     }
 }

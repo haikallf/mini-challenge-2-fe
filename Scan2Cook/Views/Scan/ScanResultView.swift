@@ -19,22 +19,24 @@ struct ScanResultView: View {
     var body: some View {
         VStack {
             //MARK: Image Preview
-            Rectangle()
-                .fill(.gray)
-                .frame(width: 393, height: 278)
-                .overlay {
-                    VStack {
-                        //MARK: Back Button
-                        BackButton()
-                        Spacer()
-                    }
+            ZStack{
+                Image(uiImage: scanViewModel.image)
+                    .resizable()
+                    .scaledToFill()
+                    
+                VStack {
+                    //MARK: Back Button
+                    BackButton()
+                    Spacer()
                 }
+                    
+            }.frame(height: 300)
             
             //MARK: Ingredients Detail Section
             VStack {
                 //MARK: Heading
                 VStack(alignment: .leading, spacing: 4) {
-                    Text("5 Bahan ditemukan")
+                    Text("\(scanViewModel.selectedIngredients.count) Bahan ditemukan")
                         .font(.title3)
                         .fontWeight(.bold)
                     
@@ -58,16 +60,12 @@ struct ScanResultView: View {
                     HStack {
                         Spacer()
                     }
-//                    if (scanViewModel.selectedIngredients.count != 0) {
-//                        HStack {
-//                            Spacer()
-//                        }
-//                    }
                 }
                 .padding(.horizontal, 20)
-            }
+                Spacer()
+            }.background(in: Rectangle())
             
-            Spacer()
+            
             
             //MARK: Search Button
             CupertinoButton("Lanjut", action: {
@@ -143,8 +141,10 @@ struct ScanResultView: View {
                     }
                 }
                 .navigationBarTitleDisplayMode(.inline)
+                
             }
             .interactiveDismissDisabled(true)
+            
         })
     }
 }

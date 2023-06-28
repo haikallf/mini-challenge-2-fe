@@ -8,15 +8,19 @@
 import SwiftUI
 
 struct CameraPreviewView: View {
+    @EnvironmentObject var scanViewModel : ScanViewModel
     @StateObject var cameraModel = CameraModel()
+    @State var navigateNextView = false
     var body: some View {
-        ZStack{
-            CameraPreview(camera: cameraModel)
-                .ignoresSafeArea()
-            VStack{
-                ZStack{
+        NavigationStack{
+            ZStack{
+                Color.black
+                    .ignoresSafeArea()
+                VStack{
+                    CameraPreview(camera: cameraModel)
+                        .ignoresSafeArea()
+                        .cornerRadius(24)
                     VStack{
-                        Spacer()
                          if cameraModel.cameraState == .cameraInitialized {
                              VStack{
                                  Button(action: {}) {
@@ -41,30 +45,41 @@ struct CameraPreviewView: View {
                             }
                         } else {
                             HStack{
-                                Button(action: cameraModel.retakePicture) {
+                                Button {
+                                    cameraModel.objectsDetected = nil
+                                    cameraModel.retakePicture()
+                                } label: {
                                     Image(systemName: "arrowshape.turn.up.backward.circle.fill")
-                                        .foregroundColor(Color("fillsSecondary"))
+                                        .foregroundColor(Color("fillsPrimary"))
                                         .font(.title)
                                 }
+
                                 VStack{
-                                    Text("\(cameraModel.objectsDetected)")
+                                    Text("\(cameraModel.identifiedIngredients.count)")
                                     Text("Bahan Ditemukan")
                                 }
-                                Button(action: {}) {
+                                Button {
+                                    scanViewModel.setSelectedIngredients(ingredients: cameraModel.identifiedIngredients)
+                                    scanViewModel.setImage(image: cameraModel.processedImage)
+                                    navigateNextView.toggle()
+                                } label: {
                                     Image(systemName: "checkmark.circle.fill")
+                                        .foregroundColor(Color("fillsPrimary"))
+                                        .font(.title)
                                 }
+                                
                             }
                         }
                     }
-                    
-                        
-                    
                 }
-                
             }
-        }
-        .onAppear {
-            cameraModel.checkPermission()
+            .onAppear {
+                cameraModel.checkPermission()
+            }
+            .navigationDestination(isPresented: $navigateNextView) {
+                ScanResultView()
+                    .environmentObject(scanViewModel)
+            }
         }
     }
 }
@@ -72,5 +87,6 @@ struct CameraPreviewView: View {
 struct CameraPreviewView_Previews: PreviewProvider {
     static var previews: some View {
         CameraPreviewView(cameraModel: CameraModel())
+            .environmentObject(ScanViewModel())
     }
 }
