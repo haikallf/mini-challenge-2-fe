@@ -112,6 +112,9 @@ struct ScanView: View {
             
             Spacer()
         }
+        .onDisappear(perform: {
+            isLoading = false
+        })
         .navigationBarBackButtonHidden(true)
         .sheet(isPresented: $showSheet) {
             NavigationView {

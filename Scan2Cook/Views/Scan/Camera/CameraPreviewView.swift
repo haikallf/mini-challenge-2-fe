@@ -11,6 +11,7 @@ struct CameraPreviewView: View {
     @EnvironmentObject var scanViewModel : ScanViewModel
     @StateObject var cameraModel = CameraModel()
     @State var navigateNextView = false
+    @State var cameraPreviewNavigation : CameraPreviewNavigation?
     var body: some View {
         NavigationStack{
             ZStack{
@@ -24,10 +25,14 @@ struct CameraPreviewView: View {
                     VStack{
                          if cameraModel.cameraState == .cameraInitialized {
                              VStack{
-                                 Button(action: {}) {
+                                 Button {
+                                     cameraPreviewNavigation = .education
+                                     navigateNextView.toggle()
+                                 } label: {
                                      Text("Gimana cara pakenya sii?")
                                          .foregroundColor(Color.white)
                                  }
+
                                  Button(action: cameraModel.takePicture) {
                                      ZStack{
                                          Circle()
@@ -74,6 +79,7 @@ struct CameraPreviewView: View {
                                 Button {
                                     scanViewModel.setSelectedIngredients(ingredients: cameraModel.identifiedIngredients)
                                     scanViewModel.setImage(image: cameraModel.processedImage)
+                                    cameraPreviewNavigation = .scanResult
                                     navigateNextView.toggle()
                                 } label: {
                                     Image(systemName: "checkmark.circle.fill")
@@ -91,8 +97,13 @@ struct CameraPreviewView: View {
                 cameraModel.checkPermission()
             }
             .navigationDestination(isPresented: $navigateNextView) {
-                ScanResultView()
-                    .environmentObject(scanViewModel)
+                if cameraPreviewNavigation == .education {
+                    EducationView()
+                }else {
+                    ScanResultView()
+                        .environmentObject(scanViewModel)
+                }
+                
             }
         }
     }
@@ -103,4 +114,9 @@ struct CameraPreviewView_Previews: PreviewProvider {
         CameraPreviewView(cameraModel: CameraModel())
             .environmentObject(ScanViewModel())
     }
+}
+
+enum CameraPreviewNavigation{
+    case scanResult
+    case education
 }
