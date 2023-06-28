@@ -13,6 +13,9 @@ struct MainView: View {
     
     var body: some View {
         ZStack {
+            Colors.background
+                .ignoresSafeArea()
+            
             if globalStates.selectedPageIndex == 1 {
                 HomeView()
             } else if globalStates.selectedPageIndex == 2 {

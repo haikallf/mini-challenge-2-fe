@@ -30,8 +30,8 @@ struct HorizontalScrollViewMenu: View {
                             .cornerRadius(8)
                         
                         Text(recipe.name)
-                            .font(isSmall ? .subheadline : .headline)
-                            .fontWeight(.semibold)
+                            .font(isSmall ? .subheadline : CustomFont.body)
+                            .foregroundColor(Colors.AAA)
                             .padding(.vertical, 8)
                             .padding(.leading, 4)
                             .multilineTextAlignment(.leading)

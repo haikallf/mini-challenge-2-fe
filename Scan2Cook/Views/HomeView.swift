@@ -24,10 +24,12 @@ struct HomeView: View {
                 VStack( alignment: .leading, spacing: 2) {
                     Text("Halo, ")
                         .font(CustomFont.callout)
+                        .foregroundColor(Colors.disabled)
                     
                     HStack {
                         Text(viewModel.username)
                             .font(CustomFont.title2)
+                            .foregroundColor(Colors.AAA)
                             .multilineTextAlignment(.leading)
                             .lineLimit(2)
                         
@@ -46,7 +48,7 @@ struct HomeView: View {
                             .font(CustomFont.footnote)
                             .fontWeight(.semibold)
                             .foregroundColor(.white)
-                            .background(.black)
+                            .background(Colors.secondary)
                             .clipShape(Capsule())
                         })
                         
@@ -63,6 +65,7 @@ struct HomeView: View {
                             Text(section.name)
                                 .font(CustomFont.title6)
                                 .fontWeight(.bold)
+                                .foregroundColor(Colors.AAA)
                             
                             Spacer()
                             
@@ -70,6 +73,7 @@ struct HomeView: View {
                                 Text("Lihat Semua →")
                                     .font(CustomFont.footnote)
                                     .fontWeight(.semibold)
+                                    .foregroundColor(Colors.secondary)
                             })
                         }
                         .padding(.horizontal, 16)
