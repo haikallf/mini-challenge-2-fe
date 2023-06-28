@@ -12,26 +12,15 @@ struct OnboardingView: View {
     
     var body: some View {
         VStack {
-            // MARK: TabView
-            TabView(selection: $pageIndex) {
+            if (pageIndex == 1) {
                 OnboardingContent1(pageIndex: $pageIndex)
-                    .tag(1)
-                    .contentShape(Rectangle()).gesture(DragGesture())
-                
+            } else if (pageIndex == 2) {
                 OnboardingContent2(pageIndex: $pageIndex)
-                    .tag(2)
-                    .contentShape(Rectangle()).gesture(DragGesture())
-                
+            } else if (pageIndex == 3) {
                 OnboardingContent3(pageIndex: $pageIndex)
-                    .tag(3)
-                    .contentShape(Rectangle()).gesture(DragGesture())
-                
             }
-            .animation(.easeInOut, value: pageIndex)
-            .tabViewStyle(.page(indexDisplayMode: .never))
         }
         .navigationBarBackButtonHidden(true)
-        
     }
 }
 

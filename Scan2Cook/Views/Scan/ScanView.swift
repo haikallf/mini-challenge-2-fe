@@ -111,14 +111,6 @@ struct ScanView: View {
         }
             .presentationDragIndicator(.visible)
             .padding(.horizontal)
-//            .presentationDetents(
-//                [.height(140), .large],
-//                selection: $settingsDetent
-//             )
-//            .presentationBackgroundInteraction(
-//                .enabled(upThrough: .large)
-//            )
-//            .interactiveDismissDisabled(true)
     }
 }
 

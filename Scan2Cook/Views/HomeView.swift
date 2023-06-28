@@ -20,37 +20,40 @@ struct HomeView: View {
         ScrollView {
             VStack(alignment: .leading) {
                 //MARK: Heading
-                HStack {
-                    VStack( alignment: .leading, spacing: 2) {
-                        Text("Halo, Friend!")
-                            .font(.subheadline)
-                        
-                        Text("Selamat Siang")
+                VStack( alignment: .leading, spacing: 2) {
+                    Text("Halo, ")
+                        .font(.callout)
+                    
+                    HStack {
+                        Text("\(viewModel.username) Nama Saya Panjang Bet Bet Bet Parah Parah")
                             .font(.title2)
-                            .fontWeight(.bold)
+                            .multilineTextAlignment(.leading)
+                            .lineLimit(2)
+                        
+                        Spacer()
+                        
+                        Button(action: {
+                            isPersonalizationSheetShown = true
+                        }, label: {
+                            HStack {
+                                Text("Personalisasi")
+                                
+                                Image(systemName: "chevron.down")
+                            }
+                            .padding(.vertical, 6)
+                            .padding(.horizontal, 10)
+                            .font(.footnote)
+                            .fontWeight(.semibold)
+                            .foregroundColor(.white)
+                            .background(.black)
+                            .clipShape(Capsule())
+                        })
+                        
                     }
-                    Spacer()
-                    
-                    Button(action: {
-                        isPersonalizationSheetShown = true
-                    }, label: {
-                        HStack {
-                            Text("Personalisasi")
-                            
-                            Image(systemName: "chevron.down")
-                        }
-                        .padding(.vertical, 6)
-                        .padding(.horizontal, 10)
-                        .font(.footnote)
-                        .fontWeight(.semibold)
-                        .foregroundColor(.white)
-                        .background(.black)
-                        .clipShape(Capsule())
-                    })
-                    
                 }
                 .padding(.vertical, 12)
                 .padding(.horizontal)
+                
                 
                 //MARK: Recipe Sections
                 ForEach(viewModel.sectionedRecipes, id: \.id) { section in
