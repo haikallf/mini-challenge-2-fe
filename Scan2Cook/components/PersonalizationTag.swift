@@ -29,11 +29,11 @@ struct PersonalizationTag: View {
         }
         .font(.subheadline)
         .padding(10)
-        .background(isSelected ? Colors.card1 : Colors.card5)
+        .background(isSelected ? Colors.primaryContainer : .white.opacity(0))
         .cornerRadius(8)
         .overlay(
             RoundedRectangle(cornerRadius: 8)
-                .stroke(Colors.border1, lineWidth: 1)
+                .stroke(isSelected ? Colors.primaryContainer : Colors.border1, lineWidth: 1)
         )
         .onTapGesture {
             action()

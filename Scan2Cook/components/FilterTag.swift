@@ -15,12 +15,13 @@ struct FilterTag: View {
     var body: some View {
         Button(action: onTap, label: {
             Text(text)
+                .font(CustomFont.subheadline)
                 .padding(10)
-                .background(isSelected ? .gray.opacity(0.15) : .white)
+                .background(isSelected ? Colors.primaryContainer : .white.opacity(0))
                 .cornerRadius(8)
                 .overlay(
                     RoundedRectangle(cornerRadius: 8)
-                        .stroke(Color.gray, lineWidth: 1)
+                        .stroke(isSelected ? Colors.primaryContainer : Colors.border1, lineWidth: 1)
                 )
         })
     }

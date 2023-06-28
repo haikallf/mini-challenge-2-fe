@@ -11,11 +11,15 @@ struct CupertinoButton: View {
     let text: String
     let onTap: () -> Void
     var isDisabled: Bool
+    var foregroundColor: Color
+    var backgroundColor: Color
     
-    init(_ text: String, action: @escaping () -> Void, isDisabled: Bool = false) {
+    init(_ text: String, action: @escaping () -> Void, isDisabled: Bool = false, foregroundColor: Color = Colors.onPrimary, backgroundColor: Color = Colors.secondary) {
         self.text = text
         self.onTap = action
         self.isDisabled = isDisabled
+        self.foregroundColor = foregroundColor
+        self.backgroundColor = backgroundColor
     }
     
     var body: some View {
@@ -23,8 +27,8 @@ struct CupertinoButton: View {
             Text(text)
                 .padding()
                 .frame(maxWidth: .infinity)
-                .background(isDisabled ? Color("fillsTertiary") : Colors.secondary)
-                .foregroundColor(isDisabled ? Color("labelsTertiary") : Colors.onPrimary )
+                .foregroundColor(isDisabled ? Color("labelsTertiary") : foregroundColor )
+                .background(isDisabled ? Color("fillsTertiary") : backgroundColor)
                 .foregroundColor(.white)
                 .cornerRadius(12)
         }
