@@ -16,14 +16,14 @@ struct PillIndicator: View {
             ForEach((1...maxIndex), id: \.self) { idx in
                 if (idx == currentIndex) {
                     RoundedRectangle(cornerRadius: 10)
-                        .fill(.black)
+                        .fill(Colors.primary)
                         .frame(width: 20, height: 10)
                         .onTapGesture {
                             currentIndex = idx
                         }
                 } else {
                     Circle()
-                        .fill(.gray)
+                        .fill(Colors.disabled)
                         .frame(width: 10)
                         .onTapGesture {
                             currentIndex = idx

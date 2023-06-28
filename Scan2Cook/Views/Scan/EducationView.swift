@@ -27,10 +27,14 @@ struct EducationView: View {
                     VStack(alignment: .leading, spacing: 16) {
                         VStack(alignment: .leading, spacing: 16) {
                             Text(onboarding.title)
-                                .font(.largeTitle)
+                                .font(CustomFont.title3)
+                                .foregroundColor(Colors.AAA)
                                 .multilineTextAlignment(.leading)
                                 .fixedSize(horizontal: false, vertical: true)
+                            
                             Text(onboarding.content)
+                                .font(CustomFont.body)
+                                .foregroundColor(Colors.AAA)
                                 .multilineTextAlignment(.leading)
                                 .fixedSize(horizontal: false, vertical: true)
                         }
@@ -62,13 +66,17 @@ struct EducationView: View {
                 Button(action: {
                     incrementPage()
                 }, label: {
-                    Text(isLastPage() ? "Selesai" : "→")
-                        .padding(.vertical, 14)
-                        .padding(.horizontal, 20)
-                        .foregroundColor(.white)
-                        .background(.black)
-                        .clipShape(isLastPage() ? AnyShape(RoundedRectangle(cornerRadius: 12)) : AnyShape(Circle()))
-                        .minimumScaleFactor(0.01)
+                    Button(action: {
+                        incrementPage()
+                    }, label: {
+                        Text(isLastPage() ? "Selesai" : "→")
+                            .padding(.vertical, 14)
+                            .padding(.horizontal, 20)
+                            .foregroundColor(.white)
+                            .background(Colors.primary)
+                            .cornerRadius(12)
+                            .minimumScaleFactor(0.01)
+                    })
                 })
             }
             .padding()

@@ -39,14 +39,13 @@ struct ScanView: View {
                         print(isLoading)
                         shouldNavigate = true
                     }, label: {
-                        VStack(spacing: 0) {
+                        VStack(spacing: 4) {
                             Text("Cari apa hari ini?")
-                                .font(.title2)
+                                .font(CustomFont.title5)
                                 .fontWeight(.bold)
                             
                             Text("Tap untuk melakukan scanning")
-                                .font(.headline)
-                                .fontWeight(.bold)
+                                .font(CustomFont.body)
                                 .padding(.bottom, 24)
                             
                             Image("scan-camera")
@@ -63,14 +62,14 @@ struct ScanView: View {
                             Image(systemName: "questionmark.circle")
                             Text("Bagaimana caranya ini bekerja?")
                         }
-                        .font(.caption2)
+                        .font(CustomFont.caption)
                         .foregroundColor(.black)
                         .padding(.vertical, 24)
                     })
                 }
             }
             .frame(width: 393, height: 619)
-            .background(Color("fillsPrimary"))
+            .background(Colors.surfaceContainer)
             
             //MARK: Last Seen Section
             VStack {
@@ -92,16 +91,19 @@ struct ScanView: View {
                     }, label: {
                         HStack {
                             Text("Lihat")
-                                .font(.subheadline)
+                                .font(CustomFont.subheadline)
                             
                             Image(systemName: "arrow.up")
-                                .font(.subheadline)
+                                .font(.caption)
                         }
                         .padding(.vertical, 7)
                         .padding(.horizontal, 14)
-                        .background(.black)
-                        .foregroundColor(.white)
+                        .foregroundColor(Colors.AAA)
                         .cornerRadius(40)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 40)
+                                .stroke(Colors.border1, lineWidth: 1)
+                        )
                     })
                 }
                 
