@@ -43,25 +43,28 @@ struct CameraPreviewView: View {
                                         .multilineTextAlignment(.trailing)
                                 }
                             } else {
+                                //MARK: Photo Captured buttons
                                 HStack{
                                     Button {
                                         cameraModel.objectsDetected = nil
                                         cameraModel.retakePicture()
                                     } label: {
                                         Image(systemName: "arrowshape.turn.up.backward.circle.fill")
-                                            .foregroundColor(Color.white)
+                                            .foregroundColor(Color("fillsPrimary"))
                                             .font(.title)
                                     }
 
                                     VStack{
-                                        Text("\(cameraModel.objectsDetected?.count ?? 0)")
+                                        Text("\(cameraModel.identifiedIngredients.count)")
                                         Text("Bahan Ditemukan")
                                     }
                                     Button {
-                                        scanViewModel.setSelectedIngredients(ingredients: [Ingredient]())
+                                        scanViewModel.setSelectedIngredients(ingredients: cameraModel.identifiedIngredients)
+                                        scanViewModel.setImage(image: cameraModel.processedImage)
+                                        navigateNextView.toggle()
                                     } label: {
                                         Image(systemName: "checkmark.circle.fill")
-                                            .foregroundColor(Color.white)
+                                            .foregroundColor(Color("fillsPrimary"))
                                             .font(.title)
                                     }
 
@@ -76,6 +79,7 @@ struct CameraPreviewView: View {
             }
             .navigationDestination(isPresented: $navigateNextView) {
                 ScanResultView()
+                    .environmentObject(scanViewModel)
             }
         }
     }

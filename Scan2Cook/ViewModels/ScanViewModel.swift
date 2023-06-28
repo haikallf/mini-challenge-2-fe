@@ -13,6 +13,7 @@ class ScanViewModel: ObservableObject {
     @Published var searchText: String = ""
     @Published var lastSeenRecipesId: [String]
     @Published var lastSeenRecipes: [Recipe]
+    @Published var image : UIImage = UIImage()
     
     let userDefaults = UserDefaults.standard
     let lastSeenRecipesIdKey = "lastSeenRecipesId"
@@ -51,5 +52,9 @@ class ScanViewModel: ObservableObject {
     func resetIngredientsSelection() {
         self.ingredients = Ingredient.all
         self.selectedIngredients = []
+    }
+    
+    func setImage(image : UIImage){
+        self.image = image
     }
 }

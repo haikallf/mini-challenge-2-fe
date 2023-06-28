@@ -23,7 +23,8 @@ class CameraModel : NSObject, ObservableObject, AVCapturePhotoCaptureDelegate {
     @Published var output = AVCapturePhotoOutput()
     @Published var previewLayer : AVCaptureVideoPreviewLayer?
     @Published var objectsDetected : [VNClassificationObservation]?
-    @Published var processedImage : UIImage?
+    @Published var processedImage : UIImage = UIImage()
+    @Published var identifiedIngredients : [Ingredient] = []
     private var mlManager = MLManager()
     
     init(isTaken : CameraState = .cameraInitialized){
@@ -123,9 +124,11 @@ class CameraModel : NSObject, ObservableObject, AVCapturePhotoCaptureDelegate {
         }
         
         let resizedImage = resizeImage(image, targetSize: CGSize(width: 1000, height: 1000))!
+        processedImage = resizedImage
     
         objectsDetected = mlManager.detectObjects(in: resizedImage)
         self.cameraState = .objectDetected
+        identifiedIngredients = identifyIngredients(objectsDetected: objectsDetected!)
     }
     
     func resizeImage(_ image: UIImage, targetSize: CGSize) -> UIImage? {
@@ -143,6 +146,19 @@ class CameraModel : NSObject, ObservableObject, AVCapturePhotoCaptureDelegate {
         }
         
         return resizedImage
+    }
+    
+    func identifyIngredients(objectsDetected : [VNClassificationObservation]) -> [Ingredient]{
+        let ingredients = Ingredient.all
+        var ingredientsFound : [Ingredient] = []
+        for obj in objectsDetected{
+            if let ingredientFound = ingredients.first(where: { ingredient in
+                ingredient.attribute == obj.identifier
+            }){
+                ingredientsFound.append(ingredientFound)
+            }
+        }
+        return ingredientsFound
     }
     
 }

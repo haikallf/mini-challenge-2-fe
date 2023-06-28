@@ -19,9 +19,10 @@ struct ScanResultView: View {
     var body: some View {
         VStack {
             //MARK: Image Preview
-            Rectangle()
-                .fill(.gray)
-                .frame(width: 393, height: 278)
+            Image(uiImage: scanViewModel.image)
+                .resizable()
+                .frame(height: 400)
+                .aspectRatio(contentMode: .fit)
                 .overlay {
                     VStack {
                         //MARK: Back Button
@@ -34,7 +35,7 @@ struct ScanResultView: View {
             VStack {
                 //MARK: Heading
                 VStack(alignment: .leading, spacing: 4) {
-                    Text("5 Bahan ditemukan")
+                    Text("\(scanViewModel.selectedIngredients.count) Bahan ditemukan")
                         .font(.title3)
                         .fontWeight(.bold)
                     
@@ -58,11 +59,6 @@ struct ScanResultView: View {
                     HStack {
                         Spacer()
                     }
-//                    if (scanViewModel.selectedIngredients.count != 0) {
-//                        HStack {
-//                            Spacer()
-//                        }
-//                    }
                 }
                 .padding(.horizontal, 20)
             }
