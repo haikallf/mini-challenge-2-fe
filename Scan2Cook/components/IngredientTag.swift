@@ -17,16 +17,18 @@ struct IngredientTag: View {
         Button(action: onTap, label: {
             HStack(spacing: 8) {
                 Text(text.capitalized)
+                    .font(CustomFont.footnote)
+                    .padding(.top, 3)
                 
                 Image(systemName: isSelected ? "xmark" : "plus")
+                    .font(.footnote)
             }
-            .font(.footnote)
             .padding(8)
             .background(backgroundColor)
             .cornerRadius(8)
             .overlay(
                 RoundedRectangle(cornerRadius: 8)
-                    .stroke(Color.gray, lineWidth: 1)
+                    .stroke(backgroundColor != .white.opacity(0) ? backgroundColor : Colors.border1, lineWidth: 1)
             )
         })
     }

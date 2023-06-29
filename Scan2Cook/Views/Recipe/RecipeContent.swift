@@ -52,6 +52,7 @@ struct RecipeContentView: View {
                 .background(
                     Colors.background
                         .opacity(-progress > 1 ? 1 : 0)
+                        .animation(Animation.easeOut(duration: 0.1))
                 )
                 .offset(y: -minY)
         }

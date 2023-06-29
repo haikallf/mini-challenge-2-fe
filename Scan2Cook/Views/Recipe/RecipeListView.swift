@@ -15,25 +15,30 @@ struct RecipeListView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     var body: some View {
-        VStack {
-            BackButton()
-            VStack(alignment: .leading, spacing: 4) {
-                Text(title)
-                    .font(.title3)
-                    .fontWeight(.semibold)
-                    
-                if (description != nil || description == "") {
-                    Text(description!)
-                        .font(.footnote)
-                }
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.vertical, 12)
-            .padding(.horizontal)
+        ZStack {
+            Colors.background
+                .ignoresSafeArea()
             
-            RecipeLists(recipes: recipes)
+            VStack {
+                BackButton()
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(title)
+                        .font(CustomFont.title4)
+                        .foregroundColor(Colors.AAA)
+                        
+                    if (description != nil || description == "") {
+                        Text(description!)
+                            .font(.footnote)
+                    }
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.vertical, 12)
+                .padding(.horizontal)
+                
+                RecipeLists(recipes: recipes)
+            }
+            .navigationBarBackButtonHidden(true)
         }
-        .navigationBarBackButtonHidden(true)
     }
 }
 

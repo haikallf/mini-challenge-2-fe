@@ -15,6 +15,11 @@ struct RecipeLists: View {
     @State var selectedViewMode = "list"
     @State var isFilterSheetShown = false
     
+    @State var personalizationsTemp: [String] = []
+    @State var cookingWareTemp: [String] = []
+    @State var cookingTimeTemp: [String] = []
+    @State var ingredientsCountTemp: [String] = []
+    
     var body: some View {
         VStack {
             //MARK: Filter Section
@@ -22,17 +27,42 @@ struct RecipeLists: View {
                 Button(action: {
                     isFilterSheetShown = true
                 }, label: {
-                    HStack(spacing: 4) {
-                        Image(systemName: "line.3.horizontal.decrease")
+                    
+                    var filterCount = personalizationViewModel.personalizations.count
+                    + filterViewModel.cookingWare.count
+                    + filterViewModel.cookingTime.count
+                    + filterViewModel.ingredientsCount.count
+                    
+                    if (filterCount > 0) {
+                        HStack(spacing: 4) {
+                            Image(systemName: "line.3.horizontal.decrease")
+                            
+                            Text("\(filterCount) Filter")
+                            
+                            Image(systemName: "xmark")
+                                .padding(.leading, 8)
+                        }
+                        .font(CustomFont.footnote)
+                        .padding(.vertical, 8)
+                        .padding(.horizontal, 12)
+                        .foregroundColor(.white)
+                        .background(Colors.primary)
+                        .cornerRadius(120)
                         
-                        Text("Filter")
+                    } else {
+                        HStack(spacing: 4) {
+                            Image(systemName: "line.3.horizontal.decrease")
+                            
+                            Text("Filter")
+                        }
+                        .font(CustomFont.footnote)
+                        .padding(.vertical, 8)
+                        .padding(.horizontal, 12)
+                        .foregroundColor(Colors.onSecondaryContainer)
+                        .background(Colors.secondaryContainer)
+                        .cornerRadius(120)
                     }
-                    .font(CustomFont.footnote)
-                    .padding(.vertical, 8)
-                    .padding(.horizontal, 12)
-                    .foregroundColor(Colors.onSecondaryContainer)
-                    .background(Colors.secondaryContainer)
-                    .cornerRadius(120)
+                    
                 })
                 
                 Spacer()
@@ -81,22 +111,19 @@ struct RecipeLists: View {
             }
             .sheet(isPresented: $isFilterSheetShown, content: {
                 VStack {
-                    //MARK: Drag Indicator
-                    RoundedRectangle(cornerRadius: 3)
-                        .fill(.gray)
-                        .frame(width: 36, height: 5)
-                        .padding(.top, 6)
-                        .padding(.bottom, 3)
-                    
                     //MARK: Heading Section
                     HStack {
                         Text("Filter")
-                            .font(.title3)
+                            .font(CustomFont.title6)
                             .fontWeight(.semibold)
                         
                         Spacer()
                         
                         Button(action: {
+                            personalizationViewModel.personalizations = personalizationsTemp
+                            filterViewModel.cookingWare = cookingWareTemp
+                            filterViewModel.cookingTime = cookingTimeTemp
+                            filterViewModel.ingredientsCount = ingredientsCountTemp
                             isFilterSheetShown = false
                         }, label: {
                             Image(systemName: "xmark")
@@ -109,12 +136,12 @@ struct RecipeLists: View {
                         })
                     }
                     .padding(.horizontal)
-                    .padding(.bottom, 14.5)
+                    .padding(.vertical, 14.5)
                     
                     //MARK: Cooking Ware Section
                     VStack(alignment: .leading) {
                         Text("Alat Masak")
-                            .font(.subheadline)
+                            .font(CustomFont.subheadline)
                             .fontWeight(.semibold)
                         
                         HStack {
@@ -139,7 +166,7 @@ struct RecipeLists: View {
                     //MARK: Cooking Time Section
                     VStack(alignment: .leading) {
                         Text("Waktu Pembuatan")
-                            .font(.subheadline)
+                            .font(CustomFont.subheadline)
                             .fontWeight(.semibold)
                         
                         HStack {
@@ -164,7 +191,7 @@ struct RecipeLists: View {
                     //MARK: Ingredients Count Section
                     VStack(alignment: .leading) {
                         Text("Jumlah Bahan")
-                            .font(.subheadline)
+                            .font(CustomFont.subheadline)
                             .fontWeight(.semibold)
                         
                         HStack {
@@ -189,7 +216,7 @@ struct RecipeLists: View {
                     //MARK: Personalization Section
                     VStack(alignment: .leading, spacing: 14) {
                         Text("Aku ga bisa makan...")
-                            .font(.subheadline)
+                            .font(CustomFont.subheadline)
                             .fontWeight(.semibold)
                         
                         WrapLayout(horizontalSpacing: 14, verticalSpacing: 14) {
@@ -227,16 +254,31 @@ struct RecipeLists: View {
                         }
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.vertical, 12)
                     .padding(.horizontal)
                     
                     Spacer()
                     
-                    CupertinoButton("Simpan", action: {}, isDisabled: false)
+                    CupertinoButton("Simpan", action: {
+                        personalizationsTemp = personalizationViewModel.personalizations
+                        cookingWareTemp = filterViewModel.cookingWare
+                        cookingTimeTemp = filterViewModel.cookingTime
+                        ingredientsCountTemp = filterViewModel.ingredientsCount
+                        isFilterSheetShown = false
+                    }, isDisabled: false, foregroundColor: Colors.onSecondaryContainer, backgroundColor: Colors.secondaryContainer)
                         .padding(.horizontal)
                 }
+                .background(Colors.card5)
+                .foregroundColor(.black)
             })
             
             Spacer()
+        }
+        .onAppear {
+            personalizationsTemp = personalizationViewModel.personalizations
+            cookingWareTemp = filterViewModel.cookingWare
+            cookingTimeTemp = filterViewModel.cookingTime
+            ingredientsCountTemp = filterViewModel.ingredientsCount
         }
     }
 }

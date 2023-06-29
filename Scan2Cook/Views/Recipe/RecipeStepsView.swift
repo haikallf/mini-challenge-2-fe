@@ -19,6 +19,9 @@ struct RecipeStepsView: View {
     
     var body: some View {
         ZStack {
+            Colors.background
+                .ignoresSafeArea()
+            
             VStack {
                 // MARK: TabView
                 TabView(selection: $pageIndex) {
@@ -27,16 +30,20 @@ struct RecipeStepsView: View {
                         VStack(alignment: .leading) {
                             Rectangle().fill(.gray).frame(width: 393, height: 393)
                             VStack(alignment: .leading, spacing: 8) {
-                                Text("Step \(idx + 1)")
-                                    .fontWeight(.semibold)
+                                Text("STEP \(idx + 1)")
+                                    .font(CustomFont.body)
+                                    .fontWeight(.bold)
+                                    .foregroundColor(.black)
                                     .multilineTextAlignment(.leading)
                                     .fixedSize(horizontal: false, vertical: true)
+                                
                                 Text(steps[idx])
-                                    .font(.title2)
+                                    .font(CustomFont.title4)
+                                    .foregroundColor(Colors.AA)
                                     .multilineTextAlignment(.leading)
                                     .fixedSize(horizontal: false, vertical: true)
                             }
-                            .padding(.horizontal)
+                            .padding()
                             
                             Spacer()
                         }
@@ -46,10 +53,6 @@ struct RecipeStepsView: View {
                 .animation(.easeInOut, value: pageIndex)
                 .tabViewStyle(.page)
                 .indexViewStyle(.page(backgroundDisplayMode: .interactive))
-                //            .onAppear {
-                //                dotAppearance.currentPageIndicatorTintColor = UIColor(.black)
-                //                dotAppearance.pageIndicatorTintColor = UIColor(.gray)
-                //            }
                 .padding(.bottom, 10)
                 
                 HStack {
@@ -61,8 +64,9 @@ struct RecipeStepsView: View {
                             .padding(.horizontal, 20)
                             .frame(maxWidth: 56)
                             .foregroundColor(.white)
-                            .background(.black)
+                            .background(isFirstPage() ? Colors.disabled : Colors.secondary)
                             .cornerRadius(12)
+                            .disabled(isFirstPage())
                     })
                     Spacer()
                     
@@ -77,7 +81,7 @@ struct RecipeStepsView: View {
                             .padding(.vertical, 14)
                             .padding(.horizontal, 20)
                             .foregroundColor(.white)
-                            .background(.black)
+                            .background(Colors.secondary)
                             .cornerRadius(12)
                             .minimumScaleFactor(0.01)
                     })
@@ -86,7 +90,7 @@ struct RecipeStepsView: View {
             }
             
             VStack {
-                BackButton()
+                BackButton(isCircleButton: true)
                 
                 Spacer()
             }

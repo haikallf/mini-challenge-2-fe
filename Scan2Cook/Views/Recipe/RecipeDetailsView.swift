@@ -15,8 +15,13 @@ struct RecipeDetailsView: View {
         GeometryReader {
             let safeArea = $0.safeAreaInsets
             let size = $0.size
-            RecipeContentView(recipeId: recipeId, safeArea: safeArea, size: size)
-                .ignoresSafeArea(.container, edges: .top)
+            ZStack {
+                Colors.background
+                    .ignoresSafeArea()
+                
+                RecipeContentView(recipeId: recipeId, safeArea: safeArea, size: size)
+                    .ignoresSafeArea(.container, edges: .top)
+            }
         }
         .navigationBarBackButtonHidden(true)
         .preferredColorScheme(.light)
