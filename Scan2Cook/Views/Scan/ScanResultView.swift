@@ -22,12 +22,10 @@ struct ScanResultView: View {
             
             VStack {
                 //MARK: Image Preview
-                ZStack {
-                   Image(uiImage: scanViewModel.image)
-                       .resizable()
-                       .scaledToFill()
-                }
-                .frame(height: 300)
+               Image(uiImage: scanViewModel.image)
+                   .resizable()
+                   .scaledToFill()
+                   .frame(height: 300)
 
                 
                 //MARK: Ingredients Detail Section
@@ -63,7 +61,7 @@ struct ScanResultView: View {
                     }
                     .padding(.horizontal, 20)
                     Spacer()
-                }
+                }.background(in: Rectangle())
                 
                 
                 

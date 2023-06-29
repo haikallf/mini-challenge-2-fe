@@ -12,40 +12,68 @@ struct CameraPreviewView: View {
     @StateObject var cameraModel = CameraModel()
     @State var navigateNextView = false
     @State var cameraPreviewNavigation : CameraPreviewNavigation?
+    @State var cameraCaptured = false
     var body: some View {
         NavigationStack{
             ZStack{
                 Color.black
-                    .opacity(0.8)
+                    .opacity(0.9)
                     .ignoresSafeArea()
                 VStack{
-                    CameraPreview(camera: cameraModel)
-                        .ignoresSafeArea()
-                        .cornerRadius(24)
-                    VStack{
-                         if cameraModel.cameraState == .cameraInitialized {
-                             VStack{
-                                 Button {
-                                     cameraPreviewNavigation = .education
-                                     navigateNextView.toggle()
-                                 } label: {
-                                     Text("Gimana cara pakenya sii?")
-                                         .foregroundColor(Color.white)
-                                 }
-
-                                 Button(action: cameraModel.takePicture) {
-                                     ZStack{
-                                         Circle()
-                                             .fill(Color.white)
-                                             .frame(width: 80, height: 80)
-                                         Circle()
-                                             .stroke(Color.white, lineWidth: 4)
-                                             .frame(width: 96, height: 96)
-                                     }
-                                 }
-                             }.frame(height: 180)
-                        } else if cameraModel.cameraState == .photoTaken {
+                    
+                    ZStack{
+                        CameraPreview(camera: cameraModel)
+                            .ignoresSafeArea()
+                            .cornerRadius(24)
+                        if !cameraCaptured {
                             VStack{
+                                Image(systemName: "carrot")
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 48))
+                                Text("Pastikan kamu memperlihatkan dengan jelas bahan yang dimiliki")
+                                    .multilineTextAlignment(.center)
+                                    .foregroundColor(.white)
+                                    .fontWeight(.bold)
+                                    .frame(width: 329)
+                                    
+                            }
+                        }
+                       
+                        
+                    }
+                    VStack{
+                        // MARK: Camera Initialized
+                         if cameraModel.cameraState == .cameraInitialized {
+                             ZStack{
+                                 VStack{
+                                     Button {
+                                         cameraPreviewNavigation = .education
+                                         navigateNextView.toggle()
+                                     } label: {
+                                         Text("Gimana cara pakenya sii?")
+                                             .foregroundColor(Color.white)
+                                     }
+
+                                     Button {
+                                         cameraCaptured = true
+                                         cameraModel.takePicture()
+                                     } label: {
+                                         ZStack{
+                                             Circle()
+                                                 .fill(Color.white)
+                                                 .frame(width: 80, height: 80)
+                                             Circle()
+                                                 .stroke(Color.white, lineWidth: 4)
+                                                 .frame(width: 96, height: 96)
+                                         }
+                                     }
+
+                                 }.frame(height: 180)
+                             }
+                        } else if cameraModel.cameraState == .photoTaken {
+                            // MARK: Photo Taken
+                            VStack{
+                                Spacer()
                                 Button(action: cameraModel.retakePicture) {
                                     Text("Memproses")
                                         .foregroundColor(.white)
@@ -53,8 +81,8 @@ struct CameraPreviewView: View {
                                         .font(.body)
                                 }
                             }.frame(height: 180)
-
                         } else {
+                            // MARK: Objects Detected
                             HStack{
                                 Spacer()
                                 Button {
