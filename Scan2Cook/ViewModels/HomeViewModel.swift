@@ -33,7 +33,7 @@ class HomeViewModel: ObservableObject {
     func getTodaysRecipes() async {
         let recipeIds = ["8", "9", "10", "11", "12", "13", "14", "15"].joined(separator: ",")
         
-        guard let url = URL(string: "\(globalStates.baseURL)/home?ids=\(recipeIds)") else { fatalError("URL not found!") }
+        guard let url = URL(string: "\(globalStates.baseURL)/resep?resepId=\(recipeIds)") else { fatalError("URL not found!") }
         
         do {
             let (data, response) = try await URLSession.shared.data(from: url)
@@ -62,7 +62,7 @@ class HomeViewModel: ObservableObject {
     func getNewestRecipes() async {
         let recipeIds = ["1", "2", "3", "4", "5", "6", "7"].joined(separator: ",")
         
-        guard let url = URL(string: "\(globalStates.baseURL)/home?ids=\(recipeIds)") else { fatalError("URL not found!") }
+        guard let url = URL(string: "\(globalStates.baseURL)/resep?resepId=\(recipeIds)") else { fatalError("URL not found!") }
         
         do {
             let (data, response) = try await URLSession.shared.data(from: url)

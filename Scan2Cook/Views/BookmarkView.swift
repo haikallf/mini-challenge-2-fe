@@ -9,6 +9,7 @@ import SwiftUI
 
 struct BookmarkView: View {
     @ObservedObject var viewModel: BookmarkViewModel = BookmarkViewModel()
+    @StateObject var globalStates: GlobalStates = GlobalStates()
     
     var body: some View {
         VStack {
@@ -35,10 +36,32 @@ struct BookmarkView: View {
             
             //MARK: Recipes List
             RecipeLists(recipes: viewModel.filteredRecipes)
+                .environmentObject(globalStates)
         }
         .onReceive(viewModel.$searchText) { _ in
             viewModel.filterRecipe()
         }
+        .onReceive(globalStates.$cookingWareFilter, perform: { _ in
+            Task {
+                await viewModel.getRecipeByIds(personalizations: globalStates.personalizationsFilter, cookingWare: globalStates.cookingWareFilter, cookingTime: globalStates.cookingTimeFilter, ingredientsCount: globalStates.ingredientsCountFilter)
+            }
+        })
+        .onReceive(globalStates.$cookingTimeFilter, perform: { _ in
+            Task {
+                await viewModel.getRecipeByIds(personalizations: globalStates.personalizationsFilter, cookingWare: globalStates.cookingWareFilter, cookingTime: globalStates.cookingTimeFilter, ingredientsCount: globalStates.ingredientsCountFilter)
+            }
+        })
+        .onReceive(globalStates.$ingredientsCountFilter, perform: { _ in
+            Task {
+                await viewModel.getRecipeByIds(personalizations: globalStates.personalizationsFilter, cookingWare: globalStates.cookingWareFilter, cookingTime: globalStates.cookingTimeFilter, ingredientsCount: globalStates.ingredientsCountFilter)
+            }
+        })
+        .onReceive(globalStates.$personalizationsFilter, perform: { _ in
+            Task {
+                await viewModel.getRecipeByIds(personalizations: globalStates.personalizationsFilter, cookingWare: globalStates.cookingWareFilter, cookingTime: globalStates.cookingTimeFilter, ingredientsCount: globalStates.ingredientsCountFilter)
+            }
+            
+        })
         .navigationBarBackButtonHidden(true)
     }
 }

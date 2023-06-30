@@ -55,14 +55,21 @@ class BookmarkViewModel: ObservableObject {
         }
     }
     
-    func getRecipeByIds() async {
+    func getRecipeByIds(personalizations: [String] = [], cookingWare: [String] = [], cookingTime: [String] = [], ingredientsCount: [String] = []) async {
         let recipeIds = self.bookmarkedRecipeIds.joined(separator: ",")
+        let personalizationsStr = personalizations.joined(separator: ",")
+        let cookingTimeStr = cookingTime.joined(separator: ",")
+        let cookingWareStr = cookingWare.joined(separator: ",")
+        let ingredientsCount = ingredientsCount.joined(separator: ",")
+        
+        
         
         if (recipeIds.isEmpty) {
             return
         }
         
-        guard let url = URL(string: "\(globalStates.baseURL)/home?ids=\(recipeIds)") else { fatalError("URL not found!") }
+        guard let url = URL(string: "\(globalStates.baseURL)/resep?resepId=\(recipeIds)&personalisasiOrang=\(personalizationsStr)&alatMasak=\(cookingWareStr)&waktuPembuatan=\(cookingTimeStr)") else { fatalError("URL not found!") }
+        print(url)
         
         do {
             let (data, response) = try await URLSession.shared.data(from: url)

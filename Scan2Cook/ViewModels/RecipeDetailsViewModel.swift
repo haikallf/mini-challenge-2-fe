@@ -24,7 +24,7 @@ class RecipeDetailsViewModel: ObservableObject {
     func getRecipeById(recipeId: String) async {
         print("recipeId: \(recipeId)")
         
-        guard let url = URL(string: "\(globalStates.baseURL)/resep?resepId=\(recipeId)") else { fatalError("URL not found!") }
+        guard let url = URL(string: "\(globalStates.baseURL)/resep?resepDetailId=\(recipeId)") else { fatalError("URL not found!") }
         
         do {
             let (data, response) = try await URLSession.shared.data(from: url)

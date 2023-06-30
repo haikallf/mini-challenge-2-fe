@@ -21,13 +21,14 @@ struct RecipeCardList: View {
                 
                 HStack(spacing: 8) {
                     ForEach(recipe.resep_personalisasis) { tag in
-                        RecipeTag(text: tag.personalisasi.nama_personalisasi)
+                        if (tag.personalisasi.nama_personalisasi != "sapi") {
+                            RecipeTag(text: tag.personalisasi.nama_personalisasi)
+                        }
                     }
                 }
             }
             
             Spacer()
-            
             
             //MARK: Recipe Image
             if let url = URL(string: recipe.image) {
