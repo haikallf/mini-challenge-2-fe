@@ -25,7 +25,7 @@ struct ScanResultView: View {
                Image(uiImage: scanViewModel.image)
                    .resizable()
                    .scaledToFill()
-                   .frame(height: 300)
+                   .frame(height: 220)
 
                 
                 //MARK: Ingredients Detail Section

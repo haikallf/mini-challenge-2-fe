@@ -23,6 +23,7 @@ struct CameraPreviewView: View {
                         CameraPreview(camera: cameraModel)
                             .ignoresSafeArea()
                             .cornerRadius(24)
+                            .opacity(!cameraCaptured ? 0.8 : 1)
                         if !cameraCaptured {
                             VStack{
                                 Image(systemName: "carrot")
@@ -32,7 +33,7 @@ struct CameraPreviewView: View {
                                     .multilineTextAlignment(.center)
                                     .foregroundColor(.white)
                                     .fontWeight(.bold)
-                                    .frame(width: 329)
+                                    .frame(width: 300)
                             }
                         }
                         if cameraModel.cameraState == .photoTaken{
@@ -50,7 +51,7 @@ struct CameraPreviewView: View {
                                          cameraPreviewNavigation = .education
                                          navigateNextView.toggle()
                                      } label: {
-                                         Text("Gimana cara pakenya sii?")
+                                         Text("Gimana cara pakenya sih?")
                                              .foregroundColor(Color.white)
                                      }
 
