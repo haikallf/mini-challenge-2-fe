@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct RecipeCardList: View {
-    let recipe: Recipe
+    let recipe: RecipeThumbnailResponse
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
-                Text(recipe.name)
+                Text(recipe.nama_resep)
                     .font(CustomFont.body)
                     .fontWeight(.bold)
                     .foregroundColor(Colors.AAA)
@@ -20,18 +20,35 @@ struct RecipeCardList: View {
                     .multilineTextAlignment(.leading)
                 
                 HStack(spacing: 8) {
-                    ForEach(recipe.tags, id: \.self) { tag in
-                        RecipeTag(text: tag)
+                    ForEach(recipe.resep_personalisasis) { tag in
+                        if (tag.personalisasi.nama_personalisasi != "sapi") {
+                            RecipeTag(text: tag.personalisasi.nama_personalisasi)
+                        }
                     }
                 }
             }
             
             Spacer()
             
-            Rectangle()
-                .fill(.gray)
-                .frame(width: 123, height: 123)
-                .cornerRadius(8)
+            //MARK: Recipe Image
+            if let url = URL(string: recipe.image) {
+               AsyncImage(url: url) { image in
+                   image
+                       .resizable()
+                       .aspectRatio(contentMode: .fill)
+                       .frame(width: 123, height: 123)
+                       .cornerRadius(8)
+                       .clipped()
+               } placeholder: {
+                   // Placeholder view while the image is loading
+                   ProgressView()
+                       .frame(width: 123, height: 123)
+               }
+           } else {
+               // View to display when the URL is invalid or nil
+                ProgressView()
+                   .frame(width: 123, height: 123)
+           }
         }
         .padding(12)
     }

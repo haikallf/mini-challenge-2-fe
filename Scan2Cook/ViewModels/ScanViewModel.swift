@@ -11,18 +11,24 @@ class ScanViewModel: ObservableObject {
     @Published var ingredients: [Ingredient]
     @Published var selectedIngredients: [Ingredient]
     @Published var searchText: String = ""
-    @Published var lastSeenRecipesId: [String]
-    @Published var lastSeenRecipes: [Recipe]
+    @Published var lastSeenRecipeIds: [String]
+    @Published var lastSeenRecipes: [RecipeThumbnailResponse]
     @Published var image : UIImage = UIImage()
     
     let userDefaults = UserDefaults.standard
-    let lastSeenRecipesIdKey = "lastSeenRecipesId"
+    let lastSeenRecipesKey = "lastSeenRecipesIds"
+    let personalizationsKey = "personalizations"
+    let globalStates = GlobalStates()
     
     init(){
         self.ingredients = Ingredient.all
         self.selectedIngredients = []
-        self.lastSeenRecipesId = userDefaults.stringArray(forKey: lastSeenRecipesIdKey) ?? []
-        self.lastSeenRecipes = Recipe.all
+        self.lastSeenRecipeIds = userDefaults.stringArray(forKey: lastSeenRecipesKey) ?? []
+        self.lastSeenRecipes = []
+        
+        Task { [weak self] in
+            await self?.getLastSeenRecipes(checkLocalStorage: true)
+        }
     }
     
     var filteredIngredients: [Ingredient] {
@@ -56,5 +62,60 @@ class ScanViewModel: ObservableObject {
     
     func setImage(image : UIImage){
         self.image = image
+    }
+    func getLastSeenRecipes(personalizations: [String] = [], cookingWare: [String] = [], cookingTime: [String] = [], ingredientsCount: [String] = [], checkLocalStorage: Bool = false) async {
+        
+        var temp: [String] = []
+        
+        //Subtract the array (FE: Black listing. BE White listing)
+        if (checkLocalStorage == true) {
+            var storagePersonalizations: [String] = []
+            storagePersonalizations = userDefaults.stringArray(forKey: personalizationsKey) ?? []
+            if (!storagePersonalizations.isEmpty) {
+                for elmt in globalStates.allPersonalizations {
+                    if !storagePersonalizations.contains(elmt) {
+                        temp.append(elmt)
+                    }
+                }
+            }
+        } else {
+            if (!personalizations.isEmpty) {
+                for elmt in globalStates.allPersonalizations {
+                    if !personalizations.contains(elmt) {
+                        temp.append(elmt)
+                    }
+                }
+            }
+        }
+        
+        let recipeIds = self.lastSeenRecipeIds.joined(separator: ",")
+        let personalizationsStr = temp.joined(separator: ",")
+        let cookingTimeStr = cookingTime.joined(separator: ",")
+        let cookingWareStr = cookingWare.joined(separator: ",")
+        let ingredientsCount = ingredientsCount.joined(separator: ",")
+        
+        guard let url = URL(string: "\(globalStates.baseURL)/resep?resepId=\(recipeIds)&personalisasiOrang=\(personalizationsStr)&alatMasak=\(cookingWareStr)&waktuPembuatan=\(cookingTimeStr)") else { fatalError("URL not found!") }
+        
+        print(url)
+        
+        do {
+            let (data, response) = try await URLSession.shared.data(from: url)
+            guard let httpResponse = response as? HTTPURLResponse else { return }
+            
+            if httpResponse.statusCode == 200 {
+                DispatchQueue.main.async {
+                    do {
+                        let decodedRecipe = try JSONDecoder().decode([RecipeThumbnailResponse].self, from: data)
+                        self.lastSeenRecipes = decodedRecipe
+                        
+                    } catch let error {
+                        print("Error decoding: ", error)
+                    }
+                }
+            } else {
+            }
+        } catch {
+            print("Request error: ", error)
+        }
     }
 }

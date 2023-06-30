@@ -20,7 +20,6 @@ struct MainView: View {
                 HomeView()
             } else if globalStates.selectedPageIndex == 2 {
                 ScanView()
-                    .environmentObject(globalStates)
             } else if globalStates.selectedPageIndex == 3 {
                 BookmarkView()
             }

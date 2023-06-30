@@ -15,13 +15,13 @@ enum PersonalizationType {
 func getPersonalizationType(personalization: PersonalizationType) -> String {
     switch personalization {
     case .laktosa:
-        return "laktosa"
+        return "1"
     case .seafood:
-        return "seafood"
+        return "2"
     case .kacang:
-        return "kacang"
+        return "3"
     case .babi:
-        return "babi"
+        return "4"
         //    default:
         //        return nil
     }

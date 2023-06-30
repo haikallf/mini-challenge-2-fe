@@ -13,7 +13,11 @@ class FilterViewModel: ObservableObject {
     @Published var ingredientsCount: [String]
     //Cookingware, cooking time,
     let userDefaults = UserDefaults.standard
-    let personalizationsKey = "personalizations"
+//    let personalizationsKey = "personalizations"
+//    let personalizationFilterKey = "personalizationFilter"
+//    let cookingWareKey = "cookingWare"
+//    let cookingTimeKey = "cookingTime"
+//    let ingredientsCountKey = "ingredientsCount"
     
     init() {
         cookingWare = []
@@ -44,5 +48,4 @@ class FilterViewModel: ObservableObject {
             self.ingredientsCount.append(value)
         }
     }
-    
 }

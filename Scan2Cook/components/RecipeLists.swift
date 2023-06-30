@@ -9,9 +9,11 @@ import SwiftUI
 import WrapLayout
 
 struct RecipeLists: View {
-    var recipes: [Recipe]
+    var recipes: [RecipeThumbnailResponse]
+    var filterOnTap: () -> Void = {}
     @StateObject var personalizationViewModel = PersonalizationViewModel()
     @StateObject var filterViewModel = FilterViewModel()
+    @EnvironmentObject var globalStates: GlobalStates
     @State var selectedViewMode = "list"
     @State var isFilterSheetShown = false
     
@@ -100,7 +102,7 @@ struct RecipeLists: View {
             //MARK: Recipe Card Section
             ScrollView {
                 ForEach(recipes, id:\.id) { recipe in
-                    NavigationLink(destination: RecipeDetailsView(recipeId: recipe.id), label: {
+                    NavigationLink(destination: RecipeDetailsView(recipeId: String(recipe.id)), label: {
                         if (selectedViewMode == "list") {
                             RecipeCardList(recipe: recipe)
                         } else if (selectedViewMode == "icons") {
@@ -145,16 +147,16 @@ struct RecipeLists: View {
                             .fontWeight(.semibold)
                         
                         HStack {
-                            FilterTag(text: "<2 alat", isSelected: filterViewModel.cookingWare.contains("1"), onTap: {
-                                filterViewModel.updateCookingWare(value: "1")
+                            FilterTag(text: "<2 alat", isSelected: filterViewModel.cookingWare.contains("left"), onTap: {
+                                filterViewModel.updateCookingWare(value: "left")
                             })
                             
-                            FilterTag(text: "3-5 alat", isSelected: filterViewModel.cookingWare.contains("2"), onTap: {
-                                filterViewModel.updateCookingWare(value: "2")
+                            FilterTag(text: "3-5 alat", isSelected: filterViewModel.cookingWare.contains("middle"), onTap: {
+                                filterViewModel.updateCookingWare(value: "middle")
                             })
                             
-                            FilterTag(text: "<5 alat", isSelected: filterViewModel.cookingWare.contains("3"), onTap: {
-                                filterViewModel.updateCookingWare(value: "3")
+                            FilterTag(text: ">5 alat", isSelected: filterViewModel.cookingWare.contains("right"), onTap: {
+                                filterViewModel.updateCookingWare(value: "right")
                             })
                             
                             Spacer()
@@ -170,16 +172,16 @@ struct RecipeLists: View {
                             .fontWeight(.semibold)
                         
                         HStack {
-                            FilterTag(text: "<10 menit", isSelected: filterViewModel.cookingTime.contains("1"), onTap: {
-                                filterViewModel.updateCookingTime(value: "1")
+                            FilterTag(text: "<10 menit", isSelected: filterViewModel.cookingTime.contains("left"), onTap: {
+                                filterViewModel.updateCookingTime(value: "left")
                             })
                             
-                            FilterTag(text: "10-20 menit", isSelected: filterViewModel.cookingTime.contains("2"), onTap: {
-                                filterViewModel.updateCookingTime(value: "2")
+                            FilterTag(text: "10-20 menit", isSelected: filterViewModel.cookingTime.contains("middle"), onTap: {
+                                filterViewModel.updateCookingTime(value: "middle")
                             })
                             
-                            FilterTag(text: ">20 menit", isSelected: filterViewModel.cookingTime.contains("3"), onTap: {
-                                filterViewModel.updateCookingTime(value: "3")
+                            FilterTag(text: ">20 menit", isSelected: filterViewModel.cookingTime.contains("right"), onTap: {
+                                filterViewModel.updateCookingTime(value: "right")
                             })
                             
                             Spacer()
@@ -195,16 +197,16 @@ struct RecipeLists: View {
                             .fontWeight(.semibold)
                         
                         HStack {
-                            FilterTag(text: "<2 bahan", isSelected: filterViewModel.ingredientsCount.contains("1"), onTap: {
-                                filterViewModel.updateIngredientsCount(value: "1")
+                            FilterTag(text: "<2 bahan", isSelected: filterViewModel.ingredientsCount.contains("left"), onTap: {
+                                filterViewModel.updateIngredientsCount(value: "left")
                             })
                             
-                            FilterTag(text: "2-5 bahan", isSelected: filterViewModel.ingredientsCount.contains("2"), onTap: {
-                                filterViewModel.updateIngredientsCount(value: "2")
+                            FilterTag(text: "2-5 bahan", isSelected: filterViewModel.ingredientsCount.contains("middle"), onTap: {
+                                filterViewModel.updateIngredientsCount(value: "middle")
                             })
                             
-                            FilterTag(text: ">5 bahan", isSelected: filterViewModel.ingredientsCount.contains("3"), onTap: {
-                                filterViewModel.updateIngredientsCount(value: "3")
+                            FilterTag(text: ">5 bahan", isSelected: filterViewModel.ingredientsCount.contains("right"), onTap: {
+                                filterViewModel.updateIngredientsCount(value: "right")
                             })
                             
                             Spacer()
@@ -260,9 +262,11 @@ struct RecipeLists: View {
                     Spacer()
                     
                     CupertinoButton("Simpan", action: {
+                        globalStates.updateFilters(personalizationFilter: personalizationViewModel.personalizations, cookingWareFilter: filterViewModel.cookingWare, cookingTimeFilter: filterViewModel.cookingTime, ingredientsCountFilter: filterViewModel.ingredientsCount)
+                        
                         personalizationsTemp = personalizationViewModel.personalizations
                         cookingWareTemp = filterViewModel.cookingWare
-                        cookingTimeTemp = filterViewModel.cookingTime
+                        cookingTimeTemp = filterViewModel.cookingWare
                         ingredientsCountTemp = filterViewModel.ingredientsCount
                         isFilterSheetShown = false
                     }, isDisabled: false, foregroundColor: Colors.onSecondaryContainer, backgroundColor: Colors.secondaryContainer)
@@ -273,6 +277,7 @@ struct RecipeLists: View {
             })
             
             Spacer()
+            
         }
         .onAppear {
             personalizationsTemp = personalizationViewModel.personalizations
@@ -280,11 +285,14 @@ struct RecipeLists: View {
             cookingTimeTemp = filterViewModel.cookingTime
             ingredientsCountTemp = filterViewModel.ingredientsCount
         }
+        .onDisappear {
+            globalStates.clearFilters()
+        }
     }
 }
 
 struct RecipeLists_Previews: PreviewProvider {
     static var previews: some View {
-        RecipeLists(recipes: Recipe.all)
+        RecipeLists(recipes: [])
     }
 }

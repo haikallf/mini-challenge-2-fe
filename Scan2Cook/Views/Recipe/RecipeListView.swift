@@ -10,7 +10,7 @@ import SwiftUI
 struct RecipeListView: View {
     let title: String
     let description: String?
-    var recipes: [Recipe]
+    var recipes: [RecipeThumbnailResponse]
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
@@ -44,6 +44,6 @@ struct RecipeListView: View {
 
 struct RecipeListView_Previews: PreviewProvider {
     static var previews: some View {
-        RecipeListView(title: "Title", description: "Subtitle", recipes: Recipe.all)
+        RecipeListView(title: "Title", description: "Subtitle", recipes: [])
     }
 }
