@@ -10,9 +10,11 @@ import SwiftUI
 struct RecipeDetailsSheet: View {
     let recipeId: String
     
+    @StateObject var viewModel = RecipeDetailsViewModel()
     @State private var shouldNavigate: Bool = false
     
     @State var portionCount: Int = 1
+    
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     var body: some View {
@@ -22,7 +24,7 @@ struct RecipeDetailsSheet: View {
             
             ScrollView {
                 //MARK: Recipe Title
-                Text("\(Recipe.all[(Int(recipeId) ?? 0) - 1].name)")
+                Text("\(viewModel.recipeDetails?.nama_resep ?? "")")
                     .font(CustomFont.title5)
                     .fontWeight(.bold)
                     .foregroundColor(.black)
@@ -37,7 +39,7 @@ struct RecipeDetailsSheet: View {
                             .fontWeight(.medium)
                         Text("Estimasi Pembuatan")
                         Spacer()
-                        Text("5 Menit")
+                        Text("\(viewModel.recipeDetails?.estimasi ?? 0) Menit")
                     }
                     HStack(spacing: 8) {
                         Image(systemName: "flame.fill")
@@ -121,19 +123,21 @@ struct RecipeDetailsSheet: View {
                         .foregroundColor(Colors.onTertiaryContainer)
                         
                         Group {
-                            HStack {
-                                Text("2 bungkus")
-                                
-                                Spacer()
-                                
-                                Text("Indomie")
-                            }
-                            HStack {
-                                Text("2 butir")
-                                
-                                Spacer()
-                                
-                                Text("Telur")
+                            ForEach(viewModel.recipeDetails?.bahans ?? IngredientResponse.emptyState) { bahan in
+                                if (bahan.tipe_bahan == 1) {
+                                    HStack {
+                                            if (bahan.jumlah != nil) {
+                                                Text("\(bahan.jumlah! * portionCount) \(bahan.satuan )")
+                                            } else {
+                                                Text("\(bahan.satuan )")
+                                            }
+                                        
+                                        
+                                        Spacer()
+                                        
+                                        Text(bahan.tagbahan.nama_tag)
+                                    }
+                                }
                             }
                         }
                         .font(CustomFont.footnote)
@@ -204,33 +208,20 @@ struct RecipeDetailsSheet: View {
                             .multilineTextAlignment(.leading)
                         
                         Group {
-                            HStack {
-                                Text("250 gram")
-                                
-                                Spacer()
-                                
-                                Text("Tepung Terigu")
-                            }
-                            HStack {
-                                Text("150 gram")
-                                
-                                Spacer()
-                                
-                                Text("Maizena")
-                            }
-                            HStack {
-                                Text("1 bungkus")
-                                
-                                Spacer()
-                                
-                                Text("Cabai Bubuk")
-                            }
-                            HStack {
-                                Text("2 sdt")
-                                
-                                Spacer()
-                                
-                                Text("Kaldu Bubuk")
+                            ForEach(viewModel.recipeDetails?.bahans ?? IngredientResponse.emptyState) { bahan in
+                                if (bahan.tipe_bahan == 0) {
+                                    HStack {
+                                        if (bahan.jumlah != nil) {
+                                            Text("\(bahan.jumlah! * portionCount) \(bahan.satuan )")
+                                        } else {
+                                            Text("\(bahan.satuan )")
+                                        }
+                                        
+                                        Spacer()
+                                        
+                                        Text(bahan.tagbahan.nama_tag)
+                                    }
+                                }
                             }
                         }
                         .font(CustomFont.footnote)
@@ -249,7 +240,7 @@ struct RecipeDetailsSheet: View {
                         .fontWeight(.bold)
                         .foregroundColor(.black)
                     
-                    Text("Panci, Gelas, Piring, & Penggorengan")
+                    Text(viewModel.cookingwares)
                         .font(CustomFont.subheadline)
                         .foregroundColor(Colors.AA)
                 }
@@ -264,41 +255,18 @@ struct RecipeDetailsSheet: View {
                         .foregroundColor(.black)
                     
                     //MARK: STEPS
-                    VStack(alignment: .leading, spacing: 12) {
-                        Text("Step 1")
-                            .font(CustomFont.body)
-                            .fontWeight(.bold)
-                            .foregroundColor(.black)
-                        
-                        Text("Rebus Indomie ke dalam panci sampai setengah matang. Sambil menunggu indomie setengah matang, Tuangkan bumbu Indomie dan cabai bubuk secukupnya ke dalam piring.")
-                            .font(CustomFont.subheadline)
-                            .foregroundColor(Colors.AA)
+                    ForEach(Array(viewModel.recipeDetails?.langkah_masak.enumerated() ?? [].enumerated()), id: \.element) { index, element in
+                        VStack(alignment: .leading, spacing: 12) {
+                            Text("Step \(index + 1)")
+                                .font(CustomFont.body)
+                                .fontWeight(.bold)
+                                .foregroundColor(.black)
+
+                            Text(element)
+                                .font(CustomFont.subheadline)
+                                .foregroundColor(Colors.AA)
+                        }
                     }
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    
-                    VStack(alignment: .leading, spacing: 12) {
-                        Text("Step 2")
-                            .font(CustomFont.body)
-                            .fontWeight(.bold)
-                            .foregroundColor(.black)
-                        
-                        Text("Tuangkan mie ke dalam piring yang sudah diberi bumbu, lalu aduk rata. Kocok telur dan tambahkan penyedap rasa.")
-                            .font(CustomFont.subheadline)
-                            .foregroundColor(Colors.AA)
-                    }
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    
-                    VStack(alignment: .leading, spacing: 12) {
-                        Text("Step 3")
-                            .font(CustomFont.body)
-                            .fontWeight(.bold)
-                            .foregroundColor(.black)
-                        
-                        Text("Campurkan tepung terigu dan maizena ke dalam wadah yang agak besar. Campurkan penyedap rasa dan cabai bubuk secukupnya ke dalam wadah yang berisi tepung terigu dan maizena. Lalu aduk hingga tercampur")
-                            .font(CustomFont.subheadline)
-                            .foregroundColor(Colors.AA)
-                    }
-                    .frame(maxWidth: .infinity, alignment: .leading)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding()
@@ -330,6 +298,13 @@ struct RecipeDetailsSheet: View {
             }
         }
         
+        .onReceive(viewModel.$recipeDetails) { _ in
+            print("Re-rendering")
+        }
+        .onAppear {
+            viewModel.getRecipeById(recipeId: recipeId)
+            print(viewModel.recipeDetails)
+        }
     }
 }
 

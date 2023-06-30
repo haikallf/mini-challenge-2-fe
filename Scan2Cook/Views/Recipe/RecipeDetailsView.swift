@@ -25,9 +25,6 @@ struct RecipeDetailsView: View {
         }
         .navigationBarBackButtonHidden(true)
         .preferredColorScheme(.light)
-        .onAppear {
-            print(recipeId)
-        }
     }
 }
 

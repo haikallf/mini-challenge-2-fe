@@ -12,6 +12,8 @@ struct RecipeContentView: View {
     var safeArea: EdgeInsets
     var size: CGSize
     
+    @ObservedObject var viewModel = RecipeDetailsViewModel()
+    
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     var animation: Animation {
@@ -21,18 +23,44 @@ struct RecipeContentView: View {
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack{
-                // MARK: Image
-                Image("dummy-img")
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 393, height: 482)
-                    .clipped()
                 
-                RecipeDetailsSheet(recipeId: "1")
+                if let url = URL(string: viewModel.recipeDetails?.image ?? "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?20200913095930") {
+                       AsyncImage(url: url) { image in
+                           image
+                               .resizable()
+                               .aspectRatio(contentMode: .fill)
+                               .frame(width: 393, height: 482)
+                               .clipped()
+                       } placeholder: {
+                           // Placeholder view while the image is loading
+                           ProgressView()
+                       }
+                   } else {
+                       // View to display when the URL is invalid or nil
+                       Text("Invalid URL")
+                           .foregroundColor(.red)
+                   }
+               
+                
+//                // MARK: Image
+//                Image("dummy-img")
+//                    .resizable()
+//                    .aspectRatio(contentMode: .fill)
+//                    .frame(width: 393, height: 482)
+//                    .clipped()
+                
+                RecipeDetailsSheet(recipeId: recipeId)
             }
             .overlay(alignment: .top) {
                 HeaderView()
             }
+        }
+        .onReceive(viewModel.$recipeDetails) { _ in
+            print("Re-rendering")
+        }
+        .onAppear {
+            viewModel.getRecipeById(recipeId: recipeId)
+            print(viewModel.recipeDetails)
         }
         .coordinateSpace(name: "SCROLL")
     }

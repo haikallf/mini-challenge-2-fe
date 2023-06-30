@@ -10,6 +10,7 @@ import SwiftUI
 class GlobalStates: ObservableObject {
     @Published var isTabBarShown: Bool = true
     @Published var selectedPageIndex: Int = 1
+    @Published var baseURL: String = "http://172.20.10.10:3000"
     
     func showTabBar() {
         self.isTabBarShown = true

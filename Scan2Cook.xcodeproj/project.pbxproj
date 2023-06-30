@@ -48,6 +48,8 @@
 		DED53A662A4C3F5500208654 /* Epilogue-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DED53A642A4C3F5500208654 /* Epilogue-Bold.ttf */; };
 		DED53A672A4C3F5500208654 /* Epilogue-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DED53A652A4C3F5500208654 /* Epilogue-SemiBold.ttf */; };
 		DED53A692A4C473600208654 /* ColorConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED53A682A4C473600208654 /* ColorConfig.swift */; };
+		DED53A712A4ED46400208654 /* Responses.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED53A702A4ED46400208654 /* Responses.swift */; };
+		DED53A732A4ED67300208654 /* RecipeDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED53A722A4ED67300208654 /* RecipeDetailsViewModel.swift */; };
 		DEE450CF2A45A6B800D2EA4A /* HorizontalScrollViewMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE450CE2A45A6B800D2EA4A /* HorizontalScrollViewMenu.swift */; };
 		DEE450D32A45A9C100D2EA4A /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE450D22A45A9C100D2EA4A /* HomeViewModel.swift */; };
 		DEE450D52A45AA2800D2EA4A /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE450D42A45AA2800D2EA4A /* Recipe.swift */; };
@@ -112,6 +114,8 @@
 		DED53A642A4C3F5500208654 /* Epilogue-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Epilogue-Bold.ttf"; sourceTree = "<group>"; };
 		DED53A652A4C3F5500208654 /* Epilogue-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Epilogue-SemiBold.ttf"; sourceTree = "<group>"; };
 		DED53A682A4C473600208654 /* ColorConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorConfig.swift; sourceTree = "<group>"; };
+		DED53A702A4ED46400208654 /* Responses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Responses.swift; sourceTree = "<group>"; };
+		DED53A722A4ED67300208654 /* RecipeDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailsViewModel.swift; sourceTree = "<group>"; };
 		DEE450CE2A45A6B800D2EA4A /* HorizontalScrollViewMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalScrollViewMenu.swift; sourceTree = "<group>"; };
 		DEE450D22A45A9C100D2EA4A /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		DEE450D42A45AA2800D2EA4A /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
@@ -251,6 +255,7 @@
 				C56F4E922A4838D3004FD059 /* Education.swift */,
 				C51A3F622A49EADE00307CFD /* SectionedRecipes.swift */,
 				D87DC5BA2A4AD5E00002503E /* CameraModel.swift */,
+				DED53A702A4ED46400208654 /* Responses.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -263,6 +268,7 @@
 				DEE450E92A45D8BD00D2EA4A /* BookmarkViewModel.swift */,
 				DEE450F32A45F68A00D2EA4A /* ScanViewModel.swift */,
 				C5E7F0D82A4A302900CAB1E8 /* FilterViewModel.swift */,
+				DED53A722A4ED67300208654 /* RecipeDetailsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -427,6 +433,7 @@
 				C56F4E932A4838D3004FD059 /* Education.swift in Sources */,
 				D87DC5BB2A4AD5E00002503E /* CameraModel.swift in Sources */,
 				DEE450EE2A45E95200D2EA4A /* RecipeTag.swift in Sources */,
+				DED53A712A4ED46400208654 /* Responses.swift in Sources */,
 				DEE450E82A45CC1200D2EA4A /* CustomTabBar.swift in Sources */,
 				C56F4E952A483AEA004FD059 /* EducationView.swift in Sources */,
 				D87DC5C02A4AD6500002503E /* CameraPreview.swift in Sources */,
@@ -466,6 +473,7 @@
 				D87DC5B92A4AD5BA0002503E /* MLManager.swift in Sources */,
 				C5E04B7D2A4820DD00FA2185 /* PillIndicator.swift in Sources */,
 				DEE450F22A45F65B00D2EA4A /* ScanResultView.swift in Sources */,
+				DED53A732A4ED67300208654 /* RecipeDetailsViewModel.swift in Sources */,
 				DEE450EC2A45DF7E00D2EA4A /* RecipeCard.swift in Sources */,
 				C5E04B7B2A481B8D00FA2185 /* DotIndicator.swift in Sources */,
 				C5E7F0D92A4A302900CAB1E8 /* FilterViewModel.swift in Sources */,
