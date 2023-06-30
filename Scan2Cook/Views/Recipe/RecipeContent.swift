@@ -32,25 +32,25 @@ struct RecipeContentView: View {
             VStack{
                 
                 if let url = URL(string: viewModel.recipeDetails?.image ?? "") {
-                       AsyncImage(url: url) { image in
-                           image
-                               .resizable()
-                               .aspectRatio(contentMode: .fill)
-                               .frame(width: 393, height: 482)
-                               .clipped()
-                       } placeholder: {
-                           // Placeholder view while the image is loading
-                           ProgressView()
-                               .frame(width: 393, height: 482)
-                       }
-                   } else {
-                       // View to display when the URL is invalid or nil
-                       VStack {
-                           Text("Invalid URL")
-                       }
-                       .frame(width: 393, height: 482)
-                       .background(Colors.disabled)
+                   AsyncImage(url: url) { image in
+                       image
+                           .resizable()
+                           .aspectRatio(contentMode: .fill)
+                           .frame(width: 393, height: 482)
+                           .clipped()
+                   } placeholder: {
+                       // Placeholder view while the image is loading
+                       ProgressView()
+                           .frame(width: 393, height: 482)
                    }
+               } else {
+                   // View to display when the URL is invalid or nil
+                   VStack {
+                       Text("Invalid URL")
+                   }
+                   .frame(width: 393, height: 482)
+                   .background(Colors.disabled)
+               }
                 
                 RecipeDetailsSheet(recipeId: recipeId, viewModel: viewModel)
             }
@@ -62,7 +62,7 @@ struct RecipeContentView: View {
             print("Re-rendering")
         }
         .onAppear {
-            viewModel.getRecipeById(recipeId: recipeId)
+//            viewModel.getRecipeById(recipeId: recipeId)
             print(viewModel.recipeDetails)
         }
         .coordinateSpace(name: "SCROLL")

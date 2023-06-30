@@ -11,7 +11,7 @@ struct RecipeStepsView: View {
     @State private var shouldNavigate: Bool = false
     @State private var pageIndex = 1
     var steps: [String]
-    var imageURLs: [String] = []
+    var imageURLs: [String]
     
     var timer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
     private let dotAppearance = UIPageControl.appearance()
@@ -30,7 +30,27 @@ struct RecipeStepsView: View {
                         ForEach(steps.indices) { idx in
                             // MARK: TabView Adapter
                             VStack(alignment: .leading) {
-                                Rectangle().fill(.gray).frame(width: 393, height: 393)
+                                if let url = URL(string: imageURLs[idx] ) {
+                                   AsyncImage(url: url) { image in
+                                       image
+                                           .resizable()
+                                           .aspectRatio(contentMode: .fill)
+                                           .frame(width: 393, height: 393)
+                                           .clipped()
+                                   } placeholder: {
+                                       // Placeholder view while the image is loading
+                                       ProgressView()
+                                           .frame(width: 393, height: 482)
+                                   }
+                               } else {
+                                   // View to display when the URL is invalid or nil
+                                   VStack {
+                                       Text("Invalid URL")
+                                   }
+                                   .frame(width: 393, height: 482)
+                                   .background(Colors.disabled)
+                               }
+                                
                                 VStack(alignment: .leading, spacing: 8) {
                                     Text("STEP \(idx + 1)")
                                         .font(CustomFont.body)
@@ -128,6 +148,6 @@ struct RecipeStepsView: View {
 
 struct RecipeStepsView_Previews: PreviewProvider {
     static var previews: some View {
-        RecipeStepsView(steps: [])
+        RecipeStepsView(steps: [], imageURLs: [])
     }
 }

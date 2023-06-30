@@ -8,7 +8,8 @@
 import SwiftUI
 
 class HomeViewModel: ObservableObject {
-    @Published var sectionedRecipes: [SectionedRecipes]
+    @Published var newestRecipes: [RecipeResponse]
+    @Published var todaysRecipe: [RecipeResponse]
     @Published var username: String
     
     let userDefaults = UserDefaults.standard
@@ -17,8 +18,16 @@ class HomeViewModel: ObservableObject {
     let globalStates = GlobalStates()
     
     init(){
-        sectionedRecipes = SectionedRecipes.all
+        newestRecipes = []
+        todaysRecipe = []
         username = userDefaults.string(forKey: usernameKey) ?? "Bre"
+        
+        Task { [weak self] in
+            await self?.getNewestRecipes()
+        }
+        Task { [weak self] in
+            await self?.getTodaysRecipes()
+        }
     }
     
 //    func getSectionedRecipes() {
@@ -75,33 +84,61 @@ class HomeViewModel: ObservableObject {
         .resume()
     }
     
-    func getRecipeById() {
-        guard let url = URL(string: "\(globalStates.baseURL)/resep?resepId=1") else {fatalError("URL not found!")}
-
-        let request = URLRequest(url: url)
-
-        let dataTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            if let error = error {
-                print("Request error: ", error)
-                return
-            }
-
-            guard let response = response as? HTTPURLResponse else { return }
-
-
-            if response.statusCode == 200 {
-                guard let data = data else { return }
+    func getTodaysRecipes() async {
+        let recipeIds = ["4", "5", "6"].joined(separator: ",")
+        
+        guard let url = URL(string: "\(globalStates.baseURL)/resep?resepId=\(recipeIds)") else { fatalError("URL not found!") }
+        
+        do {
+            let (data, response) = try await URLSession.shared.data(from: url)
+            guard let httpResponse = response as? HTTPURLResponse else { return }
+            
+            if httpResponse.statusCode == 200 {
                 DispatchQueue.main.async {
                     do {
                         let decodedRecipe = try JSONDecoder().decode([RecipeResponse].self, from: data)
-                        print(decodedRecipe)
+                        self.todaysRecipe = decodedRecipe
+                        
                     } catch let error {
                         print("Error decoding: ", error)
+                        self.todaysRecipe = []
                     }
                 }
+            } else {
+                self.todaysRecipe = []
             }
+        } catch {
+            print("Request error: ", error)
+            self.todaysRecipe = []
         }
-
-        dataTask.resume()
+    }
+    
+    func getNewestRecipes() async {
+        let recipeIds = ["1", "2", "3"].joined(separator: ",")
+        
+        guard let url = URL(string: "\(globalStates.baseURL)/resep?resepId=\(recipeIds)") else { fatalError("URL not found!") }
+        
+        do {
+            let (data, response) = try await URLSession.shared.data(from: url)
+            guard let httpResponse = response as? HTTPURLResponse else { return }
+            
+            if httpResponse.statusCode == 200 {
+                DispatchQueue.main.async {
+                    do {
+                        let decodedRecipe = try JSONDecoder().decode([RecipeResponse].self, from: data)
+                        self.newestRecipes = decodedRecipe
+                        
+                    } catch let error {
+                        print("Error decoding: ", error)
+                        self.newestRecipes = []
+                    }
+                }
+            } else {
+                self.newestRecipes = []
+            }
+        } catch {
+            print("Request error: ", error)
+            self.newestRecipes = []
+        }
     }
 }

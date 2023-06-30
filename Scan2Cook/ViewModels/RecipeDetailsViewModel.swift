@@ -11,30 +11,26 @@ class RecipeDetailsViewModel: ObservableObject {
     @Published var recipeDetails: RecipeResponse?
     @Published var cookingwares: String = ""
     
+    let userDefaults = UserDefaults.standard
     let globalStates = GlobalStates()
+    let bookmarkedRecipesKey = "bookmarkedRecipesIds"
     
-    init(recipeId: String){
-        getRecipeById(recipeId: recipeId)
+    init(recipeId: String) {
+        Task {
+            await getRecipeById(recipeId: recipeId)
+        }
     }
     
-    func getRecipeById(recipeId: String) {
+    func getRecipeById(recipeId: String) async {
         print("recipeId: \(recipeId)")
         
-        guard let url = URL(string: "\(globalStates.baseURL)/resep?resepId=\(recipeId)") else {fatalError("URL not found!")}
-
-        let request = URLRequest(url: url)
-
-        let dataTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            if let error = error {
-                print("Request error: ", error)
-                return
-            }
-
-            guard let response = response as? HTTPURLResponse else { return }
-
-
-            if response.statusCode == 200 {
-                guard let data = data else { return }
+        guard let url = URL(string: "\(globalStates.baseURL)/resep?resepId=\(recipeId)") else { fatalError("URL not found!") }
+        
+        do {
+            let (data, response) = try await URLSession.shared.data(from: url)
+            guard let httpResponse = response as? HTTPURLResponse else { return }
+            
+            if httpResponse.statusCode == 200 {
                 DispatchQueue.main.async {
                     do {
                         let decodedRecipe = try JSONDecoder().decode([RecipeResponse].self, from: data)
@@ -47,8 +43,6 @@ class RecipeDetailsViewModel: ObservableObject {
                         }
                         self.cookingwares = arr.joined(separator: ", ")
                         
-                        print(self.recipeDetails)
-                        
                     } catch let error {
                         print("Error decoding: ", error)
                         self.recipeDetails = nil
@@ -57,9 +51,9 @@ class RecipeDetailsViewModel: ObservableObject {
             } else {
                 self.recipeDetails = nil
             }
+        } catch {
+            print("Request error: ", error)
         }
-
-        dataTask.resume()
     }
 }
 

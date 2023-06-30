@@ -132,7 +132,7 @@ struct ScanView: View {
                     .padding(.vertical, 12)
                     .padding(.horizontal)
                     
-                    RecipeLists(recipes: scanViewModel.lastSeenRecipes)
+//                    RecipeLists(recipes: scanViewModel.lastSeenRecipes)
                 }
             }
         }

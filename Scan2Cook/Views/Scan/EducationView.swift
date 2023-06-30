@@ -22,7 +22,8 @@ struct EducationView: View {
             
             // MARK: TabView
             TabView(selection: $pageIndex) {
-                ForEach(onboardings, id: \.id) { onboarding in
+                
+                ForEach(Array(onboardings.enumerated()), id: \.element) { idx, onboarding in
                     // MARK: TabView Adapter
                     VStack(alignment: .leading, spacing: 16) {
                         VStack(alignment: .leading, spacing: 16) {
@@ -40,8 +41,8 @@ struct EducationView: View {
                         }
                         .padding(.horizontal)
                         
-                        RoundedRectangle(cornerRadius: 16)
-                            .fill(.gray)
+                        Image("education-\(idx + 1)")
+                            .resizable()
                             .frame(width: 361, height: 203.06)
                             .padding(.horizontal)
                         

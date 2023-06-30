@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RecipeCard: View {
-    let recipe: Recipe
+    let recipe: RecipeResponse
     var body: some View {
         VStack(alignment: .leading) {
             Rectangle()
@@ -16,15 +16,15 @@ struct RecipeCard: View {
                 .frame(width: 369, height: 123)
                 .cornerRadius(8)
             
-            Text(recipe.name)
+            Text(recipe.nama_resep)
                 .font(CustomFont.body)
                 .fontWeight(.bold)
                 .foregroundColor(Colors.AAA)
                 .multilineTextAlignment(.leading)
             
             HStack(spacing: 8) {
-                ForEach(recipe.tags, id: \.self) { tag in
-                    RecipeTag(text: tag)
+                ForEach(recipe.resep_personalisasis) { tag in
+                    RecipeTag(text: tag.personalisasi.nama_personalisasi)
                 }
             }
         }

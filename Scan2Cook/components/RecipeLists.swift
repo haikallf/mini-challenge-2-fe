@@ -9,7 +9,7 @@ import SwiftUI
 import WrapLayout
 
 struct RecipeLists: View {
-    var recipes: [Recipe]
+    var recipes: [RecipeResponse]
     @StateObject var personalizationViewModel = PersonalizationViewModel()
     @StateObject var filterViewModel = FilterViewModel()
     @State var selectedViewMode = "list"
@@ -100,7 +100,7 @@ struct RecipeLists: View {
             //MARK: Recipe Card Section
             ScrollView {
                 ForEach(recipes, id:\.id) { recipe in
-                    NavigationLink(destination: RecipeDetailsView(recipeId: recipe.id), label: {
+                    NavigationLink(destination: RecipeDetailsView(recipeId: String(recipe.id)), label: {
                         if (selectedViewMode == "list") {
                             RecipeCardList(recipe: recipe)
                         } else if (selectedViewMode == "icons") {
@@ -285,6 +285,6 @@ struct RecipeLists: View {
 
 struct RecipeLists_Previews: PreviewProvider {
     static var previews: some View {
-        RecipeLists(recipes: Recipe.all)
+        RecipeLists(recipes: [])
     }
 }

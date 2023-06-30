@@ -56,32 +56,53 @@ struct HomeView: View {
                 .padding(.vertical, 12)
                 .padding(.horizontal)
                 
-                
-                //MARK: Recipe Sections
-                ForEach(viewModel.sectionedRecipes, id: \.id) { section in
-                    VStack(alignment: .leading, spacing: 14) {
-                        HStack {
-                            Text(section.name)
-                                .font(CustomFont.title6)
-                                .fontWeight(.bold)
-                                .foregroundColor(Colors.AAA)
-                            
-                            Spacer()
-                            
-                            NavigationLink(destination: RecipeListView(title: section.name, description: section.description, recipes: section.recipes), label: {
-                                Text("Lihat Semua →")
-                                    .font(CustomFont.footnote)
-                                    .fontWeight(.semibold)
-                                    .foregroundColor(Colors.secondary)
-                            })
-                        }
-                        .padding(.horizontal, 16)
+                //MARK: Today's Recipe Sections
+                VStack(alignment: .leading, spacing: 14) {
+                    HStack {
+                        Text("Resep Hari Ini")
+                            .font(CustomFont.title6)
+                            .fontWeight(.bold)
+                            .foregroundColor(Colors.AAA)
                         
-                        HorizontalScrollViewMenu(recipes: section.recipes, isSmall: false)
-                        .padding(.leading, 16)
+                        Spacer()
+                        
+                        NavigationLink(destination: RecipeListView(title: "Resep Hari Ini", description: "Ada resep pilihan dari kami untuk kamu untuk hari ini nih!", recipes: viewModel.todaysRecipe), label: {
+                            Text("Lihat Semua →")
+                                .font(CustomFont.footnote)
+                                .fontWeight(.semibold)
+                                .foregroundColor(Colors.secondary)
+                        })
                     }
-                    .padding(.vertical, 14)
+                    .padding(.horizontal, 16)
+                    
+                    HorizontalScrollViewMenu(recipes: viewModel.todaysRecipe, isSmall: false)
+                    .padding(.leading, 16)
                 }
+                .padding(.vertical, 14)
+                
+                //MARK: Newest Recipe Sections
+                VStack(alignment: .leading, spacing: 14) {
+                    HStack {
+                        Text("Resep Terbaru")
+                            .font(CustomFont.title6)
+                            .fontWeight(.bold)
+                            .foregroundColor(Colors.AAA)
+                        
+                        Spacer()
+                        
+                        NavigationLink(destination: RecipeListView(title: "Resep Terbaru", description: "Ada resep yang baru ditambahkan nih!", recipes: viewModel.newestRecipes), label: {
+                            Text("Lihat Semua →")
+                                .font(CustomFont.footnote)
+                                .fontWeight(.semibold)
+                                .foregroundColor(Colors.secondary)
+                        })
+                    }
+                    .padding(.horizontal, 16)
+                    
+                    HorizontalScrollViewMenu(recipes: viewModel.newestRecipes, isSmall: false)
+                    .padding(.leading, 16)
+                }
+                .padding(.vertical, 14)
                 
                 Spacer()
             }

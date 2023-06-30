@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct HorizontalScrollViewMenu: View {
-    let recipes: [Recipe]
+    let recipes: [RecipeResponse]
     let isSmall: Bool
     
     @State var shouldNavigate: Bool = false
     @State var selectedId: String = ""
     
-    init(recipes: [Recipe], isSmall: Bool = true) {
+    init(recipes: [RecipeResponse], isSmall: Bool = true) {
         self.recipes = recipes
         self.isSmall = isSmall
     }
@@ -29,7 +29,7 @@ struct HorizontalScrollViewMenu: View {
                             .frame(width: isSmall ? 180 : 240, height: isSmall ? 180 : 300)
                             .cornerRadius(8)
                         
-                        Text(recipe.name)
+                        Text(recipe.nama_resep)
                             .font(isSmall ? .subheadline : CustomFont.body)
                             .foregroundColor(Colors.AAA)
                             .padding(.vertical, 8)
@@ -40,7 +40,7 @@ struct HorizontalScrollViewMenu: View {
                     }
                     .frame(width: isSmall ? 180 : 240)
                     .onTapGesture {
-                        selectedId = recipe.id
+                        selectedId = String(recipe.id)
                         shouldNavigate = true
                     }
                 }
@@ -56,6 +56,6 @@ struct HorizontalScrollViewMenu: View {
 
 struct HorizontalScrollViewMenu_Previews: PreviewProvider {
     static var previews: some View {
-        HorizontalScrollViewMenu(recipes: Recipe.all)
+        HorizontalScrollViewMenu(recipes: [])
     }
 }

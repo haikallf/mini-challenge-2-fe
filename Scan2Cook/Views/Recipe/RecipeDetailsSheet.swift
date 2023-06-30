@@ -11,6 +11,7 @@ struct RecipeDetailsSheet: View {
     let recipeId: String
     
     @ObservedObject var viewModel: RecipeDetailsViewModel
+    @ObservedObject var bookmarkViewModel: BookmarkViewModel = BookmarkViewModel()
     @State private var shouldNavigate: Bool = false
     
     @State var portionCount: Int = 1
@@ -275,11 +276,14 @@ struct RecipeDetailsSheet: View {
                 HStack(spacing: 10) {
                     CupertinoButton("Mulai Masak", action: {shouldNavigate = true})
                     
-                    Button(action: {}, label: {
+                    Button(action: {
+                        bookmarkViewModel.updateBookmarkIds(bookmarkId: recipeId)
+                    }, label: {
                         Image(systemName: "bookmark")
-                            .foregroundColor(.black)
                     })
                     .frame(width: 50, height: 50)
+                    .foregroundColor(bookmarkViewModel.bookmarkedRecipeIds.contains(recipeId) ? .white : .black)
+                    .background(bookmarkViewModel.bookmarkedRecipeIds.contains(recipeId) ? Colors.onSecondaryContainer : .white.opacity(0))
                     .overlay(
                         RoundedRectangle(cornerRadius: 50)
                             .stroke(.black, lineWidth: 1)
@@ -290,7 +294,7 @@ struct RecipeDetailsSheet: View {
                 .padding(.horizontal)
                 
                 //MARK: Navigate to RecipeStepsView triggered by shouldNavigate
-                NavigationLink(destination: RecipeStepsView(steps: viewModel.recipeDetails?.langkah_masak ?? []), isActive: $shouldNavigate) {
+                NavigationLink(destination: RecipeStepsView(steps: viewModel.recipeDetails?.langkah_masak ?? [], imageURLs: viewModel.recipeDetails?.image_steps ?? []), isActive: $shouldNavigate) {
                     EmptyView()
                 }
                 .opacity(0)
@@ -303,8 +307,8 @@ struct RecipeDetailsSheet: View {
             print("Re-rendering")
         }
         .onAppear {
-            viewModel.getRecipeById(recipeId: recipeId)
-            print(viewModel.recipeDetails)
+//            viewModel.getRecipeById(recipeId: recipeId)
+            print(bookmarkViewModel.bookmarkedRecipeIds)
         }
     }
 }

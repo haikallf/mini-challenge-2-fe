@@ -58,6 +58,10 @@ struct PersonalizationResponse: Equatable, Decodable {
     let personalisasi: PersonalizationItemResponse
 }
 
+extension PersonalizationResponse: Identifiable {
+  var id: Int { personalisasi_id }
+}
+
 struct PersonalizationItemResponse: Equatable, Decodable {
     let nama_personalisasi: String
 }

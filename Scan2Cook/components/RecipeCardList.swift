@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct RecipeCardList: View {
-    let recipe: Recipe
+    let recipe: RecipeResponse
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
-                Text(recipe.name)
+                Text(recipe.nama_resep)
                     .font(CustomFont.body)
                     .fontWeight(.bold)
                     .foregroundColor(Colors.AAA)
@@ -20,8 +20,8 @@ struct RecipeCardList: View {
                     .multilineTextAlignment(.leading)
                 
                 HStack(spacing: 8) {
-                    ForEach(recipe.tags, id: \.self) { tag in
-                        RecipeTag(text: tag)
+                    ForEach(recipe.resep_personalisasis) { tag in
+                        RecipeTag(text: tag.personalisasi.nama_personalisasi)
                     }
                 }
             }

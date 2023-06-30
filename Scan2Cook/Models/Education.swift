@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Education: Equatable {
+struct Education: Equatable, Hashable {
     let id: Int
     let filename: String
     let title: String
