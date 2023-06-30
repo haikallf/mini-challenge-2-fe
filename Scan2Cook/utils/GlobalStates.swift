@@ -32,19 +32,9 @@ class GlobalStates: ObservableObject {
     }
     
     func updateFilters(personalizationFilter: [String], cookingWareFilter: [String], cookingTimeFilter: [String], ingredientsCountFilter: [String]) {
-        print("initial filter: \(personalizationFilter)")
-        var temp: [String] = []
+        print("personalizationFilter: \(personalizationFilter)")
         
-        //Subtract the array (FE: Black listing. BE White listing)
-        if !personalizationFilter.isEmpty{
-            for elmt in allPersonalizations {
-                if !personalizationFilter.contains(elmt) {
-                    temp.append(elmt)
-                }
-            }
-        }
-        
-        self.personalizationsFilter = temp
+        self.personalizationsFilter = personalizationFilter
         self.cookingTimeFilter = cookingTimeFilter
         self.cookingWareFilter = cookingWareFilter
         self.ingredientsCountFilter = ingredientsCountFilter

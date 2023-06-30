@@ -10,15 +10,26 @@ import SwiftUI
 class RecipeDetailsViewModel: ObservableObject {
     @Published var recipeDetails: RecipeResponse?
     @Published var cookingwares: String = ""
+    @Published var lastSeenRecipeIds: [String]
     
     let userDefaults = UserDefaults.standard
     let globalStates = GlobalStates()
     let bookmarkedRecipesKey = "bookmarkedRecipesIds"
+    let lastSeenRecipesKey = "lastSeenRecipesIds"
     
     init(recipeId: String) {
+        lastSeenRecipeIds = userDefaults.stringArray(forKey: lastSeenRecipesKey) ?? []
         Task {
             await getRecipeById(recipeId: recipeId)
         }
+    }
+    
+    func updateLastSeenRecipes(recipeId: String) {
+        if (self.lastSeenRecipeIds.contains(recipeId)) {
+            self.lastSeenRecipeIds = self.lastSeenRecipeIds.filter { $0 != recipeId }
+        }
+        self.lastSeenRecipeIds.append(recipeId)
+        userDefaults.set(self.lastSeenRecipeIds, forKey: lastSeenRecipesKey)
     }
     
     func getRecipeById(recipeId: String) async {

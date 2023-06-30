@@ -61,7 +61,7 @@ struct RecipeContentView: View {
             print("Re-rendering")
         }
         .onAppear {
-//            viewModel.getRecipeById(recipeId: recipeId)
+            viewModel.updateLastSeenRecipes(recipeId: recipeId)
             print(viewModel.recipeDetails)
         }
         .coordinateSpace(name: "SCROLL")

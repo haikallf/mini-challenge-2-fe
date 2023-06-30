@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ScanView: View {
-    @EnvironmentObject var globalStates: GlobalStates
+    @StateObject var globalStates: GlobalStates = GlobalStates()
     @StateObject var scanViewModel = ScanViewModel()
     @State private var settingsDetent = PresentationDetent.height(140)
     @State private var showSheet = false
@@ -75,11 +75,11 @@ struct ScanView: View {
             VStack {
                 HStack {
                     VStack(alignment: .leading) {
-                        Text("Terakhir Di-scan")
+                        Text("Terakhir Dilihat")
                             .font(CustomFont.headline)
                             .fontWeight(.semibold)
                         
-                        Text("\(scanViewModel.lastSeenRecipes.count) Resep")
+                        Text("\(scanViewModel.lastSeenRecipeIds.count) Resep")
                             .font(CustomFont.caption)
                     }
                     .foregroundColor(Colors.AAA)
@@ -115,6 +115,26 @@ struct ScanView: View {
             
             Spacer()
         }
+        .onReceive(globalStates.$cookingWareFilter, perform: { _ in
+            Task {
+                await scanViewModel.getLastSeenRecipes(personalizations: globalStates.personalizationsFilter, cookingWare: globalStates.cookingWareFilter, cookingTime: globalStates.cookingTimeFilter, ingredientsCount: globalStates.ingredientsCountFilter)
+            }
+        })
+        .onReceive(globalStates.$cookingTimeFilter, perform: { _ in
+            Task {
+                await scanViewModel.getLastSeenRecipes(personalizations: globalStates.personalizationsFilter, cookingWare: globalStates.cookingWareFilter, cookingTime: globalStates.cookingTimeFilter, ingredientsCount: globalStates.ingredientsCountFilter)
+            }
+        })
+        .onReceive(globalStates.$ingredientsCountFilter, perform: { _ in
+            Task {
+                await scanViewModel.getLastSeenRecipes(personalizations: globalStates.personalizationsFilter, cookingWare: globalStates.cookingWareFilter, cookingTime: globalStates.cookingTimeFilter, ingredientsCount: globalStates.ingredientsCountFilter)
+            }
+        })
+        .onReceive(globalStates.$personalizationsFilter, perform: { _ in
+            Task {
+                await scanViewModel.getLastSeenRecipes(personalizations: globalStates.personalizationsFilter, cookingWare: globalStates.cookingWareFilter, cookingTime: globalStates.cookingTimeFilter, ingredientsCount: globalStates.ingredientsCountFilter)
+            }
+        })
         .onDisappear(perform: {
             isLoading = false
         })
@@ -132,7 +152,8 @@ struct ScanView: View {
                     .padding(.vertical, 12)
                     .padding(.horizontal)
                     
-//                    RecipeLists(recipes: scanViewModel.lastSeenRecipes)
+                    RecipeLists(recipes: scanViewModel.lastSeenRecipes)
+                        .environmentObject(globalStates)
                 }
             }
         }

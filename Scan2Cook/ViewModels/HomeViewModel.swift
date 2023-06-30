@@ -15,6 +15,7 @@ class HomeViewModel: ObservableObject {
     let userDefaults = UserDefaults.standard
     let lastSeenRecipesKey = "lastSeenRecipes"
     let usernameKey = "username"
+    let personalizationsKey = "personalizations"
     let globalStates = GlobalStates()
     
     init(){
@@ -23,16 +24,39 @@ class HomeViewModel: ObservableObject {
         username = userDefaults.string(forKey: usernameKey) ?? "Bre"
         
         Task { [weak self] in
-            await self?.getNewestRecipes()
+            await self?.getNewestRecipes(checkLocalStorage: true)
         }
         Task { [weak self] in
-            await self?.getTodaysRecipes()
+            await self?.getTodaysRecipes(checkLocalStorage: true)
         }
     }
     
-    func getTodaysRecipes(personalizations: [String] = [], cookingWare: [String] = [], cookingTime: [String] = [], ingredientsCount: [String] = []) async {
+    func getTodaysRecipes(personalizations: [String] = [], cookingWare: [String] = [], cookingTime: [String] = [], ingredientsCount: [String] = [], checkLocalStorage: Bool = false) async {
+        var temp: [String] = []
+        
+        //Subtract the array (FE: Black listing. BE White listing)
+        if (checkLocalStorage == true) {
+            var storagePersonalizations: [String] = []
+            storagePersonalizations = userDefaults.stringArray(forKey: personalizationsKey) ?? []
+            if (!storagePersonalizations.isEmpty) {
+                for elmt in globalStates.allPersonalizations {
+                    if !storagePersonalizations.contains(elmt) {
+                        temp.append(elmt)
+                    }
+                }
+            }
+        } else {
+            if (!personalizations.isEmpty) {
+                for elmt in globalStates.allPersonalizations {
+                    if !personalizations.contains(elmt) {
+                        temp.append(elmt)
+                    }
+                }
+            }
+        }
+        
         let recipeIds = ["8", "9", "10", "11", "12", "13", "14", "15"].joined(separator: ",")
-        let personalizationsStr = personalizations.joined(separator: ",")
+        let personalizationsStr = temp.joined(separator: ",")
         let cookingTimeStr = cookingTime.joined(separator: ",")
         let cookingWareStr = cookingWare.joined(separator: ",")
         let ingredientsCount = ingredientsCount.joined(separator: ",")
@@ -63,9 +87,33 @@ class HomeViewModel: ObservableObject {
         }
     }
     
-    func getNewestRecipes(personalizations: [String] = [], cookingWare: [String] = [], cookingTime: [String] = [], ingredientsCount: [String] = []) async {
+    func getNewestRecipes(personalizations: [String] = [], cookingWare: [String] = [], cookingTime: [String] = [], ingredientsCount: [String] = [], checkLocalStorage: Bool = true) async {
+        
+        var temp: [String] = []
+        
+        //Subtract the array (FE: Black listing. BE White listing)
+        if (checkLocalStorage == true) {
+            var storagePersonalizations: [String] = []
+            storagePersonalizations = userDefaults.stringArray(forKey: personalizationsKey) ?? []
+            if (!storagePersonalizations.isEmpty) {
+                for elmt in globalStates.allPersonalizations {
+                    if !storagePersonalizations.contains(elmt) {
+                        temp.append(elmt)
+                    }
+                }
+            }
+        } else {
+            if (!personalizations.isEmpty) {
+                for elmt in globalStates.allPersonalizations {
+                    if !personalizations.contains(elmt) {
+                        temp.append(elmt)
+                    }
+                }
+            }
+        }
+        
         let recipeIds = ["1", "2", "3", "4", "5", "6", "7"].joined(separator: ",")
-        let personalizationsStr = personalizations.joined(separator: ",")
+        let personalizationsStr = temp.joined(separator: ",")
         let cookingTimeStr = cookingTime.joined(separator: ",")
         let cookingWareStr = cookingWare.joined(separator: ",")
         let ingredientsCount = ingredientsCount.joined(separator: ",")
