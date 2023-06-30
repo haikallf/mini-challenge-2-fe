@@ -76,7 +76,7 @@ class CameraModel : NSObject, ObservableObject, AVCapturePhotoCaptureDelegate {
         }
     }
     
-    // MARK: Picture State
+    // MARK: Take Picture
     func takePicture(){
         DispatchQueue.global(qos: .background).async {
             let settings = AVCapturePhotoSettings()
@@ -97,7 +97,7 @@ class CameraModel : NSObject, ObservableObject, AVCapturePhotoCaptureDelegate {
         }
         
     }
-    
+    // MARK: Retake Picture
     func retakePicture(){
         DispatchQueue.global(qos: .background).async {
             self.session.startRunning()
@@ -130,7 +130,9 @@ class CameraModel : NSObject, ObservableObject, AVCapturePhotoCaptureDelegate {
         processedImage = resizedImage
     
         objectsDetected = mlManager.detectObjects(in: resizedImage)
-        self.cameraState = .objectDetected
+        withAnimation {
+            self.cameraState = .objectDetected
+        }
         identifiedIngredients = identifyIngredients(objectsDetected: objectsDetected!)
     }
     

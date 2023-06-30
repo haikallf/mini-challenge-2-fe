@@ -16,11 +16,9 @@ struct CameraPreviewView: View {
     var body: some View {
         NavigationStack{
             ZStack{
-                Color.black
-                    .opacity(0.9)
+                Color("black100")
                     .ignoresSafeArea()
                 VStack{
-                    
                     ZStack{
                         CameraPreview(camera: cameraModel)
                             .ignoresSafeArea()
@@ -35,11 +33,13 @@ struct CameraPreviewView: View {
                                     .foregroundColor(.white)
                                     .fontWeight(.bold)
                                     .frame(width: 329)
-                                    
                             }
                         }
-                       
-                        
+                        if cameraModel.cameraState == .photoTaken{
+                            Image(systemName: "magnifyingglass")
+                                .foregroundColor(.white)
+                                .font(.system(size: 48))
+                        }
                     }
                     VStack{
                         // MARK: Camera Initialized
@@ -55,7 +55,9 @@ struct CameraPreviewView: View {
                                      }
 
                                      Button {
-                                         cameraCaptured = true
+                                         withAnimation {
+                                             cameraCaptured = true
+                                         }
                                          cameraModel.takePicture()
                                      } label: {
                                          ZStack{
