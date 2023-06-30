@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RecipeCardList: View {
-    let recipe: RecipeResponse
+    let recipe: RecipeThumbnailResponse
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
@@ -28,10 +28,26 @@ struct RecipeCardList: View {
             
             Spacer()
             
-            Rectangle()
-                .fill(.gray)
-                .frame(width: 123, height: 123)
-                .cornerRadius(8)
+            
+            //MARK: Recipe Image
+            if let url = URL(string: recipe.image) {
+               AsyncImage(url: url) { image in
+                   image
+                       .resizable()
+                       .aspectRatio(contentMode: .fill)
+                       .frame(width: 123, height: 123)
+                       .cornerRadius(8)
+                       .clipped()
+               } placeholder: {
+                   // Placeholder view while the image is loading
+                   ProgressView()
+                       .frame(width: 123, height: 123)
+               }
+           } else {
+               // View to display when the URL is invalid or nil
+                ProgressView()
+                   .frame(width: 123, height: 123)
+           }
         }
         .padding(12)
     }

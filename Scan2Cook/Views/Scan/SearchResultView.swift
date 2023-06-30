@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SearchResultView: View {
-    @State var recipes: [RecipeResponse] = []
+    @State var recipes: [RecipeThumbnailResponse] = []
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     var body: some View {

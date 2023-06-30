@@ -45,7 +45,7 @@ struct RecipeStepsView: View {
                                } else {
                                    // View to display when the URL is invalid or nil
                                    VStack {
-                                       Text("Invalid URL")
+                                       ProgressView()
                                    }
                                    .frame(width: 393, height: 482)
                                    .background(Colors.disabled)

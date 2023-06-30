@@ -10,7 +10,7 @@ import SwiftUI
 struct RecipeListView: View {
     let title: String
     let description: String?
-    var recipes: [RecipeResponse]
+    var recipes: [RecipeThumbnailResponse]
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     

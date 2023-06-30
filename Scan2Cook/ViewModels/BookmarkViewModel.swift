@@ -9,8 +9,8 @@ import SwiftUI
 
 class BookmarkViewModel: ObservableObject {
     @Published var bookmarkedRecipeIds: [String]
-    @Published var bookmarkedRecipes: [RecipeResponse]
-    @Published var filteredRecipes: [RecipeResponse]
+    @Published var bookmarkedRecipes: [RecipeThumbnailResponse]
+    @Published var filteredRecipes: [RecipeThumbnailResponse]
     @Published var searchText: String = ""
     
     let userDefaults = UserDefaults.standard
@@ -25,10 +25,6 @@ class BookmarkViewModel: ObservableObject {
         Task { [weak self] in
             await self?.getRecipeByIds()
         }
-    }
-    
-    func getBookmarkedRecipes() -> [Recipe] {
-        return Recipe.all
     }
     
     func updateBookmarkIds(bookmarkId: String) {
@@ -51,7 +47,7 @@ class BookmarkViewModel: ObservableObject {
         }
     }
     
-    var filteredMeals: [RecipeResponse] {
+    var filteredMeals: [RecipeThumbnailResponse] {
         guard !searchText.isEmpty else { return bookmarkedRecipes }
 
         return bookmarkedRecipes.filter { recipe in
@@ -62,7 +58,11 @@ class BookmarkViewModel: ObservableObject {
     func getRecipeByIds() async {
         let recipeIds = self.bookmarkedRecipeIds.joined(separator: ",")
         
-        guard let url = URL(string: "\(globalStates.baseURL)/resep?resepId=\(recipeIds)") else { fatalError("URL not found!") }
+        if (recipeIds.isEmpty) {
+            return
+        }
+        
+        guard let url = URL(string: "\(globalStates.baseURL)/home?ids=\(recipeIds)") else { fatalError("URL not found!") }
         
         do {
             let (data, response) = try await URLSession.shared.data(from: url)
@@ -71,21 +71,21 @@ class BookmarkViewModel: ObservableObject {
             if httpResponse.statusCode == 200 {
                 DispatchQueue.main.async {
                     do {
-                        let decodedRecipe = try JSONDecoder().decode([RecipeResponse].self, from: data)
+                        let decodedRecipe = try JSONDecoder().decode([RecipeThumbnailResponse].self, from: data)
                         self.bookmarkedRecipes = decodedRecipe
                         self.filteredRecipes = decodedRecipe
                     } catch let error {
-                        print("Error decoding: ", error)
-                        self.bookmarkedRecipes = []
+                        print("Error decoding: ", error.localizedDescription)
+//                        self.bookmarkedRecipes = []
                     }
                 }
             } else {
-                self.bookmarkedRecipes = []
+//                self.bookmarkedRecipes = []
             }
         } catch {
-            print("Request error: ", error)
-            self.bookmarkedRecipes = []
+            print("Request error: ", error.localizedDescription)
+//            self.bookmarkedRecipes = []
         }
-        
+        print(filteredRecipes)
     }
 }

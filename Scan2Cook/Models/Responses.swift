@@ -21,6 +21,13 @@ struct RecipeResponse: Equatable, Identifiable, Decodable {
     let resep_personalisasis: [PersonalizationResponse]
 }
 
+struct RecipeThumbnailResponse: Equatable, Identifiable, Decodable {
+    let id: Int
+    let nama_resep: String
+    let image: String
+    let resep_personalisasis: [PersonalizationResponse]
+}
+
 struct IngredientResponse: Equatable, Identifiable, Decodable {
     let id: Int
     let jumlah: Int?

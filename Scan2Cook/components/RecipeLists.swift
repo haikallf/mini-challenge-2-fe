@@ -9,7 +9,7 @@ import SwiftUI
 import WrapLayout
 
 struct RecipeLists: View {
-    var recipes: [RecipeResponse]
+    var recipes: [RecipeThumbnailResponse]
     @StateObject var personalizationViewModel = PersonalizationViewModel()
     @StateObject var filterViewModel = FilterViewModel()
     @State var selectedViewMode = "list"
