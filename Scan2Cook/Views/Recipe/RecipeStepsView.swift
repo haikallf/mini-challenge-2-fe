@@ -10,7 +10,8 @@ import SwiftUI
 struct RecipeStepsView: View {
     @State private var shouldNavigate: Bool = false
     @State private var pageIndex = 1
-    private let steps: [String] = ["Rebus Indomie ke dalam panci sampai setengah matang. Sambil menunggu indomie setengah matang, Tuangkan bumbu Indomie dan cabai bubuk secukupnya ke dalam piring.", "Tuangkan mie ke dalam piring yang sudah diberi bumbu, lalu aduk rata. Kocok telur dan tambahkan penyedap rasa.", "Campurkan tepung terigu dan maizena ke dalam wadah yang agak besar. Campurkan penyedap rasa dan cabai bubuk secukupnya ke dalam wadah yang berisi tepung terigu dan maizena. Lalu aduk hingga tercampur"]
+    var steps: [String]
+    var imageURLs: [String] = []
     
     var timer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
     private let dotAppearance = UIPageControl.appearance()
@@ -25,29 +26,31 @@ struct RecipeStepsView: View {
             VStack {
                 // MARK: TabView
                 TabView(selection: $pageIndex) {
-                    ForEach(steps.indices) { idx in
-                        // MARK: TabView Adapter
-                        VStack(alignment: .leading) {
-                            Rectangle().fill(.gray).frame(width: 393, height: 393)
-                            VStack(alignment: .leading, spacing: 8) {
-                                Text("STEP \(idx + 1)")
-                                    .font(CustomFont.body)
-                                    .fontWeight(.bold)
-                                    .foregroundColor(.black)
-                                    .multilineTextAlignment(.leading)
-                                    .fixedSize(horizontal: false, vertical: true)
+                    if (steps.count > 0) {
+                        ForEach(steps.indices) { idx in
+                            // MARK: TabView Adapter
+                            VStack(alignment: .leading) {
+                                Rectangle().fill(.gray).frame(width: 393, height: 393)
+                                VStack(alignment: .leading, spacing: 8) {
+                                    Text("STEP \(idx + 1)")
+                                        .font(CustomFont.body)
+                                        .fontWeight(.bold)
+                                        .foregroundColor(.black)
+                                        .multilineTextAlignment(.leading)
+                                        .fixedSize(horizontal: false, vertical: true)
+                                    
+                                    Text(steps[idx])
+                                        .font(CustomFont.title4)
+                                        .foregroundColor(Colors.AA)
+                                        .multilineTextAlignment(.leading)
+                                        .fixedSize(horizontal: false, vertical: true)
+                                }
+                                .padding()
                                 
-                                Text(steps[idx])
-                                    .font(CustomFont.title4)
-                                    .foregroundColor(Colors.AA)
-                                    .multilineTextAlignment(.leading)
-                                    .fixedSize(horizontal: false, vertical: true)
+                                Spacer()
                             }
-                            .padding()
-                            
-                            Spacer()
+                            .tag(idx + 1)
                         }
-                        .tag(idx + 1)
                     }
                 }
                 .animation(.easeInOut, value: pageIndex)
@@ -70,7 +73,9 @@ struct RecipeStepsView: View {
                     })
                     Spacer()
                     
-                    DotIndicator(currentIndex: $pageIndex, maxIndex: steps.count)
+                    if (steps.count > 0) {
+                        DotIndicator(currentIndex: $pageIndex, maxIndex: steps.count)
+                    }
                     
                     Spacer()
                     
@@ -123,6 +128,6 @@ struct RecipeStepsView: View {
 
 struct RecipeStepsView_Previews: PreviewProvider {
     static var previews: some View {
-        RecipeStepsView()
+        RecipeStepsView(steps: [])
     }
 }

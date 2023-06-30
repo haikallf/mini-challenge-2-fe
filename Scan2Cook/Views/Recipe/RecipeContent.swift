@@ -11,8 +11,15 @@ struct RecipeContentView: View {
     let recipeId: String
     var safeArea: EdgeInsets
     var size: CGSize
+    @ObservedObject var viewModel: RecipeDetailsViewModel
     
-    @ObservedObject var viewModel = RecipeDetailsViewModel()
+    
+    init(recipeId: String, safeArea: EdgeInsets, size: CGSize) {
+        self.recipeId = recipeId
+        self.safeArea = safeArea
+        self.size = size
+        self.viewModel = RecipeDetailsViewModel(recipeId: recipeId)
+    }
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
@@ -24,7 +31,7 @@ struct RecipeContentView: View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack{
                 
-                if let url = URL(string: viewModel.recipeDetails?.image ?? "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?20200913095930") {
+                if let url = URL(string: viewModel.recipeDetails?.image ?? "") {
                        AsyncImage(url: url) { image in
                            image
                                .resizable()
@@ -34,22 +41,18 @@ struct RecipeContentView: View {
                        } placeholder: {
                            // Placeholder view while the image is loading
                            ProgressView()
+                               .frame(width: 393, height: 482)
                        }
                    } else {
                        // View to display when the URL is invalid or nil
-                       Text("Invalid URL")
-                           .foregroundColor(.red)
+                       VStack {
+                           Text("Invalid URL")
+                       }
+                       .frame(width: 393, height: 482)
+                       .background(Colors.disabled)
                    }
-               
                 
-//                // MARK: Image
-//                Image("dummy-img")
-//                    .resizable()
-//                    .aspectRatio(contentMode: .fill)
-//                    .frame(width: 393, height: 482)
-//                    .clipped()
-                
-                RecipeDetailsSheet(recipeId: recipeId)
+                RecipeDetailsSheet(recipeId: recipeId, viewModel: viewModel)
             }
             .overlay(alignment: .top) {
                 HeaderView()

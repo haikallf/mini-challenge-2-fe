@@ -10,12 +10,13 @@ import SwiftUI
 struct RecipeDetailsSheet: View {
     let recipeId: String
     
-    @StateObject var viewModel = RecipeDetailsViewModel()
+    @ObservedObject var viewModel: RecipeDetailsViewModel
     @State private var shouldNavigate: Bool = false
     
     @State var portionCount: Int = 1
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
     
     var body: some View {
         ZStack {
@@ -289,7 +290,7 @@ struct RecipeDetailsSheet: View {
                 .padding(.horizontal)
                 
                 //MARK: Navigate to RecipeStepsView triggered by shouldNavigate
-                NavigationLink(destination: RecipeStepsView(), isActive: $shouldNavigate) {
+                NavigationLink(destination: RecipeStepsView(steps: viewModel.recipeDetails?.langkah_masak ?? []), isActive: $shouldNavigate) {
                     EmptyView()
                 }
                 .opacity(0)
@@ -310,7 +311,7 @@ struct RecipeDetailsSheet: View {
 
 struct RecipeDetailsSheet_Previews: PreviewProvider {
     static var previews: some View {
-        RecipeDetailsSheet(recipeId: "1")
+        RecipeDetailsSheet(recipeId: "1", viewModel: RecipeDetailsViewModel(recipeId: "1"))
     }
 }
 

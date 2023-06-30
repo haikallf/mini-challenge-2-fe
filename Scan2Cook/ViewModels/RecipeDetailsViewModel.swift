@@ -13,8 +13,8 @@ class RecipeDetailsViewModel: ObservableObject {
     
     let globalStates = GlobalStates()
     
-    init(){
-        recipeDetails = nil
+    init(recipeId: String){
+        getRecipeById(recipeId: recipeId)
     }
     
     func getRecipeById(recipeId: String) {
@@ -51,8 +51,11 @@ class RecipeDetailsViewModel: ObservableObject {
                         
                     } catch let error {
                         print("Error decoding: ", error)
+                        self.recipeDetails = nil
                     }
                 }
+            } else {
+                self.recipeDetails = nil
             }
         }
 
