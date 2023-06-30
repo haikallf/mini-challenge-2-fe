@@ -277,12 +277,16 @@ struct RecipeLists: View {
             })
             
             Spacer()
+            
         }
         .onAppear {
             personalizationsTemp = personalizationViewModel.personalizations
             cookingWareTemp = filterViewModel.cookingWare
             cookingTimeTemp = filterViewModel.cookingTime
             ingredientsCountTemp = filterViewModel.ingredientsCount
+        }
+        .onDisappear {
+            globalStates.clearFilters()
         }
     }
 }

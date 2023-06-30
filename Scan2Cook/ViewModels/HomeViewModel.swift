@@ -30,10 +30,14 @@ class HomeViewModel: ObservableObject {
         }
     }
     
-    func getTodaysRecipes() async {
+    func getTodaysRecipes(personalizations: [String] = [], cookingWare: [String] = [], cookingTime: [String] = [], ingredientsCount: [String] = []) async {
         let recipeIds = ["8", "9", "10", "11", "12", "13", "14", "15"].joined(separator: ",")
+        let personalizationsStr = personalizations.joined(separator: ",")
+        let cookingTimeStr = cookingTime.joined(separator: ",")
+        let cookingWareStr = cookingWare.joined(separator: ",")
+        let ingredientsCount = ingredientsCount.joined(separator: ",")
         
-        guard let url = URL(string: "\(globalStates.baseURL)/resep?resepId=\(recipeIds)") else { fatalError("URL not found!") }
+        guard let url = URL(string: "\(globalStates.baseURL)/resep?resepId=\(recipeIds)&personalisasiOrang=\(personalizationsStr)&alatMasak=\(cookingWareStr)&waktuPembuatan=\(cookingTimeStr)") else { fatalError("URL not found!") }
         
         do {
             let (data, response) = try await URLSession.shared.data(from: url)
@@ -59,10 +63,16 @@ class HomeViewModel: ObservableObject {
         }
     }
     
-    func getNewestRecipes() async {
+    func getNewestRecipes(personalizations: [String] = [], cookingWare: [String] = [], cookingTime: [String] = [], ingredientsCount: [String] = []) async {
         let recipeIds = ["1", "2", "3", "4", "5", "6", "7"].joined(separator: ",")
+        let personalizationsStr = personalizations.joined(separator: ",")
+        let cookingTimeStr = cookingTime.joined(separator: ",")
+        let cookingWareStr = cookingWare.joined(separator: ",")
+        let ingredientsCount = ingredientsCount.joined(separator: ",")
         
-        guard let url = URL(string: "\(globalStates.baseURL)/resep?resepId=\(recipeIds)") else { fatalError("URL not found!") }
+        guard let url = URL(string: "\(globalStates.baseURL)/resep?resepId=\(recipeIds)&personalisasiOrang=\(personalizationsStr)&alatMasak=\(cookingWareStr)&waktuPembuatan=\(cookingTimeStr)") else { fatalError("URL not found!") }
+        
+        print(url)
         
         do {
             let (data, response) = try await URLSession.shared.data(from: url)

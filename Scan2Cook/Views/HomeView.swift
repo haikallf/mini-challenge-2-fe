@@ -13,6 +13,7 @@ struct HomeView: View {
     @State var isPersonalizationSheetShown: Bool = false
     
     @StateObject var personalizationViewModel = PersonalizationViewModel()
+    @StateObject var globalStates: GlobalStates = GlobalStates()
     
     @State private var shouldNavigate: Bool = false
     
@@ -66,7 +67,7 @@ struct HomeView: View {
                         
                         Spacer()
                         
-                        NavigationLink(destination: RecipeListView(title: "Resep Hari Ini", description: "Ada resep pilihan dari kami untuk kamu untuk hari ini nih!", recipes: viewModel.todaysRecipe), label: {
+                        NavigationLink(destination: RecipeListView(title: "Resep Hari Ini", description: "Ada resep pilihan dari kami untuk kamu untuk hari ini nih!", recipes: viewModel.todaysRecipe).environmentObject(globalStates), label: {
                             Text("Lihat Semua →")
                                 .font(CustomFont.footnote)
                                 .fontWeight(.semibold)
@@ -90,7 +91,7 @@ struct HomeView: View {
                         
                         Spacer()
                         
-                        NavigationLink(destination: RecipeListView(title: "Resep Terbaru", description: "Ada resep yang baru ditambahkan nih!", recipes: viewModel.newestRecipes), label: {
+                        NavigationLink(destination: RecipeListView(title: "Resep Terbaru", description: "Ada resep yang baru ditambahkan nih!", recipes: viewModel.newestRecipes).environmentObject(globalStates), label: {
                             Text("Lihat Semua →")
                                 .font(CustomFont.footnote)
                                 .fontWeight(.semibold)
@@ -110,6 +111,34 @@ struct HomeView: View {
         }
         .frame(maxWidth: .infinity)
         .navigationBarBackButtonHidden(true)
+        .onReceive(globalStates.$cookingWareFilter, perform: { _ in
+            Task {
+                await viewModel.getTodaysRecipes(personalizations: globalStates.personalizationsFilter, cookingWare: globalStates.cookingWareFilter, cookingTime: globalStates.cookingTimeFilter, ingredientsCount: globalStates.ingredientsCountFilter)
+                
+                await viewModel.getNewestRecipes(personalizations: globalStates.personalizationsFilter, cookingWare: globalStates.cookingWareFilter, cookingTime: globalStates.cookingTimeFilter, ingredientsCount: globalStates.ingredientsCountFilter)
+            }
+        })
+        .onReceive(globalStates.$cookingTimeFilter, perform: { _ in
+            Task {
+                await viewModel.getTodaysRecipes(personalizations: globalStates.personalizationsFilter, cookingWare: globalStates.cookingWareFilter, cookingTime: globalStates.cookingTimeFilter, ingredientsCount: globalStates.ingredientsCountFilter)
+                
+                await viewModel.getNewestRecipes(personalizations: globalStates.personalizationsFilter, cookingWare: globalStates.cookingWareFilter, cookingTime: globalStates.cookingTimeFilter, ingredientsCount: globalStates.ingredientsCountFilter)
+            }
+        })
+        .onReceive(globalStates.$ingredientsCountFilter, perform: { _ in
+            Task {
+                await viewModel.getTodaysRecipes(personalizations: globalStates.personalizationsFilter, cookingWare: globalStates.cookingWareFilter, cookingTime: globalStates.cookingTimeFilter, ingredientsCount: globalStates.ingredientsCountFilter)
+                
+                await viewModel.getNewestRecipes(personalizations: globalStates.personalizationsFilter, cookingWare: globalStates.cookingWareFilter, cookingTime: globalStates.cookingTimeFilter, ingredientsCount: globalStates.ingredientsCountFilter)
+            }
+        })
+        .onReceive(globalStates.$personalizationsFilter, perform: { _ in
+            Task {
+                await viewModel.getTodaysRecipes(personalizations: globalStates.personalizationsFilter, cookingWare: globalStates.cookingWareFilter, cookingTime: globalStates.cookingTimeFilter, ingredientsCount: globalStates.ingredientsCountFilter)
+                
+                await viewModel.getNewestRecipes(personalizations: globalStates.personalizationsFilter, cookingWare: globalStates.cookingWareFilter, cookingTime: globalStates.cookingTimeFilter, ingredientsCount: globalStates.ingredientsCountFilter)
+            }
+        })
         .sheet(isPresented: $isPersonalizationSheetShown, content: {
             VStack {
                 VStack(alignment: .leading) {

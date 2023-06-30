@@ -49,4 +49,11 @@ class GlobalStates: ObservableObject {
         self.cookingWareFilter = cookingWareFilter
         self.ingredientsCountFilter = ingredientsCountFilter
     }
+    
+    func clearFilters() {
+        personalizationsFilter = UserDefaults.standard.stringArray(forKey: "personalizations") ?? []
+        cookingWareFilter = []
+        cookingTimeFilter = []
+        ingredientsCountFilter = []
+    }
 }
