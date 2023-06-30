@@ -9,12 +9,14 @@ import SwiftUI
 
 struct CameraPreviewView: View {
     @EnvironmentObject var scanViewModel : ScanViewModel
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @StateObject var cameraModel = CameraModel()
     @State var navigateNextView = false
     @State var cameraPreviewNavigation : CameraPreviewNavigation?
     @State var cameraCaptured = false
     var body: some View {
         NavigationStack{
+            BackButton(color: .white)
             ZStack{
                 Color("black100")
                     .ignoresSafeArea()
@@ -139,8 +141,6 @@ struct CameraPreviewView: View {
             }
 
         }.navigationBarBackButtonHidden(true)
-            .navigationBarItems(leading: backButton())
-        .modifier(HideBackButtonModifier())
     }
 }
 
