@@ -141,19 +141,25 @@ struct ScanView: View {
         .navigationBarBackButtonHidden(true)
         .sheet(isPresented: $showSheet) {
             NavigationView {
-                VStack() {
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text("Terakhir Dilihat")
-                            .font(.title3)
-                            .fontWeight(.semibold)
-                            .padding(.top)
-                    }
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.vertical, 12)
-                    .padding(.horizontal)
+                ZStack {
+                    Colors.background
+                        .ignoresSafeArea()
                     
-                    RecipeLists(recipes: scanViewModel.lastSeenRecipes)
-                        .environmentObject(globalStates)
+                    VStack {
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text("Terakhir Dilihat")
+                                .font(CustomFont.title6)
+                                .fontWeight(.bold)
+                                .foregroundColor(Colors.AAA)
+                                .padding(.top)
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.vertical, 12)
+                        .padding(.horizontal)
+                        
+                        RecipeLists(recipes: scanViewModel.lastSeenRecipes)
+                            .environmentObject(globalStates)
+                    }
                 }
             }
         }

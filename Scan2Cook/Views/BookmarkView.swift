@@ -35,8 +35,36 @@ struct BookmarkView: View {
             .padding(.horizontal)
             
             //MARK: Recipes List
-            RecipeLists(recipes: viewModel.filteredRecipes)
-                .environmentObject(globalStates)
+            if (viewModel.bookmarkedRecipeIds.count == 0) {
+                Spacer()
+                VStack(spacing: 12) {
+                    Image(systemName: "bookmark.slash")
+                        .resizable()
+                        .frame(width: 43, height: 42)
+                        .foregroundColor(Colors.disabled)
+                    
+                    Text("Kamu belum menyimpan resep apapun")
+                        .frame(maxWidth: 207)
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(Colors.disabled)
+                    
+                    NavigationLink(destination: ScanView().colorScheme(.light), label: {
+                        Text("Cari Resep")
+                            .padding(.vertical, 8)
+                            .padding(.horizontal, 12)
+                            .font(CustomFont.subheadline)
+                            .foregroundColor(.white)
+                            .background(Colors.secondary)
+                            .clipShape(Capsule())
+                    })
+                }
+                .padding(.vertical, 10)
+                
+                Spacer()
+            } else {
+                RecipeLists(recipes: viewModel.filteredRecipes)
+                    .environmentObject(globalStates)
+            }
         }
         .onReceive(viewModel.$searchText) { _ in
             viewModel.filterRecipe()

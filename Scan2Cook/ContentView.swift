@@ -20,11 +20,12 @@ struct ContentView: View {
                 Group {
                     if (UserDefaults.standard.object(forKey: "isNotFirstTimer") != nil) {
                         MainView()
+                            .colorScheme(.light)
                     } else {
                         OnboardingView()
+                            .colorScheme(.light)
                     }
                 }
-//                OnboardingView()
             }
         }
     }

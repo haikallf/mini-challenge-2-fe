@@ -140,77 +140,84 @@ struct HomeView: View {
             }
         })
         .sheet(isPresented: $isPersonalizationSheetShown, content: {
-            VStack {
-                VStack(alignment: .leading) {
-                    //MARK: Heading Section
-                    VStack(alignment: .leading, spacing: 6) {
-                        //MARK: Page Heading
-                        Text("Personalisasi Akun")
-                            .font(.largeTitle)
-                            .fontWeight(.bold)
-                            .multilineTextAlignment(.leading)
-                        
-                        //MARK: Page Subheading
-                        Text("Cupcake ipsum dolor sit amet cookie. Oat cake apple pie sweet dessert jujubes brownie.")
-                            .font(.subheadline)
-                            .multilineTextAlignment(.leading)
-                    }
-                    .padding(.bottom, 12)
-                    .padding(.top, 24)
-                    
-                    //MARK: Personalization Section
-                    VStack(alignment: .leading, spacing: 14) {
-                        Text("Aku ga bisa makan...")
-                            .font(.title3)
-                            .fontWeight(.semibold)
-                        
-                        WrapLayout(horizontalSpacing: 14, verticalSpacing: 14) {
-                            PersonalizationTag("Laktosa", emoji: "🥛", isSelected: personalizationViewModel.personalizations.contains(
-                                getPersonalizationType(personalization: PersonalizationType.laktosa)
-                            ), action: {
-                                personalizationViewModel.updatePersonalizations(
-                                    personalization: getPersonalizationType(personalization: PersonalizationType.laktosa)
-                                )
-                            })
+            ZStack {
+                Colors.background
+                    .ignoresSafeArea()
+                
+                VStack {
+                    VStack(alignment: .leading) {
+                        //MARK: Heading Section
+                        VStack(alignment: .leading, spacing: 6) {
+                            //MARK: Page Heading
+                            Text("Personalisasi Akun")
+                                .font(.largeTitle)
+                                .fontWeight(.bold)
+                                .multilineTextAlignment(.leading)
                             
-                            PersonalizationTag("Seafood", emoji: "🐟", isSelected: personalizationViewModel.personalizations.contains(
-                                getPersonalizationType(personalization: PersonalizationType.seafood)
-                            ), action:  {
-                                personalizationViewModel.updatePersonalizations(
-                                    personalization: getPersonalizationType(personalization: PersonalizationType.seafood)
-                                )
-                            })
-                            
-                            PersonalizationTag("Kacang", emoji: "🥜", isSelected: personalizationViewModel.personalizations.contains(
-                                getPersonalizationType(personalization: PersonalizationType.kacang)
-                            ), action:  {
-                                personalizationViewModel.updatePersonalizations(
-                                    personalization: getPersonalizationType(personalization: PersonalizationType.kacang)
-                                )
-                            })
-                            
-                            PersonalizationTag("Babi", emoji: "🐷", isSelected: personalizationViewModel.personalizations.contains(
-                                getPersonalizationType(personalization: PersonalizationType.babi)
-                            ), action:  {
-                                personalizationViewModel.updatePersonalizations(
-                                    personalization: getPersonalizationType(personalization: PersonalizationType.babi)
-                                )
-                            })
+                            //MARK: Page Subheading
+                            Text("Cupcake ipsum dolor sit amet cookie. Oat cake apple pie sweet dessert jujubes brownie.")
+                                .font(.subheadline)
+                                .multilineTextAlignment(.leading)
                         }
+                        .foregroundColor(Colors.AAA)
+                        .padding(.bottom, 12)
+                        .padding(.top, 24)
+                        
+                        //MARK: Personalization Section
+                        VStack(alignment: .leading, spacing: 14) {
+                            Text("Aku ga bisa makan...")
+                                .font(CustomFont.title6)
+                                .fontWeight(.semibold)
+                                .foregroundColor(Colors.AAA)
+                            
+                            WrapLayout(horizontalSpacing: 14, verticalSpacing: 14) {
+                                PersonalizationTag("Laktosa", emoji: "🥛", isSelected: personalizationViewModel.personalizations.contains(
+                                    getPersonalizationType(personalization: PersonalizationType.laktosa)
+                                ), action: {
+                                    personalizationViewModel.updatePersonalizations(
+                                        personalization: getPersonalizationType(personalization: PersonalizationType.laktosa)
+                                    )
+                                })
+                                
+                                PersonalizationTag("Seafood", emoji: "🐟", isSelected: personalizationViewModel.personalizations.contains(
+                                    getPersonalizationType(personalization: PersonalizationType.seafood)
+                                ), action:  {
+                                    personalizationViewModel.updatePersonalizations(
+                                        personalization: getPersonalizationType(personalization: PersonalizationType.seafood)
+                                    )
+                                })
+                                
+                                PersonalizationTag("Kacang", emoji: "🥜", isSelected: personalizationViewModel.personalizations.contains(
+                                    getPersonalizationType(personalization: PersonalizationType.kacang)
+                                ), action:  {
+                                    personalizationViewModel.updatePersonalizations(
+                                        personalization: getPersonalizationType(personalization: PersonalizationType.kacang)
+                                    )
+                                })
+                                
+                                PersonalizationTag("Babi", emoji: "🐷", isSelected: personalizationViewModel.personalizations.contains(
+                                    getPersonalizationType(personalization: PersonalizationType.babi)
+                                ), action:  {
+                                    personalizationViewModel.updatePersonalizations(
+                                        personalization: getPersonalizationType(personalization: PersonalizationType.babi)
+                                    )
+                                })
+                            }
+                        }
+                        .padding(.vertical, 12)
+                        
+                        Spacer()
+                        
+                        CupertinoButton("Simpan", action: {
+                            personalizationViewModel.setPersonalizations()
+                            isPersonalizationSheetShown = false
+                        })
                     }
-                    .padding(.vertical, 12)
-                    
-                    Spacer()
-                    
-                    CupertinoButton("Simpan", action: {
-                        personalizationViewModel.setPersonalizations()
-                        isPersonalizationSheetShown = false
-                    })
-                }
-                .padding(.horizontal)
-                .navigationBarBackButtonHidden(true)
-                .onAppear {
-                    print(personalizationViewModel.personalizations)
+                    .padding(.horizontal)
+                    .navigationBarBackButtonHidden(true)
+                    .onAppear {
+                        print(personalizationViewModel.personalizations)
+                    }
                 }
             }
         })

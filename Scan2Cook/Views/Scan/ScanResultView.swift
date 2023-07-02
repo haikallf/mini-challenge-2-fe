@@ -28,39 +28,44 @@ struct ScanResultView: View {
 
         
         //MARK: Ingredients Detail Section
-        VStack {
-            //MARK: Heading
-            VStack(alignment: .leading, spacing: 4) {
-                Text("\(scanViewModel.selectedIngredients.count) Bahan ditemukan")
-                    .font(CustomFont.title6)
-                    .fontWeight(.bold)
-                
-                
-                Text("Cek dulu barang yang kamu scan udah bener atau belum~")
-                    .font(CustomFont.footnote)
-            }
-            .foregroundColor(Colors.AAA)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.vertical, 12)
-            .padding(.horizontal)
+        ZStack {
+            Colors.background
+                .ignoresSafeArea()
             
-            //MARK: Selected Ingredients
-            WrapLayout(horizontalSpacing: 10, verticalSpacing: 14) {
-                ForEach(scanViewModel.selectedIngredients, id: \.self) { ingredient in
-                    IngredientTag(text: ingredient.name, isSelected: true, onTap: {
-                        scanViewModel.updateSelectedIngredients(ingredient: ingredient)
-                    }, backgroundColor: .orange.opacity(0.2))
+            VStack {
+                //MARK: Heading
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("\(scanViewModel.selectedIngredients.count) Bahan ditemukan")
+                        .font(CustomFont.title6)
+                        .fontWeight(.bold)
+                    
+                    
+                    Text("Cek dulu barang yang kamu scan udah bener atau belum~")
+                        .font(CustomFont.footnote)
                 }
-                IngredientTag(text: "Tambah Bahan", isSelected: false, onTap: {
-                    isAddIngredientsSheetShown = true
-                }, backgroundColor: Colors.tertiaryContainer)
-                HStack {
-                    Spacer()
+                .foregroundColor(Colors.AAA)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.vertical, 12)
+                .padding(.horizontal)
+                
+                //MARK: Selected Ingredients
+                WrapLayout(horizontalSpacing: 10, verticalSpacing: 14) {
+                    ForEach(scanViewModel.selectedIngredients, id: \.self) { ingredient in
+                        IngredientTag(text: ingredient.name, isSelected: true, onTap: {
+                            scanViewModel.updateSelectedIngredients(ingredient: ingredient)
+                        }, backgroundColor: .orange.opacity(0.2))
+                    }
+                    IngredientTag(text: "Tambah Bahan", isSelected: false, onTap: {
+                        isAddIngredientsSheetShown = true
+                    }, backgroundColor: Colors.tertiaryContainer)
+                    HStack {
+                        Spacer()
+                    }
                 }
-            }
-            .padding(.horizontal, 20)
-            Spacer()
-        }.background(in: Rectangle())
+                .padding(.horizontal, 20)
+                Spacer()
+            }.background(in: Rectangle())
+        }
         
         
         

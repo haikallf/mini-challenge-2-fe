@@ -16,73 +16,77 @@ struct EducationView: View {
     var timer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
     
     var body: some View {
-        VStack {
-            // MARK: Skip Button
-            BackButton()
-            
-            // MARK: TabView
-            TabView(selection: $pageIndex) {
+        ZStack {
+            Colors.background
+                .ignoresSafeArea()
+            VStack {
+                // MARK: Skip Button
+                BackButton()
                 
-                ForEach(Array(onboardings.enumerated()), id: \.element) { idx, onboarding in
-                    // MARK: TabView Adapter
-                    VStack(alignment: .leading, spacing: 16) {
+                // MARK: TabView
+                TabView(selection: $pageIndex) {
+                    
+                    ForEach(Array(onboardings.enumerated()), id: \.element) { idx, onboarding in
+                        // MARK: TabView Adapter
                         VStack(alignment: .leading, spacing: 16) {
-                            Text(onboarding.title)
-                                .font(CustomFont.title3)
-                                .foregroundColor(Colors.AAA)
-                                .multilineTextAlignment(.leading)
-                                .fixedSize(horizontal: false, vertical: true)
-                            
-                            Text(onboarding.content)
-                                .font(CustomFont.body)
-                                .foregroundColor(Colors.AAA)
-                                .multilineTextAlignment(.leading)
-                                .fixedSize(horizontal: false, vertical: true)
-                        }
-                        .padding(.horizontal)
-                        
-                        Image("education-\(idx + 1)")
-                            .resizable()
-                            .frame(width: 361, height: 203.06)
+                            VStack(alignment: .leading, spacing: 16) {
+                                Text(onboarding.title)
+                                    .font(CustomFont.title3)
+                                    .foregroundColor(Colors.AAA)
+                                    .multilineTextAlignment(.leading)
+                                    .fixedSize(horizontal: false, vertical: true)
+                                
+                                Text(onboarding.content)
+                                    .font(CustomFont.body)
+                                    .foregroundColor(Colors.AAA)
+                                    .multilineTextAlignment(.leading)
+                                    .fixedSize(horizontal: false, vertical: true)
+                            }
                             .padding(.horizontal)
-                        
-                        Spacer()
+                            
+                            Image("education-\(idx + 1)")
+                                .resizable()
+                                .frame(width: 361, height: 203.06)
+                                .padding(.horizontal)
+                            
+                            Spacer()
+                        }
+                        .tag(onboarding.id)
                     }
-                    .tag(onboarding.id)
                 }
-            }
-            .animation(.easeInOut, value: pageIndex)
-            .tabViewStyle(.page(indexDisplayMode: .never))
-//            .padding(.bottom, 10)
-//            .onReceive(timer, perform: { _ in
-//                withAnimation {
-//                    pageIndex = pageIndex < onboardings.count ? pageIndex + 1 : 1
-//                }
-//
-//            })
-            
-            HStack() {
-                PillIndicator(currentIndex: $pageIndex, maxIndex: onboardings.count)
-                Spacer()
-                Button(action: {
-                    incrementPage()
-                }, label: {
+                .animation(.easeInOut, value: pageIndex)
+                .tabViewStyle(.page(indexDisplayMode: .never))
+    //            .padding(.bottom, 10)
+    //            .onReceive(timer, perform: { _ in
+    //                withAnimation {
+    //                    pageIndex = pageIndex < onboardings.count ? pageIndex + 1 : 1
+    //                }
+    //
+    //            })
+                
+                HStack() {
+                    PillIndicator(currentIndex: $pageIndex, maxIndex: onboardings.count)
+                    Spacer()
                     Button(action: {
                         incrementPage()
                     }, label: {
-                        Text(isLastPage() ? "Selesai" : "→")
-                            .padding(.vertical, 14)
-                            .padding(.horizontal, 20)
-                            .foregroundColor(.white)
-                            .background(Colors.secondary)
-                            .cornerRadius(12)
-                            .minimumScaleFactor(0.01)
+                        Button(action: {
+                            incrementPage()
+                        }, label: {
+                            Text(isLastPage() ? "Selesai" : "→")
+                                .padding(.vertical, 14)
+                                .padding(.horizontal, 20)
+                                .foregroundColor(.white)
+                                .background(Colors.secondary)
+                                .cornerRadius(12)
+                                .minimumScaleFactor(0.01)
+                        })
                     })
-                })
+                }
+                .padding()
             }
-            .padding()
+            .navigationBarBackButtonHidden(true)
         }
-        .navigationBarBackButtonHidden(true)
     }
     
     func incrementPage() {
