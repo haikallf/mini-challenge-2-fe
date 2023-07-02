@@ -35,18 +35,17 @@ struct SearchResultView: View {
                 
                 RecipeLists(recipes: searchResultViewModel.recipeResults)
                     .environmentObject(GlobalStates())
-                
-                Spacer()
+                NavigationLink("", destination: MainView(), isActive: $navigateToHome)
             }
             .navigationBarBackButtonHidden(true)
             .task {
-                print("ingredients : \(ingredients)")
                 searchResultViewModel.convertIngredient(ingredients: ingredients)
                 await searchResultViewModel.getRecipeResults()
             }
             .toolbar{
                 ToolbarItem(placement: .navigationBarLeading) {
                     BackButton()
+                        .offset(x: -15, y: -5)
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
@@ -58,10 +57,10 @@ struct SearchResultView: View {
                     })
                 
                 }
-        }
+            }
         }
         
-        NavigationLink("", destination: MainView(), isActive: $navigateToHome)
+        
     }
 }
 

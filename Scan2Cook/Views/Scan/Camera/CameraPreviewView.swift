@@ -15,15 +15,31 @@ struct CameraPreviewView: View {
     @State var cameraPreviewNavigation : CameraPreviewNavigation?
     @State var cameraCaptured = false
     var body: some View {
-        NavigationStack{
-//            BackButton(color: .white)
+        NavigationView{
             ZStack{
                 Color("black100")
                     .ignoresSafeArea()
                 VStack{
+//                    BackButton(color: .white)
+//                        .onTapGesture {
+//                            presentationMode.wrappedValue.dismiss()
+//                        }
+                    HStack{
+                        Button{
+                            presentationMode.wrappedValue.dismiss()
+                        } label: {
+                            Image(systemName: "arrow.left")
+                                .font(.system(size: 20))
+                                .fontWeight(.semibold)
+                                .foregroundColor(.white)
+                        }
+                        Spacer()
+                    }.offset(x: 20)
+                        .padding(.vertical, 10)
+                    
+
                     ZStack{
                         CameraPreview(camera: cameraModel)
-                            .ignoresSafeArea()
                             .cornerRadius(24)
                             .opacity(!cameraCaptured ? 0.8 : 1)
                         if !cameraCaptured {
@@ -49,12 +65,16 @@ struct CameraPreviewView: View {
                          if cameraModel.cameraState == .cameraInitialized {
                              ZStack{
                                  VStack{
+//                                     NavigationLink(destination: EducationView()) {
+//                                         Text("Gimana cara pakenya sih?")
+//                                             .foregroundColor(.white)
+//                                     }
                                      Button {
                                          cameraPreviewNavigation = .education
                                          navigateNextView.toggle()
                                      } label: {
                                          Text("Gimana cara pakenya sih?")
-                                             .foregroundColor(Color.white)
+                                             .foregroundColor(.white)
                                      }
 
                                      Button {
@@ -120,24 +140,26 @@ struct CameraPreviewView: View {
                                         .font(.system(size: 56))
                                 }
                                 Spacer()
+                                NavigationLink(isActive: $navigateNextView) {
+                                    if cameraPreviewNavigation == .education {
+                                        EducationView()
+                                    }else {
+                                        ScanResultView()
+                                            .environmentObject(scanViewModel)
+                                    }
+                                } label: {
+                                    EmptyView()
+                                }
 
                             }.frame(height: 180)
                         }
                     }
                 }
+                
             }
             
             .onAppear {
                 cameraModel.checkPermission()
-            }
-            .navigationDestination(isPresented: $navigateNextView) {
-                if cameraPreviewNavigation == .education {
-                    EducationView()
-                }else {
-                    ScanResultView()
-                        .environmentObject(scanViewModel)
-                }
-
             }
 
         }.navigationBarBackButtonHidden(true)
@@ -154,20 +176,4 @@ struct CameraPreviewView_Previews: PreviewProvider {
 enum CameraPreviewNavigation{
     case scanResult
     case education
-}
-
-struct HideBackButtonModifier: ViewModifier {
-    func body(content: Content) -> some View {
-        content
-            .navigationBarBackButtonHidden(true)
-            .navigationBarItems(leading: EmptyView()) // Clear the leading items
-    }
-}
-
-private func backButton() -> some View {
-    HStack {
-        BackButton(color: .white)
-            .offset(x: -20)
-        Spacer()
-    }
 }

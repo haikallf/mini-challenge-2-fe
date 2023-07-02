@@ -29,7 +29,7 @@ struct ScanResultView: View {
         
         //MARK: Ingredients Detail Section
         ZStack {
-            Colors.background
+            Color.white
                 .ignoresSafeArea()
             
             VStack {
@@ -64,17 +64,18 @@ struct ScanResultView: View {
                 }
                 .padding(.horizontal, 20)
                 Spacer()
-            }.background(in: Rectangle())
+                //MARK: Search Button
+                CupertinoButton("Lanjut", action: {
+                    shouldNavigate = true
+                },  foregroundColor: Colors.onSecondaryContainer,
+                    backgroundColor: Colors.secondaryContainer)
+                    .padding(.horizontal)
+            }.background(.white)
         }
         
         
         
-        //MARK: Search Button
-        CupertinoButton("Lanjut", action: {
-            shouldNavigate = true
-        },  foregroundColor: Colors.onSecondaryContainer,
-            backgroundColor: Colors.secondaryContainer)
-            .padding(.horizontal)
+        
         
         //MARK: Navigate to SearchResult triggered by shouldNavigate
         NavigationLink(destination: SearchResultView(ingredients: selectedIngredientsTemp), isActive: $shouldNavigate) {
