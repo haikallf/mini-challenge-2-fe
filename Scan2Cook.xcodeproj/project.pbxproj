@@ -27,6 +27,7 @@
 		D87DC5BB2A4AD5E00002503E /* CameraModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DC5BA2A4AD5E00002503E /* CameraModel.swift */; };
 		D87DC5C02A4AD6500002503E /* CameraPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DC5BF2A4AD6500002503E /* CameraPreview.swift */; };
 		D87DC5C22A4AD66B0002503E /* CameraPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DC5C12A4AD66B0002503E /* CameraPreviewView.swift */; };
+		D8992A312A5150D900969274 /* SearchResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8992A302A5150D900969274 /* SearchResultViewModel.swift */; };
 		DE5109A82A4B044200410806 /* OnboardingContent2.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5109A52A4B044200410806 /* OnboardingContent2.swift */; };
 		DE5109A92A4B044200410806 /* OnboardingContent3.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5109A62A4B044200410806 /* OnboardingContent3.swift */; };
 		DE5109AA2A4B044200410806 /* OnboardingContent1.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5109A72A4B044200410806 /* OnboardingContent1.swift */; };
@@ -91,6 +92,7 @@
 		D87DC5BA2A4AD5E00002503E /* CameraModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraModel.swift; sourceTree = "<group>"; };
 		D87DC5BF2A4AD6500002503E /* CameraPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreview.swift; sourceTree = "<group>"; };
 		D87DC5C12A4AD66B0002503E /* CameraPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewView.swift; sourceTree = "<group>"; };
+		D8992A302A5150D900969274 /* SearchResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewModel.swift; sourceTree = "<group>"; };
 		DE5109A52A4B044200410806 /* OnboardingContent2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContent2.swift; sourceTree = "<group>"; };
 		DE5109A62A4B044200410806 /* OnboardingContent3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContent3.swift; sourceTree = "<group>"; };
 		DE5109A72A4B044200410806 /* OnboardingContent1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContent1.swift; sourceTree = "<group>"; };
@@ -266,6 +268,7 @@
 				DEE450F32A45F68A00D2EA4A /* ScanViewModel.swift */,
 				C5E7F0D82A4A302900CAB1E8 /* FilterViewModel.swift */,
 				DED53A722A4ED67300208654 /* RecipeDetailsViewModel.swift */,
+				D8992A302A5150D900969274 /* SearchResultViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -458,6 +461,7 @@
 				DEE450F62A45F70700D2EA4A /* Ingredient.swift in Sources */,
 				DEE450D32A45A9C100D2EA4A /* HomeViewModel.swift in Sources */,
 				DE9B72452A424DAC00C3DEDD /* CupertinoButton.swift in Sources */,
+				D8992A312A5150D900969274 /* SearchResultViewModel.swift in Sources */,
 				C56F4E972A488C93004FD059 /* RecipeCardList.swift in Sources */,
 				DE9B72472A42565C00C3DEDD /* PersonalizationTag.swift in Sources */,
 				DEE450EA2A45D8BD00D2EA4A /* BookmarkViewModel.swift in Sources */,

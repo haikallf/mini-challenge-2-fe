@@ -16,7 +16,7 @@ struct CameraPreviewView: View {
     @State var cameraCaptured = false
     var body: some View {
         NavigationStack{
-            BackButton(color: .white)
+//            BackButton(color: .white)
             ZStack{
                 Color("black100")
                     .ignoresSafeArea()

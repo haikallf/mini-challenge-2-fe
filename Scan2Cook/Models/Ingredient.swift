@@ -17,8 +17,8 @@ extension Ingredient {
     static let all = [
         Ingredient(id: "BAWANG_MERAH", name: "Bawang Merah", attribute: "bawang-merah"),
         Ingredient(id: "TELUR", name: "Telur", attribute: "Telur"),
-        Ingredient(id: "JAGUNG", name: "Jagung", attribute: ""),
-        Ingredient(id: "PAKCOY", name: "Pakcoy", attribute: ""),
+        Ingredient(id: "JAGUNG", name: "Jagung", attribute: "Jagung"),
+        Ingredient(id: "PAKCOY", name: "Pakcoy", attribute: "Pakcoy"),
         Ingredient(id: "ROTI", name: "Roti", attribute: ""),
         Ingredient(id: "BAWANG_PUTIH", name: "Bawang Putih", attribute: "bawang-putih"),
         Ingredient(id: "TOMAT", name: "Tomat", attribute: "Tomat"),
@@ -28,7 +28,7 @@ extension Ingredient {
         Ingredient(id: "JAMUR", name: "Jamur", attribute: "Jamur"),
         Ingredient(id: "TAHU", name: "Tahu", attribute: "Tahu"),
         Ingredient(id: "TERONG", name: "Terong", attribute: "Terong"),
-        Ingredient(id: "MIE_INSTAN", name: "Mie Instan", attribute: "Mie Instan"),
+        Ingredient(id: "MIE_INSTANT", name: "Mie Instant", attribute: "Mie Instan"),
         Ingredient(id: "KECAP_KEMASAN", name: "Kecap Kemasan", attribute: "Kecap Kemasan"),
         Ingredient(id: "JERUK_NIPIS", name: "Jeruk Nipis", attribute: "Jeruk Nipis"),
         Ingredient(id: "DAGING_AYAM", name: "Daging Ayam", attribute: "daging-ayam"),
@@ -54,3 +54,4 @@ extension Ingredient {
         Ingredient(id: "WORTEL", name: "Wortel", attribute: "wortel"),
     ]
 }
+

@@ -72,7 +72,7 @@ struct ScanResultView: View {
             .padding(.horizontal)
         
         //MARK: Navigate to SearchResult triggered by shouldNavigate
-        NavigationLink(destination: SearchResultView(), isActive: $shouldNavigate) {
+        NavigationLink(destination: SearchResultView(ingredients: selectedIngredientsTemp), isActive: $shouldNavigate) {
             EmptyView()
         }
         .opacity(0)

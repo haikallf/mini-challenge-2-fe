@@ -10,7 +10,7 @@ import SwiftUI
 class GlobalStates: ObservableObject {
     @Published var isTabBarShown: Bool = true
     @Published var selectedPageIndex: Int = 1
-    @Published var baseURL: String = "http://192.168.100.26:3000"
+    @Published var baseURL: String = "https://bf06-103-195-58-64.ngrok-free.app"
     
     @Published var personalizationsFilter: [String] = UserDefaults.standard.stringArray(forKey: "personalizations") ?? []
     @Published var cookingWareFilter: [String] = []

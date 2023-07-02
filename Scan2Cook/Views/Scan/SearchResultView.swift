@@ -8,15 +8,18 @@
 import SwiftUI
 
 struct SearchResultView: View {
+    @StateObject var searchResultViewModel = SearchResultViewModel()
+    @State var ingredients : [Ingredient]
     @State var recipes: [RecipeThumbnailResponse] = []
+    @State var navigateToHome = false
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     var body: some View {
         VStack {
-            BackButton()
+            
             
             VStack(alignment: .leading, spacing: 4) {
-                Text("5 Resep Ditemuin")
+                Text("\(searchResultViewModel.recipeResults.count) Resep Ditemuin")
                     .font(.title3)
                     .fontWeight(.semibold)
                 
@@ -27,16 +30,39 @@ struct SearchResultView: View {
             .padding(.vertical, 12)
             .padding(.horizontal)
             
-            RecipeLists(recipes: recipes)
+            RecipeLists(recipes: searchResultViewModel.recipeResults)
+                .environmentObject(GlobalStates())
             
             Spacer()
         }
         .navigationBarBackButtonHidden(true)
+        .task {
+            print("ingredients : \(ingredients)")
+            searchResultViewModel.convertIngredient(ingredients: ingredients)
+            await searchResultViewModel.getRecipeResults()
+        }
+        .toolbar{
+            ToolbarItem(placement: .navigationBarLeading) {
+                BackButton()
+            }
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button(action: {
+                    navigateToHome = true
+                }, label: {
+                    Text("Done")
+                        .font(CustomFont.body)
+                        .foregroundColor(Colors.primary)
+                })
+            
+            }
+        }
+        
+        NavigationLink("", destination: MainView(), isActive: $navigateToHome)
     }
 }
 
 struct SearchResultView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchResultView()
+        SearchResultView(ingredients: Ingredient.all)
     }
 }
